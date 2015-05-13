@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+    <layer name="wccpilgrimagesite.app"
+        interface="wccpilgrimagesite.app.interfaces.IProductSpecific" />
+</layers>
