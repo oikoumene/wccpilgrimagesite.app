@@ -8,4 +8,6 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="wccpilgrimagesite.app.pilgrimagesteps" meta_type="Dexterity FTI" />
+  <object name="wccpilgrimagesite.app.pilgrimageapp" meta_type="Dexterity FTI" />
 </object>
