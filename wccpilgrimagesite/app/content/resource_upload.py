@@ -31,6 +31,75 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     """
     Resource Upload
     """
+    name = schema.TextLine(
+        title=u'Name',
+        required=True,
+    )
+
+    email = schema.TextLine(
+        title=u'E-mail',
+        required=False,
+    )
+
+    church = schema.TextLine(
+        title=u'Your church',
+        required=False,
+    )
+
+    message = schema.Text(
+        title=u'Message',
+        required=True,
+    )
+
+    video = schema.Text(
+        title=u'Video',
+        required=True,
+    )
+
+    sound = schema.Text(
+        title=u'Sound',
+        required=True,
+    )
+
+    document = NamedBlobFile(
+            title=_(u"Document"),
+            description=_(u"Please attach a file"),
+            required=False,
+    )
+
+#    video = RelationList(
+#        title=u'Video',
+#        default=[],
+#        value_type=RelationChoice(
+#            source=ObjPathSourceBinder(
+#                path={'query': '/en/resources/videos'}
+#            ),
+#        ),
+#        required=False
+#    )
+
+#    sound = RelationList(
+#        title=u'Sound',
+#        default=[],
+#        value_type=RelationChoice(
+#            source=ObjPathSourceBinder(
+#                path={'query': '/en/resources/sounds'}
+#            ),
+#        ),
+#        required=False
+#    )
+
+#    document = RelationList(
+#        title=u'Document',
+#        default=[],
+#        value_type=RelationChoice(
+#            source=ObjPathSourceBinder(
+#                path={'query': '/en/resources/documents'}
+#            ),
+#        ),
+#        required=False
+#    )
+
     pass
 
 alsoProvides(IResourceUpload, IFormFieldProvider)
