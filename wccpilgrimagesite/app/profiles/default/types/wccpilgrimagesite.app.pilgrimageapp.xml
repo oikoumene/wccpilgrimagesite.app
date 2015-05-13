@@ -24,9 +24,9 @@
      <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
      <!--element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/-->
-     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
+     <!--element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/-->
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
-     <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
+     <!--element value="plone.app.versioningbehavior.behaviors.IVersionable"/-->
    </property>
 
   <!-- View information -->
