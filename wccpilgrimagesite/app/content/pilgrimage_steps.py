@@ -58,6 +58,11 @@ class IPilgrimageSteps(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
+    image = NamedBlobImage(
+        title=u'Image',
+        required=False,
+    )
+
 
     pass
 
