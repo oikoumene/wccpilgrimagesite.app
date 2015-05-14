@@ -25,8 +25,21 @@
             <div tal:content="structure widget/render" />
         </div>
     </tal:block>
+    <div><a tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">Add a comment</a></div><br>
+    <tal:block tal:define="brains view/comments_result" tal:condition="brains">
+    <table>
+      <tbody>
+        <tr tal:repeat="brain brains">
+          <td tal:content="python: brain.getObject().email"></td>
+          <td tal:content="python: brain.getObject().message"></td>
+          <td tal:content="python: brain.getObject().datetime_added"></td>
+          <td tal:content="python: brain.getObject().image"></td>
+        </tr>
+      </tbody>
+    </table>
+    </tal:block>
 
-    <fieldset tal:repeat="group view/groups"
+<!--     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
         <legend tal:content="group/label" />
         <div class="field" tal:repeat="widget group/widgets/values">
@@ -41,11 +54,10 @@
         <tal:block define="listing_macro context/folder_listing/macros/listing">
             <metal:use_macro use-macro="listing_macro" />
         </tal:block>
-    </fieldset>
+    </fieldset> -->
 
   </metal:content-core>
 </metal:main>
 
 </body>
 </html>
-
