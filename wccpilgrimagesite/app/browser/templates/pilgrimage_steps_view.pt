@@ -31,7 +31,7 @@
       <tbody>
         <tr tal:repeat="brain brains">
           <td>
-          <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@download/image/'+ brain.getObject().image.filename;" width="100px"/>
+          <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
           </td>
           <td tal:content="python: brain.getObject().title"></td>
           <td tal:content="python: brain.getObject().email"></td>
