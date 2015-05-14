@@ -66,7 +66,7 @@ class IUserComment(form.Schema, IImageScaleTraversable):
 #            ),
 #        ),
 #        required=False,
-#    )
+#    ) 
 
     pass
 
