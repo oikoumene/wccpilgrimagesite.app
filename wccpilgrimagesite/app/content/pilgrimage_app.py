@@ -21,6 +21,7 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 from wccpilgrimagesite.app import MessageFactory as _
 
@@ -31,6 +32,12 @@ class IPilgrimageApp(form.Schema, IImageScaleTraversable):
     """
     Pilgrimage App
     """
+
+    form.widget(body=WysiwygFieldWidget)
+    body = schema.Text(title=u"Description",
+    required=False,
+    )
+
     pass
 
 alsoProvides(IPilgrimageApp, IFormFieldProvider)
