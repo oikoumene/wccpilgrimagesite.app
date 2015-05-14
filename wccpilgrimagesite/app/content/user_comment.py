@@ -47,10 +47,10 @@ class IUserComment(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    datetime_added = schema.Datetime(
-        title=u'Datetime added',
-        required=True,
-    )
+    # datetime_added = schema.Datetime(
+    #     title=u'Datetime added',
+    #     required=True,
+    # )
 
     image = NamedBlobImage(
         title=u'Image',
@@ -66,7 +66,7 @@ class IUserComment(form.Schema, IImageScaleTraversable):
 #            ),
 #        ),
 #        required=False,
-#    ) 
+#    )
 
     pass
 
