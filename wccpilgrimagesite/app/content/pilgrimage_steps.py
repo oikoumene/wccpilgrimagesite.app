@@ -33,8 +33,8 @@ class IPilgrimageSteps(form.Schema, IImageScaleTraversable):
     Pilgrimage Steps
     """
 
-    form.widget(description=WysiwygFieldWidget)
-    description = schema.Text(title=u"Description",
+    form.widget(body=WysiwygFieldWidget)
+    body = schema.Text(title=u"Description",
     required=False,
     )
 
