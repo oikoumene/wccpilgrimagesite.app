@@ -18,30 +18,44 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       
-      <div class="big-circle-slider" tal:define="brains view/pilgrimage_steps">
-            <tal:entry tal:repeat="brain brains">
-               <div class="circle blue-circle">
-                  <div class="resizer-wrapper">
-                      <a href="page-one.html">
-                          <div class="slide-circle">
-                              <div class="inner-circle">
-                                  <div class="inner-content">
-                                      <div class="inner-centered">
-                                          <div class="circle-icon" tal:condition="python: brain['image']">
-                                              <!--<img tal:attributes="src python: brain['url']+'/@@download/image/'+brain['image'].filename" alt="What is a pilgrimage?">-->
-                                              <img tal:attributes="src python: brain['url']+'/@@images/image/tile'" alt="What is a pilgrimage?">
-                                          </div>
-                                          <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
-                                          <!--<p>Write your thoughts about pilgrimage from your context.</p>-->
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </a>
+      <header class="options-header white-bg">
+            <div class="row">
+                <div class="columns small-12 text-center">
+                    <div class="logo"><a href=""><span class="access">Pilgrimage of Peace and Justice</span></a></div>
+                </div>
+            </div>
+      </header>
+      
+      <section class="white-bg">
+            <div class="row">
+                  <div class="columns small-12 text-center animated fadeIn">
+                        <div class="big-circle-slider" tal:define="brains view/pilgrimage_steps">
+                              <tal:entry tal:repeat="brain brains">
+                                 <div class="circle blue-circle">
+                                    <div class="resizer-wrapper">
+                                        <a href="page-one.html">
+                                            <div class="slide-circle">
+                                                <div class="inner-circle">
+                                                    <div class="inner-content">
+                                                        <div class="inner-centered">
+                                                            <div class="circle-icon" tal:condition="python: brain['image']">
+                                                                <!--<img tal:attributes="src python: brain['url']+'/@@download/image/'+brain['image'].filename" alt="What is a pilgrimage?">-->
+                                                                <img tal:attributes="src python: brain['url']+'/@@images/image/tile'" alt="What is a pilgrimage?">
+                                                            </div>
+                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
+                                                            <!--<p>Write your thoughts about pilgrimage from your context.</p>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                              </tal:entry>
+                        </div>
                   </div>
-              </div>
-            </tal:entry>
-      </div>
+            </div>
+      </section>
 
     <!--<tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
