@@ -37,7 +37,7 @@
           <td tal:content="python: brain.getObject().email"></td>
           <td tal:content="python: brain.getObject().message"></td>
           <td tal:content="python: view.datetime_result(brain.created)"></td>
-        
+
 
         </tr>
       </tbody>
@@ -63,6 +63,7 @@
       </tbody>
     </table>
     </tal:block>
+    <div><a tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/resources'">View All</a></div><br>
 
 
 
