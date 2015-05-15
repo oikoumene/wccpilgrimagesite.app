@@ -32,6 +32,10 @@ class IPilgrimageApp(form.Schema, IImageScaleTraversable):
     """
     Pilgrimage App
     """
+    url_label = schema.TextLine(
+        title=u'Url Label',
+        required=True,
+    )
 
     form.widget(body=WysiwygFieldWidget)
     body = schema.Text(title=u"Description",
