@@ -29,8 +29,7 @@ class Index(dexterity.DisplayForm):
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.video:
-                data= {'title': obj.title,
-                        'name': obj.name,
+                data= { 'name': obj.name,
                         'email':obj.email,
                         'church': obj.church,
                         'message': obj.message,
@@ -44,8 +43,7 @@ class Index(dexterity.DisplayForm):
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.sound:
-                data= {'title': obj.title,
-                        'name': obj.name,
+                data= {'name': obj.name,
                         'email':obj.email,
                         'church': obj.church,
                         'message': obj.message,
@@ -59,8 +57,7 @@ class Index(dexterity.DisplayForm):
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.document:
-                data= {'title': obj.title,
-                        'name': obj.name,
+                data= {'name': obj.name,
                         'email':obj.email,
                         'church': obj.church,
                         'message': obj.message,
