@@ -38,11 +38,11 @@
                                                 <div class="inner-circle">
                                                     <div class="inner-content">
                                                         <div class="inner-centered">
+                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
                                                             <div class="circle-icon" tal:condition="python: brain['image']">
                                                                 <!--<img tal:attributes="src python: brain['url']+'/@@download/image/'+brain['image'].filename" alt="What is a pilgrimage?">-->
                                                                 <img tal:attributes="src python: brain['url']+'/@@images/image/tile'" alt="What is a pilgrimage?">
                                                             </div>
-                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
                                                             <!--<p>Write your thoughts about pilgrimage from your context.</p>-->
                                                         </div>
                                                     </div>
@@ -69,10 +69,10 @@
                                                 <div class="inner-circle">
                                                     <div class="inner-content">
                                                         <div class="inner-centered">
+                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
                                                             <div class="circle-icon" tal:condition="python: brain['image']">
                                                                 <img tal:attributes="src python: brain['url']+'/@@images/image/tile'" alt="What is a pilgrimage?">
                                                             </div>
-                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
