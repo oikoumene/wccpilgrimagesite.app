@@ -37,8 +37,10 @@
             <div class="row">
                   <div class="columns small-12 text-center welcome-page" tal:define="content view/pilgrimagestep_app">
                         <tal:block tal:condition="content">
-                              <div tal:define="obj content/_unrestrictedGetObject" tal:content="structure obj/body"></div>
-                              <a tal:attributes="href content/getPath" class="button tiny">Let's Go</a>
+                            <tal:block tal:define="obj content/_unrestrictedGetObject">
+                              <div tal:content="structure obj/body"></div>
+                              <a tal:attributes="href content/getPath" class="button tiny" tal:content="obj/url_label">Let's Go</a>
+                            </tal:block>
                         </tal:block>
                         
                   </div>
