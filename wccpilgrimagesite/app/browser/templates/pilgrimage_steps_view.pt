@@ -61,7 +61,7 @@
         </tr>
       </tbody>
     </table>
-    <div><a tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/resources'">View All</a></div><br>
+    <div><a tal:attributes="href view/resources_path">View All</a></div><br>
     </tal:block>
     
 
