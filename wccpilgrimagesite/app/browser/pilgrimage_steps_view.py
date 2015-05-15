@@ -17,7 +17,7 @@ class Index(dexterity.DisplayForm):
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')[:3]
-	return brains
+        return brains
 
     def resources_result(self):
         context = self.context
@@ -74,3 +74,11 @@ class Index(dexterity.DisplayForm):
 
     def datetime_result(self, value=None):
         return value.strftime("%Y-%m-%d %H:%M")
+    
+    
+    def resources_path(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brains = catalog.unrestrictedSearchResults(path={'query':'/'.join(self.context.getPhysicalPath()), 'depth':1}, portal_type='wccpilgrimagesite.app.resources')
+        for brain in brains:
+            return brain.getPath()
+        return '#'
