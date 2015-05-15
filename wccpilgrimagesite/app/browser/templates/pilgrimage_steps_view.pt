@@ -36,7 +36,7 @@
           <td tal:content="python: brain.getObject().title"></td>
           <td tal:content="python: brain.getObject().email"></td>
           <td tal:content="python: brain.getObject().message"></td>
-          <td tal:content="python: view.datetime_result(brain.created)"></td>
+          <td tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></td>
 
 
         </tr>
