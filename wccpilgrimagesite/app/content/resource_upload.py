@@ -23,6 +23,8 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from collective import dexteritytextindexer
 
 from wccpilgrimagesite.app import MessageFactory as _
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+from zope.app.container.interfaces import IObjectAddedEvent
 
 
 # Interface class; used to define content-type schema.
@@ -103,3 +105,14 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IResourceUpload, IFormFieldProvider)
+
+
+@grok.subscribe(IResourceUpload, IObjectAddedEvent)
+def _createObject(context, event):
+
+    behavior = IExcludeFromNavigation(context)
+    behavior.exclude_from_nav = True
+
+    context.reindexObject()
+
+    return

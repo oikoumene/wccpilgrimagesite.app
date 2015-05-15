@@ -51,7 +51,6 @@
         <!--   <td>
           <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
           </td> -->
-          <td tal:content="python: brain['title']"></td>
           <td tal:content="python: brain['name']"></td>
           <td tal:content="python: brain['email']"></td>
           <td tal:content="python: brain['church']"></td>
