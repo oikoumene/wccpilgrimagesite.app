@@ -56,6 +56,41 @@
                   </div>
             </div>
       </section>
+      
+      <!--small circle-->
+      <section class="sc-wrapper white-bg">
+            <div class="row">
+                  <div class="columns small-12 text-center animated fadeIn">
+                        <div class="little-circle-slider" tal:define="brains view/pilgrimage_steps">
+                              <tal:entry tal:repeat="brain brains">
+                                    <div class="circle-three yellow-circle">
+                                        <a href="page-three.html">
+                                            <div class="slide-circle">
+                                                <div class="inner-circle">
+                                                    <div class="inner-content">
+                                                        <div class="inner-centered">
+                                                            <div class="circle-icon" tal:condition="python: brain['image']">
+                                                                <img tal:attributes="src python: brain['url']+'/@@images/image/tile'" alt="What is a pilgrimage?">
+                                                            </div>
+                                                            <h2><span tal:content="python: brain['position']">1</span> <br><span tal:content="python: brain['title']">What is a pilgrimage?</span></h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                              </tal:entry>
+                        </div>
+                  </div>
+            </div>
+      </section>
+      <section class="small-slider-cover white-bg">
+            <div class="row">
+                  <div class="small-12 columns text-center">
+                        <a href="" class="button tiny more-circles">Show More</a>
+                  </div>
+            </div>
+      </section>
 
     <!--<tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
