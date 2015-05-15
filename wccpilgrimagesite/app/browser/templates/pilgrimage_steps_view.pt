@@ -51,7 +51,6 @@
         <!--   <td>
           <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
           </td> -->
-          <td tal:content="python: brain['title']"></td>
           <td tal:content="python: brain['name']"></td>
           <td tal:content="python: brain['email']"></td>
           <td tal:content="python: brain['church']"></td>
@@ -62,8 +61,9 @@
         </tr>
       </tbody>
     </table>
-    </tal:block>
     <div><a tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/resources'">View All</a></div><br>
+    </tal:block>
+    
 
 
 
