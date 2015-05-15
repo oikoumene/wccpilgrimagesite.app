@@ -27,6 +27,7 @@ from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.i18n.normalizer import idnormalizer
+import datetime
 
 # Interface class; used to define content-type schema.
 
@@ -100,7 +101,7 @@ def _createObject(context, event):
 
     parent.manage_renameObject(id, new_id )
     new_title = last_name
-    context.setTitle(new_title)
+    context.setTitle(context.title)
 
     #exclude from navigation code
     behavior = IExcludeFromNavigation(context)
@@ -108,3 +109,7 @@ def _createObject(context, event):
 
     context.reindexObject()
     return
+
+@form.default_value(field=IUserComment['datetime_added'])
+def currentDate(self):
+    return datetime.datetime.today()
