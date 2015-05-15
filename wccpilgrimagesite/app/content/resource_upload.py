@@ -53,12 +53,12 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
 
     video = schema.Text(
         title=u'Video',
-        required=True,
+        required=False,
     )
 
     sound = schema.Text(
         title=u'Sound',
-        required=True,
+        required=False,
     )
 
     document = NamedBlobFile(

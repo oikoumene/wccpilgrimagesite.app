@@ -37,11 +37,35 @@
           <td tal:content="python: brain.getObject().email"></td>
           <td tal:content="python: brain.getObject().message"></td>
           <td tal:content="python: view.datetime_result(brain.created)"></td>
-          
+
+
         </tr>
       </tbody>
     </table>
     </tal:block>
+
+    <tal:block tal:define="brains view/resources_result" tal:condition="brains">
+    <table>
+      <tbody>
+        <tr tal:repeat="brain brains">
+        <!--   <td>
+          <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
+          </td> -->
+          <td tal:content="python: brain['title']"></td>
+          <td tal:content="python: brain['name']"></td>
+          <td tal:content="python: brain['email']"></td>
+          <td tal:content="python: brain['church']"></td>
+          <td tal:content="python: brain['message']"></td>
+          <td tal:condition="python: brain['type'] != 'document'" tal:content="python: brain['resource']"></td>
+          <td ><a tal:condition="python: brain['type'] == 'document'" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
+
+        </tr>
+      </tbody>
+    </table>
+    </tal:block>
+    <div><a tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/resources'">View All</a></div><br>
+
+
 
     <!--  <img tal:attributes="src string:${context/absolute_url}/@@download/picture/${picture/filename};
                          height picture/_height | nothing;
