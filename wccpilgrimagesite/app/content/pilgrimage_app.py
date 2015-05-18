@@ -22,6 +22,11 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
+from zope.app.container.interfaces import IObjectAddedEvent
+from zope.component import getUtility, getMultiAdapter
+from zope.container.interfaces import INameChooser
+from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, IPortletRetriever
+from wccpilgrimagesite.app.portlet import burgermenuportlet
 
 from wccpilgrimagesite.app import MessageFactory as _
 
@@ -45,3 +50,16 @@ class IPilgrimageApp(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IPilgrimageApp, IFormFieldProvider)
+
+@grok.subscribe(IPilgrimageApp, IObjectAddedEvent)
+def _createObj(context, event):
+    parent = context.aq_parent
+    column = getUtility(IPortletManager, name=u'plone.leftcolumn', context=context)
+    manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
+    assignment = burgermenuportlet.Assignment()
+    chooser = INameChooser(manager)
+    assignment.path = '/'.join(context.getPhysicalPath())
+    manager[chooser.chooseName(None, assignment)] = assignment
+    return
+
+
