@@ -36,10 +36,8 @@
                               <div class="logo">
                                     <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
                               </div>
-                              <h1>What is a pilgrimage?</h1>
-                              <p>Share your thoughts about pilgrimage from your context.</p>
-                              <a class="item-arrow next-item" href="#"><i class="fa fa-chevron-right"><span class="access">Next Item</span></i>
-                              </a>
+                              <h1 tal:content="context/Title">What is a pilgrimage?</h1>
+                              <p tal:content="context/Description">Share your thoughts about pilgrimage from your context.</p>
                         </div>
                   </div>
             </header>
