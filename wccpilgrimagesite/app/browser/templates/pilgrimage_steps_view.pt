@@ -7,6 +7,13 @@
       i18n:domain="wccpilgrimagesite.app">
 <body>
 
+  <metal:styleslot fill-slot='style_slot'>
+      <style type="text/css" media="all">
+        .formTabs{visibility: hidden;}
+         
+      </style>
+</metal:styleslot>
+
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
     content unless activated by creation of a view class with a matching name.
