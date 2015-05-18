@@ -2,5 +2,9 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
-
+    <portlet
+        addview="wccpilgrimagesite.app.burgermenuportlet"
+        title="Burger Menu Portlet"
+        description="Burger Menu Portlet"
+    />
 </portlets>
