@@ -26,82 +26,112 @@
           </div>
       </tal:block>
       
-      <!--comments-->
-      <section class="content-strip white-bg">
-            <div class="row">
-                  <div class="columns small-12 text-center">
-                        <h2>Your comments</h2>
-                        <ul class="comments-list no-bullet" tal:define="brains view/comments_result" tal:condition="brains">
-                              <li tal:repeat="brain brains">
-                                    <div class="cl-image-wrapper">
-                                          <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span>
-                                          <span class="cl-image-mask">
-                                                <img alt="Circle Mask" src="++theme++wccpilgrimagesite.theme/images/circle-mask.png">
-                                          </span>
-                                          <span class="quotes">
-                                                <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
-                                          </span>
-                                    </div>
-                                    <div class="cl-details">
-                                          <div class="heart-box">
-                                                <a data-votable="c647a2e88be24f90a42daf23b36793b6"><i class="fa fa-heart"></i></a>
-                                                <span class="heart-number" data-votes-count="c647a2e88be24f90a42daf23b36793b6">5</span>
-                                          </div>
-                                          <h4 tal:content="python: brain.getObject().title"></h4>
-                                          <p tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></p>
-                                    </div>
-                                    <div class="cl-text">
-                                            <p tal:content="python: brain.getObject().message"></p>
-                                    </div>
-                              </li>
-                        </ul>
-                        
-                        <!--<tal:block tal:define="brains view/comments_result" tal:condition="brains">
-                              <table>
-                                <tbody>
-                                  <tr tal:repeat="brain brains">
-                                    <td>
-                                    <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
-                                    </td>
-                                    <td tal:content="python: brain.getObject().title"></td>
-                                    <td tal:content="python: brain.getObject().email"></td>
-                                    <td tal:content="python: brain.getObject().message"></td>
-                                    <td tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></td>
-                          
-                          
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </tal:block>-->
-                    
-                        <tal:block tal:define="brains view/resources_result" tal:condition="brains">
-                              <table>
-                                    <tbody>
-                                          <tr tal:repeat="brain brains">
-                                      <!--   <td>
-                                        <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
-                                        </td> -->
-                                                <td tal:content="python: brain['name']"></td>
-                                                <td tal:content="python: brain['email']"></td>
-                                                <td tal:content="python: brain['church']"></td>
-                                                <td tal:content="python: brain['message']"></td>
-                                                <td tal:condition="python: brain['type'] != 'document'" tal:content="python: brain['resource']"></td>
-                                                <td ><a tal:condition="python: brain['type'] == 'document'" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
-                                          </tr>
-                                    </tbody>
-                              </table>
-                              <div><a tal:attributes="href view/resources_path">View All</a></div><br>
-                        </tal:block>
-                        
-                        <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
-                              <span class="ab-circle">+</span>
-                              <br />
-                              <span class="ab-text">Add a comment</span>
-                        </a>
+      <!--color page container-->
+      <div class="blue-page animated fadeIn">
+      
+            <!--page header-->
+            <header class="content-header blue-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="logo">
+                                    <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
+                              </div>
+                              <h1>What is a pilgrimage?</h1>
+                              <p>Share your thoughts about pilgrimage from your context.</p>
+                              <a class="item-arrow next-item" href="#"><i class="fa fa-chevron-right"><span class="access">Next Item</span></i>
+                              </a>
+                        </div>
                   </div>
-            </div>
+            </header>
             
-      </section>
+            <!--page content-->
+            <section class="content-strip white-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <h2>A journey of faith</h2>
+                              <p>Pilgrimage is common to all the world’s religious traditions. A pilgrimage is a journey of faith, often to a place considered sacred, in order to offer thanks, to atone for wrong-doing, or to seek enlightenment or healing or reconciliation. In the Bible itself are many examples of pilgrimage. As you begin to explore the WCC Pilgrimage of Justice and Peace, consider the nature of pilgrimage in your faith and the faith of others different from you. As you do, share your ideas and experience with others through the comments sections below, by making a video or audio presentation or sharing with others through social media. The resource document that you can download below will help you consider pilgrimage in your own life’s journey or that of your community. To draw others into the conversation in social media use the hashtag #WhatIsAPilgrimage.</p>
+                        </div>
+                  </div>
+            </section>
+            
+            <!--comments-->
+            <section class="content-strip white-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <h2>Your comments</h2>
+                              <ul class="comments-list no-bullet" tal:define="brains view/comments_result" tal:condition="brains">
+                                    <li tal:repeat="brain brains">
+                                          <div class="cl-image-wrapper">
+                                                <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span>
+                                                <span class="cl-image-mask">
+                                                      <img alt="Circle Mask" src="++theme++wccpilgrimagesite.theme/images/circle-mask.png">
+                                                </span>
+                                                <span class="quotes">
+                                                      <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
+                                                </span>
+                                          </div>
+                                          <div class="cl-details">
+                                                <div class="heart-box">
+                                                      <a data-votable="c647a2e88be24f90a42daf23b36793b6"><i class="fa fa-heart"></i></a>
+                                                      <span class="heart-number" data-votes-count="c647a2e88be24f90a42daf23b36793b6">5</span>
+                                                </div>
+                                                <h4 tal:content="python: brain.getObject().title"></h4>
+                                                <p tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></p>
+                                          </div>
+                                          <div class="cl-text">
+                                                  <p tal:content="python: brain.getObject().message"></p>
+                                          </div>
+                                    </li>
+                              </ul>
+                              
+                              <!--<tal:block tal:define="brains view/comments_result" tal:condition="brains">
+                                    <table>
+                                      <tbody>
+                                        <tr tal:repeat="brain brains">
+                                          <td>
+                                          <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
+                                          </td>
+                                          <td tal:content="python: brain.getObject().title"></td>
+                                          <td tal:content="python: brain.getObject().email"></td>
+                                          <td tal:content="python: brain.getObject().message"></td>
+                                          <td tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></td>
+                                
+                                
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                              </tal:block>-->
+                          
+                              <tal:block tal:define="brains view/resources_result" tal:condition="brains">
+                                    <table>
+                                          <tbody>
+                                                <tr tal:repeat="brain brains">
+                                            <!--   <td>
+                                              <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
+                                              </td> -->
+                                                      <td tal:content="python: brain['name']"></td>
+                                                      <td tal:content="python: brain['email']"></td>
+                                                      <td tal:content="python: brain['church']"></td>
+                                                      <td tal:content="python: brain['message']"></td>
+                                                      <td tal:condition="python: brain['type'] != 'document'" tal:content="python: brain['resource']"></td>
+                                                      <td ><a tal:condition="python: brain['type'] == 'document'" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                                    <div><a tal:attributes="href view/resources_path">View All</a></div><br>
+                              </tal:block>
+                              
+                              <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
+                                    <span class="ab-circle">+</span>
+                                    <br />
+                                    <span class="ab-text">Add a comment</span>
+                              </a>
+                        </div>
+                  </div>
+                  
+            </section>
+            
+      </div><!--end color page container-->
 
 
     <!--  <img tal:attributes="src string:${context/absolute_url}/@@download/picture/${picture/filename};
