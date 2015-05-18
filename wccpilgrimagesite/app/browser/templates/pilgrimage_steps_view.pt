@@ -69,7 +69,7 @@
                                           <div class="cl-image-wrapper">
                                                 <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span>
                                                 <span class="cl-image-mask">
-                                                      <img alt="Circle Mask" src="++theme++wccpilgrimagesite.theme/images/circle-mask.png">
+                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'">
                                                 </span>
                                                 <span class="quotes">
                                                       <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
