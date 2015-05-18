@@ -5,5 +5,13 @@
 
     <include package="plone.app.portlets" file="permissions.zcml"/>
     <!-- -*- extra stuff goes here -*- -->
+    
+    <plone:portlet
+        name="wccpilgrimagesite.app.burgermenuportlet"
+        interface=".burgermenuportlet.IBurgerMenuPortlet"
+        assignment=".burgermenuportlet.Assignment"
+        renderer=".burgermenuportlet.Renderer"
+        addview=".burgermenuportlet.AddForm"
+        />
 
 </configure>
