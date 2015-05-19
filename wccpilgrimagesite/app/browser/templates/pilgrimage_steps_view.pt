@@ -25,13 +25,13 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-      <tal:block repeat="widget view/widgets/values">
+ <!--      <tal:block repeat="widget view/widgets/values">
           <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
               <label tal:content="widget/label" />
               <br />
               <div tal:content="structure widget/render" />
           </div>
-      </tal:block>
+      </tal:block> -->
       
       <!--color page container-->
       <div class="blue-page animated fadeIn">
@@ -53,8 +53,8 @@
             <section class="content-strip white-bg">
                   <div class="row">
                         <div class="columns small-12 text-center">
-                              <h2>A journey of faith</h2>
-                              <p>Pilgrimage is common to all the world’s religious traditions. A pilgrimage is a journey of faith, often to a place considered sacred, in order to offer thanks, to atone for wrong-doing, or to seek enlightenment or healing or reconciliation. In the Bible itself are many examples of pilgrimage. As you begin to explore the WCC Pilgrimage of Justice and Peace, consider the nature of pilgrimage in your faith and the faith of others different from you. As you do, share your ideas and experience with others through the comments sections below, by making a video or audio presentation or sharing with others through social media. The resource document that you can download below will help you consider pilgrimage in your own life’s journey or that of your community. To draw others into the conversation in social media use the hashtag #WhatIsAPilgrimage.</p>
+                            <!--   <h2>A journey of faith</h2> -->
+                              <p tal:content="context/body">Pilgrimage is common to all the world’s religious traditions. A pilgrimage is a journey of faith, often to a place considered sacred, in order to offer thanks, to atone for wrong-doing, or to seek enlightenment or healing or reconciliation. In the Bible itself are many examples of pilgrimage. As you begin to explore the WCC Pilgrimage of Justice and Peace, consider the nature of pilgrimage in your faith and the faith of others different from you. As you do, share your ideas and experience with others through the comments sections below, by making a video or audio presentation or sharing with others through social media. The resource document that you can download below will help you consider pilgrimage in your own life’s journey or that of your community. To draw others into the conversation in social media use the hashtag #WhatIsAPilgrimage.</p>
                         </div>
                   </div>
             </section>
@@ -67,7 +67,7 @@
                               <ul class="comments-list no-bullet" tal:define="brains view/comments_result" tal:condition="brains">
                                     <li tal:repeat="brain brains">
                                           <div class="cl-image-wrapper">
-                                                <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span>
+                                                <!-- <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span> -->
                                                 <span class="cl-image-mask">
                                                       <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'">
                                                 </span>
@@ -77,8 +77,8 @@
                                           </div>
                                           <div class="cl-details">
                                                 <div class="heart-box">
-                                                      <a data-votable="c647a2e88be24f90a42daf23b36793b6"><i class="fa fa-heart"></i></a>
-                                                      <span class="heart-number" data-votes-count="c647a2e88be24f90a42daf23b36793b6">5</span>
+                                                      <a tal:attributes="data-votable python: brain.getId" ><i class="fa fa-heart"></i></a>
+                                                      <span class="heart-number" tal:attributes="data-votes-count python: brain.getId">0</span>
                                                 </div>
                                                 <h4 tal:content="python: brain.getObject().title"></h4>
                                                 <p tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></p>
