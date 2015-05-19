@@ -34,7 +34,7 @@
       </tal:block> -->
       
       <!--color page container-->
-      <div class="blue-page animated fadeIn">
+      <div tal:define="classes string:${context/colour}-page animated fadeIn" tal:attributes="class classes">
       
             <!--page header-->
             <header class="content-header blue-bg">
@@ -43,8 +43,8 @@
                               <div class="logo">
                                     <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
                               </div>
-                              <h1 tal:content="context/Title">What is a pilgrimage?</h1>
-                              <p tal:content="context/Description">Share your thoughts about pilgrimage from your context.</p>
+                              <h1 tal:content="structure context/Title">What is a pilgrimage?</h1>
+                              <p tal:content="structure context/Description">Share your thoughts about pilgrimage from your context.</p>
                         </div>
                   </div>
             </header>
@@ -54,7 +54,7 @@
                   <div class="row">
                         <div class="columns small-12 text-center">
                             <!--   <h2>A journey of faith</h2> -->
-                              <p tal:content="context/body">Pilgrimage is common to all the world’s religious traditions. A pilgrimage is a journey of faith, often to a place considered sacred, in order to offer thanks, to atone for wrong-doing, or to seek enlightenment or healing or reconciliation. In the Bible itself are many examples of pilgrimage. As you begin to explore the WCC Pilgrimage of Justice and Peace, consider the nature of pilgrimage in your faith and the faith of others different from you. As you do, share your ideas and experience with others through the comments sections below, by making a video or audio presentation or sharing with others through social media. The resource document that you can download below will help you consider pilgrimage in your own life’s journey or that of your community. To draw others into the conversation in social media use the hashtag #WhatIsAPilgrimage.</p>
+                              <p tal:content="structure context/body">Pilgrimage is common to all the world’s religious traditions. A pilgrimage is a journey of faith, often to a place considered sacred, in order to offer thanks, to atone for wrong-doing, or to seek enlightenment or healing or reconciliation. In the Bible itself are many examples of pilgrimage. As you begin to explore the WCC Pilgrimage of Justice and Peace, consider the nature of pilgrimage in your faith and the faith of others different from you. As you do, share your ideas and experience with others through the comments sections below, by making a video or audio presentation or sharing with others through social media. The resource document that you can download below will help you consider pilgrimage in your own life’s journey or that of your community. To draw others into the conversation in social media use the hashtag #WhatIsAPilgrimage.</p>
                         </div>
                   </div>
             </section>
@@ -67,10 +67,10 @@
                               <ul class="comments-list no-bullet" tal:define="brains view/comments_result" tal:condition="brains">
                                     <li tal:repeat="brain brains">
                                           <div class="cl-image-wrapper">
-                                                <!-- <span class="cl-image" style="background-image: url(++theme++wccpilgrimagesite.theme/images/mussel.png)"></span> -->
-                                                <span class="cl-image-mask">
-                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'">
+                                                <span class="cl-image">
+                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/comment'">
                                                 </span>
+                                                <span class="cl-image-mask"><img src="++theme++wccpilgrimagesite.theme/images/circle-mask.png" alt="Circle Mask"></span>
                                                 <span class="quotes">
                                                       <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
                                                 </span>
