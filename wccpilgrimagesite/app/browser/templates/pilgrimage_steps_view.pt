@@ -134,7 +134,7 @@
                               
                               <!--start comment form-->
                               <div class="add-comment-form">
-                                    <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.usercomment" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.usercomment">
+                                    <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.usercomment" enctype="multipart/form-data" method="post" tal:attributes="action string:${context/absolute_url}/++add++wccpilgrimagesite.app.usercomment">
                                           <fieldset id="fieldset-default" class="formPanel" style="display: block;">
                                                 <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">Default</legend>
                                                 <ul class="small-block-grid-1 medium-block-grid-2">
