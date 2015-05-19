@@ -131,178 +131,113 @@
                                     <br />
                                     <span class="ab-text">Add a comment</span>
                               </a>
+                              
+                              <!--start comment form-->
+                              <div class="add-comment-form">
+                                    <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.usercomment" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.usercomment">
+                                          <fieldset id="fieldset-default" class="formPanel" style="display: block;">
+                                                <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">Default</legend>
+                                                <ul class="small-block-grid-1 medium-block-grid-2">
+                                                      <li>
+                                                            <div id="formfield-form-widgets-title" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.title empty" data-fieldname="form.widgets.title">
+                                                                  <label class="horizontal" for="form-widgets-title">Name
+                                                                        <span class="required horizontal" title="Required"></span>
+                                                                  </label>
+                                                                  <div class="fieldErrorBox"></div>
+                                                                  <input id="form-widgets-title" class="text-widget required textline-field" type="text" value="" name="form.widgets.title"/>
+                                                            </div>
+                                                      </li>
+                                                      <li>
+                                                            <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
+                                                                  <label class="horizontal" for="form-widgets-email">E-mail
+                                                                        <span class="required horizontal" title="Required"></span>
+                                                                  </label>
+                                                                  <div class="fieldErrorBox"></div>
+                                                                  <input id="form-widgets-email" class="text-widget required textline-field" type="text" value="" name="form.widgets.email"/>
+                                                            </div>
+                                                      </li>
+                                                      <li>
+                                                            <div id="formfield-form-widgets-datetime_added" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.datetime_added" data-fieldname="form.widgets.datetime_added">
+                                                                  <label class="horizontal" for="form-widgets-datetime_added">Datetime added
+                                                                        <span class="required horizontal" title="Required"></span>
+                                                                  </label>
+                                                                  <div class="fieldErrorBox"></div>
+                                                                  <select id="form-widgets-datetime_added-day" class="day datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-day"></select>
+                                                                  <span class="separator">/</span>
+                                                                  <select id="form-widgets-datetime_added-month" class="month datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-month"></select>
+                                                                  <span class="separator">/</span>
+                                                                  <select id="form-widgets-datetime_added-year" class="year datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-year"></select>
+                                                                  <input id="form-widgets-datetime_added-calendar" class="form.widgets.datetime_added-calendar date" type="hidden" name="form.widgets.datetime_added-calendar" originalvalue="" value="05/18/2015"/>
+                                                                  <span id="form-widgets-datetime_added-timecomponents" class="datetimewidget-time">
+                                                                        <select id="form-widgets-datetime_added-hour" class="hour datetime-widget required datetime-field" name="form.widgets.datetime_added-hour"></select>
+                                                                        <span class="separator">:</span>
+                                                                        <select id="form-widgets-datetime_added-minute" class="minute datetime-widget required datetime-field" name="form.widgets.datetime_added-minute"></select>
+                                                                        <input type="hidden" name="form.widgets.datetime_added-timezone" originalvalue=""/>
+                                                                        </span>
+                                                                  <input type="hidden" value="1" name="form.widgets.datetime_added-empty-marker" originalvalue="1"/>
+                                                            </div>
+                                                      </li>
+                                                      <li>
+                                                            <div id="formfield-form-widgets-image" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.image empty" data-fieldname="form.widgets.image">
+                                                                  <label class="horizontal" for="form-widgets-image">Image</label>
+                                                                  <div class="fieldErrorBox"></div>
+                                                                  <span id="form-widgets-image" class="named-image-widget namedblobimage-field">
+                                                                        <input id="form-widgets-image-input" type="file" name="form.widgets.image"/>
+                                                                  </span>
+                                                            </div>
+                                                      </li>
+                                                </ul>
+                                                
+                                                
+                                                
+                                                
+                                                <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
+                                                      <label class="horizontal" for="form-widgets-message">Message</label>
+                                                      <div class="fieldErrorBox"></div>
+                                                      <textarea id="form-widgets-message" class="textarea-widget text-field" name="form.widgets.message"></textarea>
+                                                </div>
+                                          </fieldset>
+                                          <!--
+                                      
+                                           Secondary fieldsets 
+                                      
+                                          -->
+                                          <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
+                                              <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
+                                      
+                                                  Settings
+                                      
+                                              </legend>
+                                              <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
+                                                  <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
+                                                      <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
+                                                      <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
+                                                          <span class="label">
+                                      
+                                                              Exclude from navigation
+                                      
+                                                          </span>
+                                                      </label>
+                                                  </span>
+                                                  <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
+                                                  <div class="formHelp">
+                                      
+                                                      If selected, this item will not appear in the navi…
+                                      
+                                                  </div>
+                                                  <div class="fieldErrorBox"></div>
+                                              </div>
+                                          </fieldset>
+                                          <div class="formControls">
+                                              <input id="form-buttons-save" class="submit-widget button-field context button tiny" type="submit" value="Save" name="form.buttons.save"/>
+                                              <input id="form-buttons-cancel" class="submit-widget button-field standalone button tiny" type="submit" value="Cancel" name="form.buttons.cancel"/>
+                                          </div>
+
+                                    </form>
+                              </div><!--end comment form-->
+                              
                         </div>
                   </div>
-                  <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.usercomment" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.usercomment">
-    <fieldset id="fieldset-default" class="formPanel" style="display: block;">
-        <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
-
-            Default
-
-        </legend>
-        <div id="formfield-form-widgets-title" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.title empty" data-fieldname="form.widgets.title">
-            <label class="horizontal" for="form-widgets-title">
-
-                        Name    
-
-                <span class="required horizontal" title="Required">
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <input id="form-widgets-title" class="text-widget required textline-field" type="text" value="" name="form.widgets.title"/>
-        </div>
-        <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
-            <label class="horizontal" for="form-widgets-email">
-
-
-                        E-mail
-                <span class="required horizontal" title="Required">
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <input id="form-widgets-email" class="text-widget required textline-field" type="text" value="" name="form.widgets.email"/>
-        </div>
-        <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
-            <label class="horizontal" for="form-widgets-message">
-
-
-                        Message
-
-            </label>
-            <div class="fieldErrorBox"></div>
-            <textarea id="form-widgets-message" class="textarea-widget text-field" name="form.widgets.message"></textarea>
-        </div>
-        <div id="formfield-form-widgets-datetime_added" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.datetime_added" data-fieldname="form.widgets.datetime_added">
-            <label class="horizontal" for="form-widgets-datetime_added">
-
-
-                        Datetime added
-                <span class="required horizontal" title="Required">
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <!--
-
-             day 
-    <p tal:content="python:view.currentDate().strftime('%Y-%m-%d %H:%M:%S')"></p>
-            -->
-            <select id="form-widgets-datetime_added-day" class="day datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-day">
-
-
-
-            </select>
-            <span class="separator">
-
-                /
-
-            </span>
-            <!--
-
-             month 
-
-            -->
-            <select id="form-widgets-datetime_added-month" class="month datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-month"></select>
-            <span class="separator">
-
-                /
-
-            </span>
-            <!--
-
-             year 
-
-            -->
-            <select id="form-widgets-datetime_added-year" class="year datetime-widget required datetime-field" onchange="updateCalendar('#form-widgets-datetime_added');" name="form.widgets.datetime_added-year"></select>
-            <input id="form-widgets-datetime_added-calendar" class="form.widgets.datetime_added-calendar date" type="hidden" name="form.widgets.datetime_added-calendar" originalvalue="" value="05/18/2015"/>
-           <!--  <a class="caltrigger" href="#"></a>
-            <script type="text/javascript">
-
-
-                                jQuery(document).ready(function()…
-
-            </script> -->
-            <span id="form-widgets-datetime_added-timecomponents" class="datetimewidget-time">
-                <!--
-
-                 hour 
-
-                -->
-                <select id="form-widgets-datetime_added-hour" class="hour datetime-widget required datetime-field" name="form.widgets.datetime_added-hour"></select>
-                <span class="separator">
-
-                    :
-
-                </span>
-                <!--
-
-                 minute 
-
-                -->
-                <select id="form-widgets-datetime_added-minute" class="minute datetime-widget required datetime-field" name="form.widgets.datetime_added-minute"></select>
-                <!--
-
-                 am/pm 
-
-                -->
-                <input type="hidden" name="form.widgets.datetime_added-timezone" originalvalue=""/>
-            </span>
-            <input type="hidden" value="1" name="form.widgets.datetime_added-empty-marker" originalvalue="1"/>
-        </div>
-        <div id="formfield-form-widgets-image" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.image empty" data-fieldname="form.widgets.image">
-            <label class="horizontal" for="form-widgets-image">
-
-
-                        Image
-
-                        
-
-                        
-                    
-
-            </label>
-            <div class="fieldErrorBox"></div>
-            <span id="form-widgets-image" class="named-image-widget namedblobimage-field">
-                <input id="form-widgets-image-input" type="file" name="form.widgets.image"/>
-            </span>
-        </div>
-    </fieldset>
-    <!--
-
-     Secondary fieldsets 
-
-    -->
-    <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
-        <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
-
-            Settings
-
-        </legend>
-        <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
-            <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
-                <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
-                <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
-                    <span class="label">
-
-                        Exclude from navigation
-
-                    </span>
-                </label>
-            </span>
-            <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
-            <div class="formHelp">
-
-                If selected, this item will not appear in the navi…
-
-            </div>
-            <div class="fieldErrorBox"></div>
-        </div>
-    </fieldset>
-    <div class="formControls">
-        <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
-        <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
-    </div>
-
-</form>
             </section>
             
       </div><!--end color page container-->
