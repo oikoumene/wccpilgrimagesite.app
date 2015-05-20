@@ -106,25 +106,61 @@
                                       </tbody>
                                     </table>
                               </tal:block>-->
-                          
-                              <tal:block tal:define="brains view/resources_result" tal:condition="brains">
+                             <tal:block tal:define="brains view/video_result" tal:condition="brains">
+                                    <table>
+                                          <tbody>
+                                                      <td tal:content="python: brains['name']"></td>
+                                                      <td tal:content="python: brains['email']"></td>
+                                                      <td tal:content="python: brains['church']"></td>
+                                                      <td tal:content="python: brains['message']"></td>
+                                                      <td tal:content="python: brains['tags']"></td>
+                                                      <td tal:content="python: brains['resource']"></td>
+                                          </tbody>
+                                    </table>
+                              </tal:block>
+                              <tal:block tal:define="brains view/sound_result" tal:condition="brains">
+                                    <table>
+                                          <tbody>
+                                                      <td tal:content="python: brains['name']"></td>
+                                                      <td tal:content="python: brains['email']"></td>
+                                                      <td tal:content="python: brains['church']"></td>
+                                                      <td tal:content="python: brains['message']"></td>
+                                                      <td tal:content="python: brains['tags']"></td>
+                                                      <td tal:content="python: brains['resource']"></td>
+                                          </tbody>
+                                    </table>
+                              </tal:block>
+                              <tal:block tal:define="brains view/document_result" tal:condition="brains">
+                                    <table>
+                                          <tbody>
+                                                      <td tal:content="python: brains['name']"></td>
+                                                      <td tal:content="python: brains['email']"></td>
+                                                      <td tal:content="python: brains['church']"></td>
+                                                      <td tal:content="python: brains['message']"></td>
+                                                      <td tal:content="python: brains['tags']"></td>
+                                                      <td tal:content="python: brains['resource']"></td>
+                                          </tbody>
+                                    </table>
+                              </tal:block>
+
+                              <div><a tal:attributes="href view/resources_path">View All</a></div><br>
+                           <!--    <tal:block tal:define="brains view/resources_result" tal:condition="brains">
                                     <table>
                                           <tbody>
                                                 <tr tal:repeat="brain brains">
-                                            <!--   <td>
-                                              <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
-                                              </td> -->
+                                           
                                                       <td tal:content="python: brain['name']"></td>
                                                       <td tal:content="python: brain['email']"></td>
                                                       <td tal:content="python: brain['church']"></td>
                                                       <td tal:content="python: brain['message']"></td>
+                                                      <td tal:content="python: brain['tags']"></td>
                                                       <td tal:condition="python: brain['type'] != 'document'" tal:content="python: brain['resource']"></td>
                                                       <td ><a tal:condition="python: brain['type'] == 'document'" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
                                                 </tr>
                                           </tbody>
                                     </table>
                                     <div><a tal:attributes="href view/resources_path">View All</a></div><br>
-                              </tal:block>
+                              </tal:block> -->
                               
                               <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
                                     <span class="ab-circle">+</span>
@@ -272,7 +308,7 @@
             <section class="content-strip white-bg">
                   <div class="row">
                         <div class="small-12 text-center">
-                          
+
                               <h2>Social Media</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3">
                                     <li>
