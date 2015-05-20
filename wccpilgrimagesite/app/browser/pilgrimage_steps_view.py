@@ -82,3 +82,17 @@ class Index(dexterity.DisplayForm):
         for brain in brains:
             return brain.getPath()
         return '#'
+
+    def instagram_hashtags_joined(self, hashtag=None):
+        if not hashtag or '@' in hashtag:
+            return u''
+        return u','.join(map(
+            lambda x: x.strip(),
+            hashtag.replace('#', '').split(',')
+        ))
+
+    def instagram_user_feed(self, hashtag=None):
+        if not hashtag or '#' in hashtag:
+            return u''
+        return hashtag.replace('@', '').strip()
+
