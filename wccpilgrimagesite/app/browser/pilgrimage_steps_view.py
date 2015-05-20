@@ -19,12 +19,18 @@ class Index(dexterity.DisplayForm):
         brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')[:3]
         return brains
 
-    def resources_result(self):
+    def video_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
         result = []
-        brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+        query = {}
+        data = {}
+        query['Subject'] = 'featured'
+        brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+                sort_order='reverse', )
+        if not brains:
+            brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
                 sort_order='reverse',)
         for brain in brains:
             obj = brain._unrestrictedGetObject()
@@ -34,42 +40,65 @@ class Index(dexterity.DisplayForm):
                         'church': obj.church,
                         'message': obj.message,
                         'resource':obj.video,
-                        'type': "video",
                         'path':brain.getPath(),
-                }
-                result.append(data)
+                        'tags': brain.Subject
+                    }
                 break;
+        return data
 
+    def sound_result(self):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        path = '/'.join(context.getPhysicalPath())
+        result = []
+        query = {}
+        data = {}
+        query['Subject'] = 'featured'
+        brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+                sort_order='reverse', )
+        if not brains:
+            brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+                sort_order='reverse',)
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.sound:
-                data= {'name': obj.name,
+                data= { 'name': obj.name,
                         'email':obj.email,
                         'church': obj.church,
                         'message': obj.message,
-                        'resource':obj.sound,
-                        'type': "sound",
+                        'resource':obj.video,
                         'path':brain.getPath(),
-                }
-                result.append(data)
+                        'tags': brain.Subject
+                    }
                 break;
+        return data
 
+    def document_result(self):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        path = '/'.join(context.getPhysicalPath())
+        result = []
+        query = {}
+        data = {}
+        query['Subject'] = 'featured'
+        brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+                sort_order='reverse', )
+        if not brains:
+            brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+                sort_order='reverse',)
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.document:
-                data= {'name': obj.name,
+                data= { 'name': obj.name,
                         'email':obj.email,
                         'church': obj.church,
                         'message': obj.message,
-                        'resource':obj.document.filename,
-                        'type': "document",
+                        'resource':obj.video,
                         'path':brain.getPath(),
-                }
-                result.append(data)
+                        'tags': brain.Subject
+                    }
                 break;
-
-
-        return result
+        return data
 
 
     def datetime_result(self, value=None):
