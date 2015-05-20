@@ -272,16 +272,17 @@
             <section class="content-strip white-bg">
                   <div class="row">
                         <div class="small-12 text-center">
+                          
                               <h2>Social Media</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3">
                                     <li>
-                                          <h3 class="media-title"><i class="fa fa-facebook"></i>Latest Facebook status</h3>
-                                          <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FWorldCouncilofChurches&amp;width=950&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:250px" allowTransparency="true"></iframe>
-                                          <div class="soc-med-link">
-                                                <a href="">
-                                                      <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text">Like us on Facebook</span>
-                                                </a>
-                                          </div>
+                                        <h3 class="media-title"><i class="fa fa-facebook"></i>Latest Facebook status</h3>
+                                        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FWorldCouncilofChurches&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" data-width="100%" width="100%" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:250px" allowTransparency="true"></iframe>
+                                        <div class="soc-med-link">
+                                            <a href="https://www.facebook.com/WorldCouncilofChurches">
+                                                <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text">Like us on Facebook</span>
+                                            </a>
+                                        </div>
                                     </li>
                                     <li>
                                           <h3 class="media-title"><i class="fa fa-twitter"></i>Latest tweets</h3>
