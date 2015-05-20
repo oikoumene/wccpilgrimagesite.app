@@ -272,36 +272,106 @@
             <section class="content-strip white-bg">
                   <div class="row">
                         <div class="small-12 text-center">
+                          
                               <h2>Social Media</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3">
                                     <li>
-                                          <h3 class="media-title"><i class="fa fa-facebook"></i>Latest Facebook status</h3>
-                                          <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FWorldCouncilofChurches&amp;width=950&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:250px" allowTransparency="true"></iframe>
-                                          <div class="soc-med-link">
-                                                <a href="">
-                                                      <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text">Like us on Facebook</span>
-                                                </a>
-                                          </div>
+                                        <h3 class="media-title"><i class="fa fa-facebook"></i>Latest Facebook status</h3>
+                                        <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FWorldCouncilofChurches&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" data-width="100%" width="100%" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:250px" allowTransparency="true"></iframe>
+                                        <div class="soc-med-link">
+                                            <a href="https://www.facebook.com/WorldCouncilofChurches">
+                                                <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text">Like us on Facebook</span>
+                                            </a>
+                                        </div>
                                     </li>
                                     <li>
                                           <h3 class="media-title"><i class="fa fa-twitter"></i>Latest tweets</h3>
-                                          <a class="twitter-timeline" href="https://twitter.com/wccpilgrimage" data-widget-id="542074816694874112">Tweets by @wccpilgrimage</a>
-                                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                          <div class="soc-med-link">
-                                                <a href="">
-                                                      <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text">Follow us on Twitter</span>
-                                                </a>
+                                        <a tal:attributes="data-widget-id context/twitter_widget_id"class="twitter-timeline">Tweets</a>
+                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                                        <div class="soc-med-link">
+                                            <a href="https://twitter.com/wccpilgrimage">
+                                                <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text">Follow us on Twitter</span>
+                                            </a>
                                           </div>
                                     </li>
                                     <li>
-                                          <h3 class="media-title"><i class="fa fa-instagram"></i>Latest Instagram post</h3>
-                                          Instagram widget here
+                                        <h3 class="media-title"><i class="fa fa-instagram"></i>Latest Instagram post</h3>
+                                        <script tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widget/js/instansive.js"></script>
+
+                                        <iframe tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widgets/e36bf6febb7673f51f02c91080cd5746112602dc.html" id="instansive_e36bf6febb" name="instansive_e36bf6febb"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 200px; border: 0; overflow: hidden;"></iframe>
+
+                                        <div tal:condition="not: python: view.instagram_user_feed(context.instagram_hashtags)" class="instagram" tal:attributes="data-hashtags python: view.instagram_hashtags_joined(context.instagram_hashtags); data-userfeed python: view.instagram_user_feed(context.instagram_hashtags)"></div>
+
+                                     
+                                        <script tal:condition="not: python: view.instagram_user_feed(context.instagram_hashtags)">
+
+                                     
+                                            jQuery(function($) {
+                                                var images_per_tag = 3;
+                                                var merged_results = [];
+                                                var count_responses = 0;
+                                                var tags = $('.instagram').attr('data-hashtags').split(',');
+                                                var tags_count = tags.length;
+                                                var client_id = '81b42938f3dd4e48b77846755069ce56';
+
+                                                $('.instagram').on('didLoadInstagram', function(event, response) {
+                                                    merged_results = $.merge(response.data, merged_results) ;
+                                                    count_responses += 1;
+
+                                                    if(count_responses == tags_count) {
+                                                        displayMergedResults(merged_results);
+                                                    }
+                                                });
+
+                                                $.each(tags, function(index, value) {
+                                                    $('.instagram').instagram({
+                                                        hash: value,
+                                                        clientId: client_id,
+                                                        count: images_per_tag
+                                                    });
+                                                });
+
+                                                function displayMergedResults(images){
+                                                    images = shuffle(images);
+
+                                                    $.each(images, function(index, value) {
+                                                        var img = $('<img>');
+                                                        img.attr('src', value.images.standard_resolution.url);
+                                                        img.appendTo('.instagram');
+                                                        img.wrap('<a href="' + value.link + '" class="instagram-thumb" target="_blank"></a>');
+                                                    });
+                                                }
+
+                                                function shuffle(array) {
+                                                    var currentIndex = array.length, temporaryValue, randomIndex ;
+
+                                                    while (0 !== currentIndex) {
+                                                        randomIndex = Math.floor(Math.random() * currentIndex);
+                                                        currentIndex -= 1;
+
+                                                        temporaryValue = array[currentIndex];
+                                                        array[currentIndex] = array[randomIndex];
+                                                        array[randomIndex] = temporaryValue;
+                                                    }
+                                                    return array;
+                                                }
+                                            });
+                                        </script>
+
+
+
                                           <div class="soc-med-link">
-                                                <a href="">
+                                                <a href="http://instagram.com/worldcouncilofchurches">
                                                       <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text">Follow us on Instagram</span>
                                                 </a>
                                           </div>
+
+
                                     </li>
+
+
+
+
                               </ul>
                               <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text">Back to top</span></a>
                         </div>
