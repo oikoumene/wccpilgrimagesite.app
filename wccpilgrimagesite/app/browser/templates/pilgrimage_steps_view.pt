@@ -285,12 +285,12 @@
                                     </li>
                                     <li>
                                           <h3 class="media-title"><i class="fa fa-twitter"></i>Latest tweets</h3>
-                                          <a class="twitter-timeline" href="https://twitter.com/wccpilgrimage" data-widget-id="542074816694874112">Tweets by @wccpilgrimage</a>
-                                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                          <div class="soc-med-link">
-                                                <a href="">
-                                                      <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text">Follow us on Twitter</span>
-                                                </a>
+                                        <a tal:attributes="data-widget-id context/twitter_widget_id"class="twitter-timeline">Tweets</a>
+                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                                        <div class="soc-med-link">
+                                            <a href="https://twitter.com/wccpilgrimage">
+                                                <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text">Follow us on Twitter</span>
+                                            </a>
                                           </div>
                                     </li>
                                     <li>
@@ -360,7 +360,7 @@
 
 
                                           <div class="soc-med-link">
-                                                <a href="">
+                                                <a href="http://instagram.com/worldcouncilofchurches">
                                                       <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text">Follow us on Instagram</span>
                                                 </a>
                                           </div>
