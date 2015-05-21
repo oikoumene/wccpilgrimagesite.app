@@ -13,6 +13,9 @@
   <property name="filter_content_types">True</property>  
   <property name="allowed_content_types">
      <element value="wccpilgrimagesite.app.resourceupload" />
+     <element value="wccpilgrimagesite.app.video" />
+     <element value="wccpilgrimagesite.app.sound" />
+     <element value="wccpilgrimagesite.app.staticdocument" />
   </property>
   <property name="allow_discussion">False</property>
 
