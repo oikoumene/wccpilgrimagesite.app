@@ -96,78 +96,7 @@
                                           </div>
                                     </li>
                               </ul>
-                              
-                              <!--<tal:block tal:define="brains view/comments_result" tal:condition="brains">
-                                    <table>
-                                      <tbody>
-                                        <tr tal:repeat="brain brains">
-                                          <td>
-                                          <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/mini'" width="100px"/>
-                                          </td>
-                                          <td tal:content="python: brain.getObject().title"></td>
-                                          <td tal:content="python: brain.getObject().email"></td>
-                                          <td tal:content="python: brain.getObject().message"></td>
-                                          <td tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></td>
-                                
-                                
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                              </tal:block>-->
-                             <tal:block tal:define="brains view/video_result" tal:condition="brains">
-                                    <table>
-                                          <tbody>
-                                                      <td tal:content="python: brains['name']"></td>
-                                                      <td tal:content="python: brains['email']"></td>
-                                                      <td tal:content="python: brains['church']"></td>
-                                                      <td tal:content="python: brains['message']"></td>
-                                                      <td tal:content="python: brains['tags']"></td>
-                                                      <td tal:content="python: brains['resource']"></td>
-                                          </tbody>
-                                    </table>
-                              </tal:block>
-                              <tal:block tal:define="brains view/sound_result" tal:condition="brains">
-                                    <table>
-                                          <tbody>
-                                                      <td tal:content="python: brains['name']"></td>
-                                                      <td tal:content="python: brains['email']"></td>
-                                                      <td tal:content="python: brains['church']"></td>
-                                                      <td tal:content="python: brains['message']"></td>
-                                                      <td tal:content="python: brains['tags']"></td>
-                                                      <td tal:content="python: brains['resource']"></td>
-                                          </tbody>
-                                    </table>
-                              </tal:block>
-                              <tal:block tal:define="brains view/document_result" tal:condition="brains">
-                                    <table>
-                                          <tbody>
-                                                      <td tal:content="python: brains['name']"></td>
-                                                      <td tal:content="python: brains['email']"></td>
-                                                      <td tal:content="python: brains['church']"></td>
-                                                      <td tal:content="python: brains['message']"></td>
-                                                      <td tal:content="python: brains['tags']"></td>
-                                                      <td tal:content="python: brains['resource']"></td>
-                                          </tbody>
-                                    </table>
-                              </tal:block>
-                              
-                           <!--    <tal:block tal:define="brains view/resources_result" tal:condition="brains">
-                                    <table>
-                                          <tbody>
-                                                <tr tal:repeat="brain brains">
-                                           
-                                                      <td tal:content="python: brain['name']"></td>
-                                                      <td tal:content="python: brain['email']"></td>
-                                                      <td tal:content="python: brain['church']"></td>
-                                                      <td tal:content="python: brain['message']"></td>
-                                                      <td tal:content="python: brain['tags']"></td>
-                                                      <td tal:condition="python: brain['type'] != 'document'" tal:content="python: brain['resource']"></td>
-                                                      <td ><a tal:condition="python: brain['type'] == 'document'" tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
-                                                </tr>
-                                          </tbody>
-                                    </table>
-                                    <div><a tal:attributes="href view/resources_path">View All</a></div><br>
-                              </tal:block> -->
+                                                       
                               
                               <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
                                     <span class="ab-circle">+</span>
@@ -290,20 +219,31 @@
                         <div class="small-12 text-center">
                               <h2>Resources</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list">
-                                    <li>
-                                          <h3>Featured Video</h3>
-                                          <i class="fa fa-play-circle-o"></i>
-                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus enim, quos eaque laboriosam. Illum blanditiis, nihil quae! Dolorem quia sint voluptate. Vitae laborum minus impedit pariatur deserunt, animi voluptate. Pariatur.</p>
+                                    <li tal:define="brains view/video_result" tal:condition="brains">
+                                          <h3 tal:content="python: brains['name']">Featured Video</h3>
+                                          <a tal:attributes="href python: brains['resource']"><i class="fa fa-play-circle-o"></i></a>
+                                          <p>
+                                            <element tal:content="python: brains['message']"></element>
+                                            <element tal:content="python: brains['church']"></element>
+                                          </p>
                                     </li>
-                                    <li>
-                                          <h3>Featured Sound</h3>
-                                          <i class="fa fa-soundcloud"></i>
-                                          <p>Fugit natus similique temporibus possimus ea. Quaerat reprehenderit minima sed ex, natus dignissimos quos sint dolores ipsa impedit fugiat soluta accusantium nobis hic. Harum ut officiis aliquam blanditiis assumenda magnam.</p>
+                                <li tal:define="brains view/sound_result" tal:condition="brains">
+                                          <h3 tal:content="python: brains['name']">Featured Sound</h3>
+                                          <a tal:attributes="href python: brains['resource']"><i class="fa fa-soundcloud"></i></a>
+                                          <p>
+                                            <element tal:content="python: brains['message']"></element>
+                                            <element tal:content="python: brains['church']"></element>
+                                          </p>
                                     </li>
-                                    <li>
-                                          <h3>Featured Documents</h3>
-                                          <i class="fa fa-file-pdf-o"></i>
-                                          <p>Dolorum ullam accusantium, vero necessitatibus deserunt excepturi quis iste sit voluptates totam maxime, ea odio consectetur tenetur voluptate pariatur eos inventore, voluptas illum quo itaque velit eligendi. Veritatis, ipsa, vitae.</p>
+
+                                <li tal:define="brains view/document_result" tal:condition="brains">
+                                          <h3 tal:content="python: brains['name']">Featured Document</h3>
+                                          <a tal:attributes="href python: brains['path']+'/@@images/document'"><i class="fa fa-file-pdf-o"></i></a>
+
+                                          <p>
+                                            <element tal:content="python: brains['message']"></element>
+                                            <element tal:content="python: brains['church']"></element>
+                                          </p>
                                     </li>
                               </ul>
                               <a class="button tiny" tal:attributes="href view/resources_path">View All</a>
