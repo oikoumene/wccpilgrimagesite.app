@@ -47,29 +47,41 @@ class IVideo(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
-    video_in_step = RelationList(
+    video_in_step = schema.Text(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this video will appear.',
-        #default=[],
-        #value_type=RelationChoice(
-        #    source=ObjPathSourceBinder(
-        #        path={'query': '/en/pilgrimage-steps'},
-        #    ),
-        #),
-        required=False,
+        required=True,
     )
 
-    featured_video_in_step = RelationList(
+    featured_video_in_step = schema.Text(
         title=u'As featured in pilgrimage steps',
         description=u'Select pilgrimage steps where this video will appear as a featured resource.',
+        required=True,
+    )
+
+    #video_in_step = RelationList(
+        #title=u'In pilgrimage steps',
+        #description=u'Select pilgrimage steps where this video will appear.',
         #default=[],
         #value_type=RelationChoice(
         #    source=ObjPathSourceBinder(
         #        path={'query': '/en/pilgrimage-steps'},
         #    ),
         #),
-        required=False,
-    )
+        #required=False,
+    #)
+
+    #featured_video_in_step = RelationList(
+        #title=u'As featured in pilgrimage steps',
+        #description=u'Select pilgrimage steps where this video will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        #required=False,
+    #)
 
 
     pass

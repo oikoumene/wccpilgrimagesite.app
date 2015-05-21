@@ -53,29 +53,41 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
-    doc_in_step = RelationList(
+    doc_in_step = schema.Text(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this document will appear.',
-        #default=[],
-        #value_type=RelationChoice(
-        #    source=ObjPathSourceBinder(
-        #        path={'query': '/en/pilgrimage-steps'},
-        #    ),
-        #),
-        required=False,
+        required=True,
     )
 
-    featured_doc_in_step = RelationList(
+    featured_doc_in_step = schema.Text(
         title=u'As featured in pilgrimage steps',
         description=u'Select pilgrimage steps where this document will appear as a featured resource.',
+        required=True,
+    )
+
+    #doc_in_step = RelationList(
+        #title=u'In pilgrimage steps',
+        #description=u'Select pilgrimage steps where this document will appear.',
         #default=[],
         #value_type=RelationChoice(
         #    source=ObjPathSourceBinder(
         #        path={'query': '/en/pilgrimage-steps'},
         #    ),
         #),
-        required=False,
-    )
+        #required=False,
+    #)
+
+    #featured_doc_in_step = RelationList(
+        #title=u'As featured in pilgrimage steps',
+        #description=u'Select pilgrimage steps where this document will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        #required=False,
+    #)
 
 
     pass

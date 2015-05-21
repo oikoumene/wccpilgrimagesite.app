@@ -47,29 +47,41 @@ class ISound(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
-    sound_in_step = RelationList(
+    sound_in_step = schema.TextLine(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this sound will appear.',
-        #default=[],
-        #value_type=RelationChoice(
-        #    source=ObjPathSourceBinder(
-        #        path={'query': '/en/pilgrimage-steps'},
-        #    ),
-        #),
-        required=False,
+        required=True,
     )
 
-    featured_sound_in_step = RelationList(
+    featured_sound_in_step = schema.TextLine(
         title=u'As featured in pilgrimage steps',
         description=u'Select pilgrimage steps where this sound will appear as a featured resource.',
+        required=True,
+    )
+
+    #sound_in_step = RelationList(
+        #title=u'In pilgrimage steps',
+        #description=u'Select pilgrimage steps where this sound will appear.',
         #default=[],
         #value_type=RelationChoice(
         #    source=ObjPathSourceBinder(
         #        path={'query': '/en/pilgrimage-steps'},
         #    ),
         #),
-        required=False,
-    )
+        #required=False,
+    #)
+
+    #featured_sound_in_step = RelationList(
+        #title=u'As featured in pilgrimage steps',
+        #description=u'Select pilgrimage steps where this sound will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        #required=False,
+    #)
 
 
     pass
