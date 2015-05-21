@@ -24,188 +24,286 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-     <tal:block tal:define="brains view/resource_result">
+      
+      <!--color page container-->
+    <div tal:define="classes string:${context/colour}-page animated fadeIn" tal:attributes="class classes">
+      
+            <!--page header-->
+            <header class="content-header blue-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="logo">
+                                    <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
+                              </div>
+                              <h1 tal:content="structure context/Title">What is a pilgrimage?</h1>
+                              <p tal:content="structure context/Description">Share your thoughts about pilgrimage from your context.</p>
+                        </div>
+                  </div>
+            </header>
+            
+            <!--videos-->
+            <section class="content-strip white-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
+                              <h2>Videos</h2>
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                                    <tal:block tal:define="brains view/resource_result">
+                                          <li tal:repeat="brain python:brains['videos']">
+                                                <h3>Video One</h3>
+                                                <div>
+                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['resource']">
+            
+                                                            <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
+                                                      </a>
+                                                </div>
+                                                <ul class="no-bullet icons-box">
+                                                      <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
+                                                      <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
+                                                      <li class="heart-count">12</li>
+                                                </ul>
+                                                <p tal:content="python: brain['message']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
+                                          </li>
+                                    </tal:block>
+                              </ul>
+                              <a href="" class="button tiny see-more-videos">See More</a>
+                        </div>
+                  </div>
+            </section>
+      
+      <!--<tal:block tal:define="brains view/resource_result">
+       <table>
+       <tbody>
+         <tr tal:repeat="brain python:brains['videos']">
+           <td tal:content="python: brain['name']"></td>
+           <td tal:content="python: brain['email']"></td>
+           <td tal:content="python: brain['message']"></td>
+           <td tal:content="python: brain['resource']"></td>
+         </tr>
+       </tbody>
+      </table>
+      
       <table>
-      <tbody>
-        <tr tal:repeat="brain python:brains['videos']">
-          <td tal:content="python: brain['name']"></td>
-          <td tal:content="python: brain['email']"></td>
-          <td tal:content="python: brain['message']"></td>
-          <td tal:content="python: brain['resource']"></td>
-        </tr>
-      </tbody>
-     </table>
-     
-     <table>
-      <tbody>
-        <tr tal:repeat="brain python:brains['sound']">
-          <td tal:content="python: brain['name']"></td>
-          <td tal:content="python: brain['email']"></td>
-          <td tal:content="python: brain['message']"></td>
-          <td tal:content="python: brain['resource']"></td>
-        </tr>
-      </tbody>
-     </table>
-
-     <table>
-      <tbody>
-        <tr tal:repeat="brain python:brains['documents']">
-          <td tal:content="python: brain['name']"></td>
-          <td tal:content="python: brain['email']"></td>
-          <td tal:content="python: brain['message']"></td>
-          <td ><a tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
-        </tr>
-      </tbody>
-     </table>
-     </tal:block>
-
-
-
-
-
-
-<form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
-
-    <fieldset id="fieldset-default" class="formPanel" style="display: block;">
-        <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
-
-            Default
-
-        </legend>
-        <div id="formfield-form-widgets-name" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.name empty" data-fieldname="form.widgets.name">
-            <label class="horizontal" for="form-widgets-name">
-
-                        Name
-
-                <span class="required horizontal" title="Required">
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <input id="form-widgets-name" class="text-widget required textline-field" type="text" value="" name="form.widgets.name"/>
-        </div>
-        <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
-            <label class="horizontal" for="form-widgets-email">
-                        E-mail
-
-            </label>
-            <div class="fieldErrorBox"></div>
-            <input id="form-widgets-email" class="text-widget textline-field" type="text" value="" name="form.widgets.email"/>
-        </div>
-        <div id="formfield-form-widgets-church" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.church empty" data-fieldname="form.widgets.church">
-            <label class="horizontal" for="form-widgets-church">
-
-                        Your church
-
-            </label>
-            <div class="fieldErrorBox"></div>
-            <input id="form-widgets-church" class="text-widget textline-field" type="text" value="" name="form.widgets.church"/>
-        </div>
-        <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
-            <label class="horizontal" for="form-widgets-message">
-                        Message
-
-                <span class="required horizontal" title="Required">
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <textarea id="form-widgets-message" class="textarea-widget required text-field" name="form.widgets.message"></textarea>
-        </div>
-        <div id="formfield-form-widgets-video" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.video empty" data-fieldname="form.widgets.video">
-            <label class="horizontal" for="form-widgets-video">
-
-                        Video
-            </label>
-            <div class="fieldErrorBox"></div>
-            <textarea id="form-widgets-video" class="textarea-widget text-field" name="form.widgets.video"></textarea>
-        </div>
-        <div id="formfield-form-widgets-sound" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.sound empty" data-fieldname="form.widgets.sound">
-            <label class="horizontal" for="form-widgets-sound">
-                        Sound
-
-            </label>
-            <div class="fieldErrorBox"></div>
-            <textarea id="form-widgets-sound" class="textarea-widget text-field" name="form.widgets.sound"></textarea>
-        </div>
-        <div id="formfield-form-widgets-document" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.document empty" data-fieldname="form.widgets.document">
-            <label class="horizontal" for="form-widgets-document">
-                        Document
-
-                <span class="formHelp">
-
-                    Please attach a file
-
-                </span>
-            </label>
-            <div class="fieldErrorBox"></div>
-            <span id="form-widgets-document" class="named-file-widget namedblobfile-field">
-                <input id="form-widgets-document-input" type="file" name="form.widgets.document"/>
-            </span>
-        </div>
-    </fieldset>
-    <!--
-
-     Secondary fieldsets 
-
-    -->
-    <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
-        <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
-
-            Settings
-
-        </legend>
-        <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
-            <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
-                <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
-                <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
-                    <span class="label">
-
-                        Exclude from navigation
-
-                    </span>
-                </label>
-            </span>
-            <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
-            <div class="formHelp">
-
-                If selected, this item will not appear in the navi…
-
-            </div>
-            <div class="fieldErrorBox"></div>
-        </div>
-    </fieldset>
-    <div class="formControls">
-        <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
-        <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
-    </div>
-
-</form>
-
-
-
-<!--     <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
-
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
-
-    <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset> -->
+       <tbody>
+         <tr tal:repeat="brain python:brains['sound']">
+           <td tal:content="python: brain['name']"></td>
+           <td tal:content="python: brain['email']"></td>
+           <td tal:content="python: brain['message']"></td>
+           <td tal:content="python: brain['resource']"></td>
+         </tr>
+       </tbody>
+      </table>
+ 
+      <table>
+       <tbody>
+         <tr tal:repeat="brain python:brains['documents']">
+           <td tal:content="python: brain['name']"></td>
+           <td tal:content="python: brain['email']"></td>
+           <td tal:content="python: brain['message']"></td>
+           <td ><a tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
+         </tr>
+       </tbody>
+      </table>
+      </tal:block>-->
+ 
+            <!--add resource-->
+            <section class="content-strip grey-strip">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <a href="" class="action-button title-button"><span class="ab-circle">+</span><br><span class="access">Add a resource</span></a>
+                              <h2>Add a Resource</h2>
+                              <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
+                                    <fieldset id="fieldset-default" class="formPanel" style="display: block;">
+                                          <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">Default</legend>
+                                          
+                                          <ul class="small-block-grid-1 medium-block-grid-3">
+                                                <li>
+                                                      <div id="formfield-form-widgets-name" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.name empty" data-fieldname="form.widgets.name">
+                                                            <label class="horizontal" for="form-widgets-name">Name
+                                                                 <span class="required horizontal" title="Required"></span>
+                                                            </label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <input id="form-widgets-name" class="text-widget required textline-field" type="text" value="" name="form.widgets.name"/>
+                                                      </div>
+                                                </li>
+                                                <li>
+                                                      <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
+                                                            <label class="horizontal" for="form-widgets-email">E-mail</label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <input id="form-widgets-email" class="text-widget textline-field" type="text" value="" name="form.widgets.email"/>
+                                                      </div>                                                      
+                                                </li>
+                                                <li>
+                                                      <div id="formfield-form-widgets-church" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.church empty" data-fieldname="form.widgets.church">
+                                                            <label class="horizontal" for="form-widgets-church">Your church</label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <input id="form-widgets-church" class="text-widget textline-field" type="text" value="" name="form.widgets.church"/>
+                                                      </div>
+                                                </li>
+                                                <li>
+                                                      <div id="formfield-form-widgets-video" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.video empty" data-fieldname="form.widgets.video">
+                                                            <label class="horizontal" for="form-widgets-video">Video</label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <textarea id="form-widgets-video" class="textarea-widget text-field" name="form.widgets.video"></textarea>
+                                                      </div>
+                                                </li>
+                                                <li>
+                                                      <div id="formfield-form-widgets-sound" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.sound empty" data-fieldname="form.widgets.sound">
+                                                            <label class="horizontal" for="form-widgets-sound">Sound</label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <textarea id="form-widgets-sound" class="textarea-widget text-field" name="form.widgets.sound"></textarea>
+                                                      </div>
+                                                </li>
+                                                <li>
+                                                      <div id="formfield-form-widgets-document" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.document empty" data-fieldname="form.widgets.document">
+                                                            <label class="horizontal" for="form-widgets-document">Document
+                                                                  <span class="formHelp">Please attach a file</span>
+                                                            </label>
+                                                            <div class="fieldErrorBox"></div>
+                                                            <span id="form-widgets-document" class="named-file-widget namedblobfile-field">
+                                                                  <input id="form-widgets-document-input" type="file" name="form.widgets.document"/>
+                                                            </span>
+                                                      </div>
+                                                </li>
+                                          </ul>
+                                          <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
+                                                <label class="horizontal" for="form-widgets-message">Message
+                                                      <span class="required horizontal" title="Required"></span>
+                                                </label>
+                                                <div class="fieldErrorBox"></div>
+                                                <textarea id="form-widgets-message" class="textarea-widget required text-field" name="form.widgets.message"></textarea>
+                                          </div>
+                                    </fieldset>
+                                    <div class="formControls">
+                                          <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
+                                          <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
+                                    </div>
+                              </form>
+                              <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text">Back to top</span></a>
+                        </div>
+                  </div>
+            </section>
+ 
+ 
+ 
+ 
+ <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
+ 
+     <fieldset id="fieldset-default" class="formPanel" style="display: block;">
+         <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
+ 
+             Default
+ 
+         </legend>
+         <div id="formfield-form-widgets-name" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.name empty" data-fieldname="form.widgets.name">
+             <label class="horizontal" for="form-widgets-name">
+ 
+                         Name
+ 
+                 <span class="required horizontal" title="Required">
+                 </span>
+             </label>
+             <div class="fieldErrorBox"></div>
+             <input id="form-widgets-name" class="text-widget required textline-field" type="text" value="" name="form.widgets.name"/>
+         </div>
+         <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
+             <label class="horizontal" for="form-widgets-email">
+                         E-mail
+ 
+             </label>
+             <div class="fieldErrorBox"></div>
+             <input id="form-widgets-email" class="text-widget textline-field" type="text" value="" name="form.widgets.email"/>
+         </div>
+         <div id="formfield-form-widgets-church" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.church empty" data-fieldname="form.widgets.church">
+             <label class="horizontal" for="form-widgets-church">
+ 
+                         Your church
+ 
+             </label>
+             <div class="fieldErrorBox"></div>
+             <input id="form-widgets-church" class="text-widget textline-field" type="text" value="" name="form.widgets.church"/>
+         </div>
+         <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
+             <label class="horizontal" for="form-widgets-message">
+                         Message
+ 
+                 <span class="required horizontal" title="Required">
+                 </span>
+             </label>
+             <div class="fieldErrorBox"></div>
+             <textarea id="form-widgets-message" class="textarea-widget required text-field" name="form.widgets.message"></textarea>
+         </div>
+         <div id="formfield-form-widgets-video" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.video empty" data-fieldname="form.widgets.video">
+             <label class="horizontal" for="form-widgets-video">
+ 
+                         Video
+             </label>
+             <div class="fieldErrorBox"></div>
+             <textarea id="form-widgets-video" class="textarea-widget text-field" name="form.widgets.video"></textarea>
+         </div>
+         <div id="formfield-form-widgets-sound" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.sound empty" data-fieldname="form.widgets.sound">
+             <label class="horizontal" for="form-widgets-sound">
+                         Sound
+ 
+             </label>
+             <div class="fieldErrorBox"></div>
+             <textarea id="form-widgets-sound" class="textarea-widget text-field" name="form.widgets.sound"></textarea>
+         </div>
+         <div id="formfield-form-widgets-document" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.document empty" data-fieldname="form.widgets.document">
+             <label class="horizontal" for="form-widgets-document">
+                         Document
+ 
+                 <span class="formHelp">
+ 
+                     Please attach a file
+ 
+                 </span>
+             </label>
+             <div class="fieldErrorBox"></div>
+             <span id="form-widgets-document" class="named-file-widget namedblobfile-field">
+                 <input id="form-widgets-document-input" type="file" name="form.widgets.document"/>
+             </span>
+         </div>
+     </fieldset>
+     <!--
+ 
+      Secondary fieldsets 
+ 
+     -->
+     <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
+         <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
+ 
+             Settings
+ 
+         </legend>
+         <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
+             <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
+                 <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
+                 <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
+                     <span class="label">
+ 
+                         Exclude from navigation
+ 
+                     </span>
+                 </label>
+             </span>
+             <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
+             <div class="formHelp">
+ 
+                 If selected, this item will not appear in the navi…
+ 
+             </div>
+             <div class="fieldErrorBox"></div>
+         </div>
+     </fieldset>
+     <div class="formControls">
+         <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
+         <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
+     </div>
+ 
+ </form>
+      
+    </div><!--end color page container-->
 
   </metal:content-core>
 </metal:main>
