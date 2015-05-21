@@ -1,0 +1,8 @@
+<div class='footerportlet'>
+   
+    
+    <tal:block tal:condition="python: not view.contents().item_title">
+        <span tal:content="python: view.contents().item_title"></span>
+    </tal:block>
+</div>
+

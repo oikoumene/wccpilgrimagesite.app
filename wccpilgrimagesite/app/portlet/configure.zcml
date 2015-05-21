@@ -14,4 +14,13 @@
         addview=".burgermenuportlet.AddForm"
         />
 
+    <plone:portlet
+                name="footerportlet.portlet"
+                interface=".footerportlet.IContentNavigation"
+                assignment=".footerportlet.Assignment"
+                renderer=".footerportlet.Renderer"
+                addview=".footerportlet.AddForm"
+                editview=".footerportlet.EditForm"
+                />
+
 </configure>
