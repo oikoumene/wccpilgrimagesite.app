@@ -7,4 +7,10 @@
         title="Burger Menu Portlet"
         description="Burger Menu Portlet"
     />
+
+    <portlet
+            addview="footerportlet.portlet"
+            title="Footer Portlet"
+            description=""
+    />
 </portlets>
