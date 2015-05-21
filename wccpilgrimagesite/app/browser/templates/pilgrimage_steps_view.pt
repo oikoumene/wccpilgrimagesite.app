@@ -10,9 +10,17 @@
   <metal:styleslot fill-slot='style_slot'>
       <style type="text/css" media="all">
         .formTabs{visibility: hidden;}
+        .soc-med-link:before{
+            display: block;
+            content: " ";
+        }
          
       </style>
 </metal:styleslot>
+  
+  <metal:block fill-slot="javascript_head_slot">
+      <script tal:attributes="src string:$portal_url/++theme++wccpilgrimagesite.theme/js/instagram.min.js" type="text/javascript"></script>
+  </metal:block>
 
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
@@ -142,8 +150,7 @@
                                           </tbody>
                                     </table>
                               </tal:block>
-
-                              <div><a tal:attributes="href view/resources_path">View All</a></div><br>
+                              
                            <!--    <tal:block tal:define="brains view/resources_result" tal:condition="brains">
                                     <table>
                                           <tbody>
@@ -299,7 +306,7 @@
                                           <p>Dolorum ullam accusantium, vero necessitatibus deserunt excepturi quis iste sit voluptates totam maxime, ea odio consectetur tenetur voluptate pariatur eos inventore, voluptas illum quo itaque velit eligendi. Veritatis, ipsa, vitae.</p>
                                     </li>
                               </ul>
-                              <a href="#" class="button tiny">View all</a>
+                              <a class="button tiny" tal:attributes="href view/resources_path">View All</a>
                         </div>
                     </div>
             </section>
@@ -395,7 +402,7 @@
                                         </script>
 
 
-
+                                          <br />
                                           <div class="soc-med-link">
                                                 <a href="http://instagram.com/worldcouncilofchurches">
                                                       <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text">Follow us on Instagram</span>
