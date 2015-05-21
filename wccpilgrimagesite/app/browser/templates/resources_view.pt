@@ -50,7 +50,7 @@
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
                                     <tal:block tal:define="brains view/resource_result">
                                           <li tal:repeat="brain python:brains['videos']">
-                                                <h3>Video One</h3>
+                                                <h3 tal:content="python: brain['name']">Video One</h3>
                                                 <div>
                                                       <a class="video-links fancybox.iframe" tal:attributes="href python: brain['resource']">
             
