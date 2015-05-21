@@ -221,7 +221,8 @@
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list">
                                     <li tal:define="brains view/video_result" tal:condition="brains">
                                           <h3 tal:content="python: brains['name']">Featured Video</h3>
-                                          <a tal:attributes="href python: brains['resource']"><i class="fa fa-play-circle-o"></i></a>
+                                          <a class="video-links fancybox.iframe" tal:attributes="href python: brains['resource']"><i class="fa fa-play-circle-o"></i></a>
+
                                           <p>
                                             <element tal:content="python: brains['message']"></element>
                                             <element tal:content="python: brains['church']"></element>
@@ -229,7 +230,8 @@
                                     </li>
                                 <li tal:define="brains view/sound_result" tal:condition="brains">
                                           <h3 tal:content="python: brains['name']">Featured Sound</h3>
-                                          <a tal:attributes="href python: brains['resource']"><i class="fa fa-soundcloud"></i></a>
+                                          <a class="video-links fancybox.iframe" tal:attributes="href python: brains['resource']"><i class="fa fa-soundcloud"></i></a>
+
                                           <p>
                                             <element tal:content="python: brains['message']"></element>
                                             <element tal:content="python: brains['church']"></element>
@@ -238,7 +240,7 @@
 
                                 <li tal:define="brains view/document_result" tal:condition="brains">
                                           <h3 tal:content="python: brains['name']">Featured Document</h3>
-                                          <a tal:attributes="href python: brains['path']+'/@@images/document'"><i class="fa fa-file-pdf-o"></i></a>
+                                          <a class="video-links fancybox.iframe" tal:attributes="href python: brains['path']+'/@@images/document'"><i class="fa fa-file-pdf-o"></i></a>
 
                                           <p>
                                             <element tal:content="python: brains['message']"></element>
