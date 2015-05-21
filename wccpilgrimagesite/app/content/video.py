@@ -31,6 +31,47 @@ class IVideo(form.Schema, IImageScaleTraversable):
     """
     Video
     """
+
+    title = schema.TextLine(
+        title=u'Video name',
+        required=True,
+    )
+
+    description = schema.Text(
+        title=u'Video description',
+        required=True,
+    )
+
+    url_youtube = schema.TextLine(
+        title=u'Youtube URL',
+        required=True,
+    )
+
+    video_in_step = RelationList(
+        title=u'In pilgrimage steps',
+        description=u'Select pilgrimage steps where this video will appear.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+    featured_video_in_step = RelationList(
+        title=u'As featured in pilgrimage steps',
+        description=u'Select pilgrimage steps where this video will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+
     pass
 
 alsoProvides(IVideo, IFormFieldProvider)

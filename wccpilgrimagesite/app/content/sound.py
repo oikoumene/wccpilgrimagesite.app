@@ -31,6 +31,47 @@ class ISound(form.Schema, IImageScaleTraversable):
     """
     Sound
     """
+
+    title = schema.TextLine(
+        title=u'Sound name',
+        required=True,
+    )
+
+    description = schema.Text(
+        title=u'Sound description',
+        required=True,
+    )
+
+    soundcloud_id = schema.TextLine(
+        title=u'Soundcloud ID',
+        required=True,
+    )
+
+    sound_in_step = RelationList(
+        title=u'In pilgrimage steps',
+        description=u'Select pilgrimage steps where this sound will appear.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+    featured_sound_in_step = RelationList(
+        title=u'As featured in pilgrimage steps',
+        description=u'Select pilgrimage steps where this sound will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+
     pass
 
 alsoProvides(ISound, IFormFieldProvider)

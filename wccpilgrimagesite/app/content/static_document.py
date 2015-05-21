@@ -31,6 +31,53 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
     """
     Static Document
     """
+
+    title = schema.TextLine(
+        title=u'Document name',
+        required=True,
+    )
+
+    description = schema.Text(
+        title=u'Document description',
+        required=True,
+    )
+
+    file = NamedBlobFile(
+        title=u'File',
+        required=True,
+    )
+
+    file_thumb = NamedBlobFile(
+        title=u'File thumb',
+        description=u'Thumbnail of the file (if PDF) - will be generated automatically.',
+        required=False,
+    )
+
+    doc_in_step = RelationList(
+        title=u'In pilgrimage steps',
+        description=u'Select pilgrimage steps where this document will appear.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+    featured_doc_in_step = RelationList(
+        title=u'As featured in pilgrimage steps',
+        description=u'Select pilgrimage steps where this document will appear as a featured resource.',
+        #default=[],
+        #value_type=RelationChoice(
+        #    source=ObjPathSourceBinder(
+        #        path={'query': '/en/pilgrimage-steps'},
+        #    ),
+        #),
+        required=False,
+    )
+
+
     pass
 
 alsoProvides(IStaticDocument, IFormFieldProvider)
