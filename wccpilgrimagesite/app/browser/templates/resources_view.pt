@@ -60,7 +60,7 @@
                                                 <ul class="no-bullet icons-box">
                                                       <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
-                                                      <li class="heart-count">12</li>
+                                                      <li class="heart-count" >0</li>
                                                 </ul>
                                                 <p tal:content="python: brain['message']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
                                           </li>
@@ -174,6 +174,32 @@
                                                 <textarea id="form-widgets-message" class="textarea-widget required text-field" name="form.widgets.message"></textarea>
                                           </div>
                                     </fieldset>
+                                     <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
+                                     <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
+                             
+                                         Settings
+                             
+                                     </legend>
+                                     <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
+                                         <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
+                                             <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
+                                             <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
+                                                 <span class="label">
+                             
+                                                     Exclude from navigation
+                             
+                                                 </span>
+                                             </label>
+                                         </span>
+                                         <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
+                                         <div class="formHelp">
+                             
+                                             If selected, this item will not appear in the navi…
+                             
+                                         </div>
+                                         <div class="fieldErrorBox"></div>
+                                     </div>
+                                    </fieldset>
                                     <div class="formControls">
                                           <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
                                           <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
@@ -187,7 +213,7 @@
  
  
  
- <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
+<!--  <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
  
      <fieldset id="fieldset-default" class="formPanel" style="display: block;">
          <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
@@ -265,44 +291,15 @@
              </span>
          </div>
      </fieldset>
-     <!--
- 
-      Secondary fieldsets 
- 
-     -->
-     <fieldset id="fieldset-settings" class="kssattr-fieldset-settings formPanel" data-fieldset="settings" style="display: none;">
-         <legend id="fieldsetlegend-settings" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
- 
-             Settings
- 
-         </legend>
-         <div id="formfield-form-widgets-IExcludeFromNavigation-exclude_from_nav" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.IExcludeFromNavigation.exclude_from_nav" data-fieldname="form.widgets.IExcludeFromNavigation.exclude_from_nav">
-             <span id="form-widgets-IExcludeFromNavigation-exclude_from_nav" class="option">
-                 <input id="form-widgets-IExcludeFromNavigation-exclude_from_nav-0" class="single-checkbox-widget required bool-field" type="checkbox" value="selected" name="form.widgets.IExcludeFromNavigation.exclude_from_nav:list" originalvalue="selected"/>
-                 <label for="form-widgets-IExcludeFromNavigation-exclude_from_nav-0">
-                     <span class="label">
- 
-                         Exclude from navigation
- 
-                     </span>
-                 </label>
-             </span>
-             <input type="hidden" value="1" name="form.widgets.IExcludeFromNavigation.exclude_from_nav-empty-marker" originalvalue="1"/>
-             <div class="formHelp">
- 
-                 If selected, this item will not appear in the navi…
- 
-             </div>
-             <div class="fieldErrorBox"></div>
-         </div>
-     </fieldset>
+
+    
      <div class="formControls">
          <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
          <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
      </div>
  
  </form>
-      
+       -->
     </div><!--end color page container-->
 
   </metal:content-core>
