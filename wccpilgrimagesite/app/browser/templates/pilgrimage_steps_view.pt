@@ -98,7 +98,7 @@
                               </ul>
                                                        
                               
-                              <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
+                              <a class="action-button" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
                                     <span class="ab-circle">+</span>
                                     <br />
                                     <span class="ab-text add-comment">Add a comment</span>
