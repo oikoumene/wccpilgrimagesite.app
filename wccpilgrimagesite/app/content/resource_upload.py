@@ -30,6 +30,11 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope.interface import invariant, Invalid
 import re
 
+
+from Products.CMFCore.utils import getToolByName
+from plone.i18n.normalizer import idnormalizer
+
+
 # Interface class; used to define content-type schema.
 
 class IResourceUpload(form.Schema, IImageScaleTraversable):
@@ -124,14 +129,37 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
 alsoProvides(IResourceUpload, IFormFieldProvider)
 
 
+
 @grok.subscribe(IResourceUpload, IObjectAddedEvent)
 def _createObject(context, event):
+    parent = context.aq_parent
+    id = context.getId()
+    object_Ids = []
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog.unrestrictedSearchResults(object_provides = IResourceUpload.__identifier__)
+    for brain in brains:
+        object_Ids.append(brain.id)
+    
+    last_name = str(idnormalizer.normalize(context.name))
+    temp_new_id = last_name
+    new_id = temp_new_id.replace("-","")
+    test = ''
+    if new_id in object_Ids:
+        test = filter(lambda name: new_id in name, object_Ids)
+        if '-' not in (max(test)):
+            new_id = new_id + '-1'
+        if '-' in (max(test)):
+            new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
 
+    parent.manage_renameObject(id, new_id )
+    new_title = last_name
+    context.setTitle(context.name)
+
+    #exclude from navigation code
     behavior = IExcludeFromNavigation(context)
     behavior.exclude_from_nav = True
 
     context.reindexObject()
-
     return
 
 

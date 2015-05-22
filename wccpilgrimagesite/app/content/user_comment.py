@@ -29,6 +29,7 @@ from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.i18n.normalizer import idnormalizer
 import datetime
 
+
 from zope.interface import invariant, Invalid
 import re
 # Interface class; used to define content-type schema.
