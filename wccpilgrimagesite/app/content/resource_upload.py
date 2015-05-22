@@ -26,6 +26,8 @@ from wccpilgrimagesite.app import MessageFactory as _
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from zope.app.container.interfaces import IObjectAddedEvent
 
+from zope.interface import invariant, Invalid
+import re
 
 # Interface class; used to define content-type schema.
 
@@ -41,6 +43,7 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     email = schema.TextLine(
         title=u'E-mail',
         required=False,
+
     )
 
     church = schema.TextLine(
@@ -68,6 +71,11 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
             description=_(u"Please attach a file"),
             required=False,
     )
+    @invariant
+    def addressInvariant(data):
+        if data.email:
+            if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
+                raise Invalid(_(u"Invalid email!"))
 
 #    video = RelationList(
 #        title=u'Video',
@@ -116,3 +124,5 @@ def _createObject(context, event):
     context.reindexObject()
 
     return
+
+
