@@ -58,7 +58,10 @@
 
        <tr>
         <td>Document</td>
-        <td tal:condition="python: brain.getObject().document"> <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><i class="fa fa-file-pdf-o" tal:content="python: brain.getObject().document.filename"><p ></p></i></a></td>
+        <td > <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.filename"></p></a></td>
+<!-- 
+        <td tal:condition="python: 'pdf' not in brain.getObject().document.contentType and 'image' not in brain.getObject().document.contentType "> <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.contentType"></p></a></td>
+ -->
       </tr>
     </tbody>
      </table>
