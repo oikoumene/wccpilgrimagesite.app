@@ -25,6 +25,7 @@ from collective import dexteritytextindexer
 from wccpilgrimagesite.app import MessageFactory as _
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from zope.app.container.interfaces import IObjectAddedEvent
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from zope.interface import invariant, Invalid
 import re
@@ -76,6 +77,14 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
         if data.email:
             if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
                 raise Invalid(_(u"Invalid email!"))
+
+    form.widget(featured_resource=CheckBoxFieldWidget)
+    featured_resource = schema.List(
+           title=_(u"Set as Featured?"),
+            value_type=schema.Choice(
+	   values=[u"Featured"]),
+	   required=False,
+        )
 
 #    video = RelationList(
 #        title=u'Video',
