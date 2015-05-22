@@ -8,6 +8,7 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
+from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 
 
 #grok.templatedir('templates')
@@ -18,10 +19,6 @@ class IContentNavigation(IPortletDataProvider):
             title = u"Footer Item",
             description=u"e.g. Terms, Privacy, Disclaimer"
         )
-    
-    
-   
-    
     
 
 class Assignment(base.Assignment):
@@ -56,6 +53,7 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
+    form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Add Footer Portlet"
     description = ''
     
@@ -67,5 +65,6 @@ class AddForm(base.AddForm):
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IContentNavigation)
+    form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Edit Footer Portlet"
     description = ''
