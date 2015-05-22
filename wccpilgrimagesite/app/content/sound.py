@@ -21,6 +21,7 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from wccpilgrimagesite.app import MessageFactory as _
 
@@ -58,6 +59,14 @@ class ISound(form.Schema, IImageScaleTraversable):
         description=u'Select pilgrimage steps where this sound will appear as a featured resource.',
         required=True,
     )
+
+    form.widget(featured_resource=CheckBoxFieldWidget)
+    featured_resource = schema.List(
+           title=_(u"Set as Featured?"),
+            value_type=schema.Choice(
+	   values=[u"Featured"]),
+	   required=False,
+        )
 
     #sound_in_step = RelationList(
         #title=u'In pilgrimage steps',
