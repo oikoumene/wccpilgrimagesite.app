@@ -34,6 +34,24 @@ import re
 from Products.CMFCore.utils import getToolByName
 from plone.i18n.normalizer import idnormalizer
 
+from plone.dexterity.utils import createContentInContainer, createContent
+
+from zope.schema import ValidationError
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
+
+
+class InvalidEmailAddress(ValidationError):
+    "Invalid email address"
+
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        raise InvalidEmailAddress(value)
+    return True
+
 
 # Interface class; used to define content-type schema.
 
@@ -49,6 +67,7 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     email = schema.TextLine(
         title=u'E-mail',
         required=False,
+        constraint=validateaddress,
 
     )
 
@@ -77,18 +96,14 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
             description=_(u"Please attach a file"),
             required=False,
     )
-    @invariant
-    def addressInvariant(data):
-        if data.email:
-            if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
-                raise Invalid(_(u"Invalid email!"))
+
 
     form.widget(featured_resource=CheckBoxFieldWidget)
     featured_resource = schema.List(
            title=_(u"Set as Featured?"),
             value_type=schema.Choice(
-	   values=[u"Featured"]),
-	   required=False,
+              values=[u"Featured"]),
+            required=False,
         )
 
 #    video = RelationList(
@@ -123,7 +138,14 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
 #        ),
 #        required=False
 #    )
-
+    
+    
+    #@invariant
+    #def addressInvariant(data):
+    #    if data.email:
+    #        if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
+    #            raise Invalid(_(u"Invalid email!"))
+    
     pass
 
 alsoProvides(IResourceUpload, IFormFieldProvider)
@@ -158,7 +180,21 @@ def _createObject(context, event):
     #exclude from navigation code
     behavior = IExcludeFromNavigation(context)
     behavior.exclude_from_nav = True
-
+    
+    if context.video:
+        item = createContentInContainer(parent,'wccpilgrimagesite.app.video', checkConstraints=False,title='Video')
+        item.url_youtube = context.video
+        item.reindexObject()
+    
+    if context.sound:
+        item2 = createContentInContainer(parent,'wccpilgrimagesite.app.sound', checkConstraints=False,title='Sound')
+        item2.soundcloud_id = context.sound
+        item2.reindexObject()
+        
+    if context.document:
+        item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title='Document')
+        item3.file = context.document
+        item3.reindexObject()
     context.reindexObject()
     return
 
