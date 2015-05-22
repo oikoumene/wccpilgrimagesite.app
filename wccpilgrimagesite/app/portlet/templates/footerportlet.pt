@@ -1,7 +1,7 @@
 <div class='footerportlet'>
    
     <tal:block tal:condition="python: view.contents().item_title">
-        <span tal:content="python: view.contents().item_title"></span>
+        <span tal:content="structure python: view.contents().item_title"></span>
     </tal:block>
 </div>
 
