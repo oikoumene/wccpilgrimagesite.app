@@ -25,48 +25,73 @@
             <div tal:content="structure widget/render" />
         </div>
     </tal:block> -->
-    <tal:block tal:define="brains view/resourceUpload_result" tal:condition="brains">
-     <table class="plain" width="50%">
-    <tbody tal:repeat="brain brains">
-      <tr>
-          <td>Name</td>
-          <td tal:content="python: brain.getObject().name"></td>
-      </tr>
-      <tr>
-          <td>Email</td>
-          <td tal:content="python: brain.getObject().email"></td>
-      </tr>
-      <tr>
-        <td>Your church</td>
-        <td tal:content="python: brain.getObject().church"></td>
-      </tr>
-
-      <tr>
-        <td>Message</td>
-        <td tal:content="python: brain.getObject().message"></td>
-      </tr>
-
-      <tr>
-        <td>Video</td>
-        <td tal:content="python: brain.getObject().video"></td>
-      </tr>
-
-       <tr>
-        <td>Sound</td>
-        <td tal:content="python: brain.getObject().sound"></td>
-      </tr>
-
-       <tr>
-        <td>Document</td>
-        <td > <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.filename"></p></a></td>
-<!-- 
-        <td tal:condition="python: 'pdf' not in brain.getObject().document.contentType and 'image' not in brain.getObject().document.contentType "> <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.contentType"></p></a></td>
- -->
-      </tr>
-    </tbody>
-     </table>
-  </tal:block>
-
+      <div tal:define="classes string:${context/colour}-page animated fadeIn" tal:attributes="class classes">
+            
+            <!--page header-->
+            <header class="content-header blue-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="logo">
+                                    <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
+                              </div>
+                              <h1 tal:content="structure context/Title">What is a pilgrimage?</h1>
+                              <p tal:content="structure context/Description">Share your thoughts about pilgrimage from your context.</p>
+                        </div>
+                  </div>
+            </header>
+            
+            <!--page content-->
+            <section class="content-strip white-bg">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              
+                              <tal:block tal:define="brains view/resourceUpload_result" tal:condition="brains">
+                                    <table class="plain" width="50%">
+                                   <tbody tal:repeat="brain brains">
+                                     <tr>
+                                         <td>Name</td>
+                                         <td tal:content="python: brain.getObject().name"></td>
+                                     </tr>
+                                     <tr>
+                                         <td>Email</td>
+                                         <td tal:content="python: brain.getObject().email"></td>
+                                     </tr>
+                                     <tr>
+                                       <td>Your church</td>
+                                       <td tal:content="python: brain.getObject().church"></td>
+                                     </tr>
+                               
+                                     <tr>
+                                       <td>Message</td>
+                                       <td tal:content="python: brain.getObject().message"></td>
+                                     </tr>
+                               
+                                     <tr>
+                                       <td>Video</td>
+                                       <td tal:content="python: brain.getObject().video"></td>
+                                     </tr>
+                               
+                                      <tr>
+                                       <td>Sound</td>
+                                       <td tal:content="python: brain.getObject().sound"></td>
+                                     </tr>
+                               
+                                      <tr>
+                                       <td>Document</td>
+                                       <td > <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.filename"></p></a></td>
+                               <!-- 
+                                       <td tal:condition="python: 'pdf' not in brain.getObject().document.contentType and 'image' not in brain.getObject().document.contentType "> <a class="video-links fancybox.iframe" tal:attributes="href python: brain.getPath()+'/@@images/document'"><p tal:content="python: brain.getObject().document.contentType"></p></a></td>
+                                -->
+                                     </tr>
+                                   </tbody>
+                                    </table>
+                                 </tal:block> 
+                              
+                        </div>
+                  </div>
+            </section>
+        
+      </div><!--end color page container-->
 <!-- 
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
