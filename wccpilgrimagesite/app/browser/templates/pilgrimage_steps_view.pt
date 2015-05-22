@@ -101,7 +101,7 @@
                               <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
                                     <span class="ab-circle">+</span>
                                     <br />
-                                    <span class="ab-text">Add a comment</span>
+                                    <span class="ab-text add-comment">Add a comment</span>
                               </a>
                               
                               <!--start comment form-->
@@ -248,7 +248,7 @@
                                           </p>
                                     </li>
                               </ul>
-                              <a class="button tiny" tal:attributes="href view/resources_path">View All</a>
+                              <a class="button tiny see-more" tal:attributes="href view/resources_path">See More</a>
                         </div>
                     </div>
             </section>
@@ -358,7 +358,7 @@
 
 
                               </ul>
-                              <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text">Back to top</span></a>
+                              <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text back-to-top">Back to top</span></a>
                         </div>
                   </div>
             </section>

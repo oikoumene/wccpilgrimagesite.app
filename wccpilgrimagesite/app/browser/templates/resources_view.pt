@@ -66,7 +66,7 @@
                                           </li>
                                     </tal:block>
                               </ul>
-                              <a href="" class="button tiny see-more-videos">See More</a>
+                              <a href="" class="button tiny see-more-videos see-more">See More</a>
                         </div>
                   </div>
             </section>
@@ -95,7 +95,7 @@
                                           </li>
                                     </tal:block>
                               </ul>
-                              <a href="" class="button tiny see-more-videos">See More</a>
+                              <a href="" class="button tiny see-more-videos see-more">See More</a>
                         </div>
                   </div>
             </section>
@@ -123,7 +123,7 @@
                                           </li>
                                     </tal:block>
                               </ul>
-                              <a href="" class="button tiny see-more-videos">See More</a>
+                              <a href="" class="button tiny see-more-videos see-more">See More</a>
                         </div>
                   </div>
             </section>
@@ -258,11 +258,11 @@
                                      </div>
                                     </fieldset>
                                     <div class="formControls">
-                                          <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
-                                          <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
+                                          <input id="form-buttons-save" class="button tiny submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
+                                          <input id="form-buttons-cancel" class="button tiny submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
                                     </div>
                               </form>
-                              <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text">Back to top</span></a>
+                              <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text back-to-top">Back to top</span></a>
                         </div>
                   </div>
             </section>
