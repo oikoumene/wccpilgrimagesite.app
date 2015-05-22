@@ -261,26 +261,26 @@
                               <h2>Social Media</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3">
                                     <li>
-                                        <h3 class="media-title"><i class="fa fa-facebook"></i>Latest Facebook status</h3>
+                                        <h3 class="media-title"><i class="fa fa-facebook"></i><span class="latest-fb-status">Latest Facebook status</span></h3>
                                         <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FWorldCouncilofChurches&amp;height=427&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;show_border=false&amp;header=true" data-width="100%" width="100%" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:250px" allowTransparency="true"></iframe>
                                         <div class="soc-med-link">
                                             <a href="https://www.facebook.com/WorldCouncilofChurches">
-                                                <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text">Like us on Facebook</span>
+                                                <span class="sml-circle"><i class="fa fa-facebook"></i></span><br><span class="sml-text like-us-on-fb">Like us on Facebook</span>
                                             </a>
                                         </div>
                                     </li>
                                     <li>
-                                          <h3 class="media-title"><i class="fa fa-twitter"></i>Latest tweets</h3>
+                                          <h3 class="media-title"><i class="fa fa-twitter"></i><span class="latest-tweets">Latest tweets</span></h3>
                                         <a tal:attributes="data-widget-id context/twitter_widget_id"class="twitter-timeline">Tweets</a>
                                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                                         <div class="soc-med-link">
                                             <a href="https://twitter.com/wccpilgrimage">
-                                                <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text">Follow us on Twitter</span>
+                                                <span class="sml-circle"><i class="fa fa-twitter"></i></span><br><span class="sml-text follow-us-on-tw">Follow us on Twitter</span>
                                             </a>
                                           </div>
                                     </li>
                                     <li>
-                                        <h3 class="media-title"><i class="fa fa-instagram"></i>Latest Instagram post</h3>
+                                        <h3 class="media-title"><i class="fa fa-instagram"></i><span class="latest-insta-post">Latest Instagram post</span></h3>
                                         <script tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widget/js/instansive.js"></script>
 
                                         <iframe tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widgets/e36bf6febb7673f51f02c91080cd5746112602dc.html" id="instansive_e36bf6febb" name="instansive_e36bf6febb"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 200px; border: 0; overflow: hidden;"></iframe>
@@ -347,7 +347,7 @@
                                           <br />
                                           <div class="soc-med-link">
                                                 <a href="http://instagram.com/worldcouncilofchurches">
-                                                      <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text">Follow us on Instagram</span>
+                                                      <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text follow-us-on-insta">Follow us on Instagram</span>
                                                 </a>
                                           </div>
 
