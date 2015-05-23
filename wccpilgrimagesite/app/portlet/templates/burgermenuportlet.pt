@@ -3,7 +3,7 @@
     <li><a href="">Home</a></li>
     <tal:block tal:define="contents view/pilgrimage_steps" tal:condition="contents">
         <tal:entry tal:repeat="content contents">
-            <li><a tal:attributes="href python: content['url']" tal:content="python: str(content['position'])+'. '+content['title']"/></li>
+            <li><a tal:attributes="href python: content['url']" tal:content="python: content['title']"/></li>
         </tal:entry>
     </tal:block>
     <!--<li><a href="http://www.oikoumene.org/">World Council of Churches</a></li>
