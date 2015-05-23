@@ -32,3 +32,7 @@ msgstr ""
 #: wccpilgrimagesite.theme:/setuphandlers.py:6
 msgid "wccpilgrimagesite.theme import handler"
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:104
+msgid "see_more"
+msgstr "Mehr anzeigen"
