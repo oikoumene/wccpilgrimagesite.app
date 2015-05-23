@@ -46,7 +46,7 @@
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
-                              <h2>Videos</h2>
+                              <h2 i18n:translate="videos">Videos</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
                                     <tal:block tal:define="brains view/resource_result">
                                           <li tal:repeat="brain python:brains['videos']">
@@ -75,7 +75,7 @@
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
-                              <h2>Sounds</h2>
+                              <h2 i18n:translate="sounds">Sounds</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
                                     <tal:block tal:define="brains view/resource_result">
                                           <li tal:repeat="brain python:brains['sound']">
@@ -104,7 +104,7 @@
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
-                              <h2>Documents</h2>
+                              <h2 i18n:translate="documents">Documents</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
                                     <tal:block tal:define="brains view/resource_result">
                                           <li tal:repeat="brain python:brains['documents']">
