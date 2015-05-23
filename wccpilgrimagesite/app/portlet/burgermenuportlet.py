@@ -41,15 +41,20 @@ class Renderer(base.Renderer):
     def pilgrimage_steps(self):
         results  = []
         path = self.data.path
-        brains = self.catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps')
+        brains = self.catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type=('wccpilgrimagesite.app.pilgrimagesteps', 'wccpilgrimagesite.app.burgerlinks'))
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             parent = obj.aq_parent
             data = {'position':parent.getObjectPosition(brain.id) + 1}
-            data['title'] = brain.Title
-            data['url'] = brain.getPath()
-            data['obj'] = obj
-            data['image'] = obj.image
+            
+            if brain.portal_type == 'wccpilgrimagesite.app.pilgrimagesteps':
+                data['title'] = str(data['position'])+'. '+brain.Title
+                data['url'] = brain.getPath()
+            else:
+                data['title'] = brain.Title
+                data['url'] = obj.burger_link_url
+            #data['obj'] = obj
+            #data['image'] = obj.image
             
             results.append(data)
         if results:
