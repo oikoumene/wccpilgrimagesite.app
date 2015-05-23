@@ -38,3 +38,7 @@ msgstr ""
 #: wccpilgrimagesite/app/portlet/templates/burgermenuportlet.pt:3
 msgid "home"
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:74
+msgid "your_comments"
+msgstr ""
