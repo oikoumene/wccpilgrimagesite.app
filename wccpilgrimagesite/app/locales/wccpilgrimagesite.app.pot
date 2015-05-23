@@ -42,3 +42,27 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:74
 msgid "your_comments"
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:220
+msgid "resources"
+msgstr ""
+
+#. Default: "Social Media"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:261
+msgid "social_media"
+msgstr ""
+
+#. Default: "Videos"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:49
+msgid "videos"
+msgstr ""
+
+#. Default: "Sounds"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:78
+msgid "sounds"
+msgstr ""
+
+#. Default: "Documents"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:107
+msgid "documents"
+msgstr ""
