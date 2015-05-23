@@ -1,33 +1,30 @@
 <?xml version="1.0"?>
-<object name="wccpilgrimagesite.app.pilgrimageapp"
+<object name="wccpilgrimagesite.app.burgerlinks"
    meta_type="Dexterity FTI"
    i18n:domain="wccpilgrimagesite.app" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Pilgrimage App</property>
+  <property name="title" i18n:translate="">Burger Links</property>
   <property name="description"
-    i18n:translate="">Pilgrimage App</property>
-  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">wccpilgrimagesite.app.pilgrimageapp</property>
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">True</property>  
-  <property name="allowed_content_types">
-     <element value="wccpilgrimagesite.app.pilgrimagesteps" />
-     <element value="wccpilgrimagesite.app.burgerlinks" />
-  </property>
+    i18n:translate="">Burger Menu Links</property>
+  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+  <property name="factory">wccpilgrimagesite.app.burgerlinks</property>
+  <property name="global_allow">False</property>
+  <property name="filter_content_types">False</property>  
+  <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">wccpilgrimagesite.app.content.pilgrimage_app.IPilgrimageApp</property> 
-  <property name="klass">plone.dexterity.content.Container</property>
+  <property name="schema">wccpilgrimagesite.app.content.burger_links.IBurgerLinks</property> 
+  <property name="klass">plone.dexterity.content.Item</property>
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-     <!--element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/-->
-     <!--element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/-->
+     <element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/>
+     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
      <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
-     <!--element value="plone.app.versioningbehavior.behaviors.IVersionable"/-->
+     <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
    </property>
 
   <!-- View information -->

@@ -8,6 +8,7 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="wccpilgrimagesite.app.burgerlinks" meta_type="Dexterity FTI" />
   <object name="wccpilgrimagesite.app.staticdocument" meta_type="Dexterity FTI" />
   <object name="wccpilgrimagesite.app.sound" meta_type="Dexterity FTI" />
   <object name="wccpilgrimagesite.app.video" meta_type="Dexterity FTI" />
