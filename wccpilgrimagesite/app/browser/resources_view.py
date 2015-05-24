@@ -86,20 +86,20 @@ class Index(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
                 sort_order='reverse',)
-        videos = []
+        sounds = []
       
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             
             data= {'title': obj.title,
                         'description':obj.description,
-                        'soundcloud_id': obj.soundcloud_id,
+                        'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
                         'sound_in_step': obj.sound_in_step,
                         'featured_sound_in_step':obj.featured_sound_in_step,
                         'featured_resource':obj.featured_resource,
                 }
-            videos.append(data)
-        return videos
+            sounds.append(data)
+        return sounds
 
     def document_result(self):
         context = self.context
@@ -107,21 +107,22 @@ class Index(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
                 sort_order='reverse',)
-        videos = []
+        docs = []
       
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             
             data= {'title': obj.title,
                         'description':obj.description,
-                        'file': obj.file,
+                        'file':obj.file,
                         'file_thumb': obj.file_thumb,
                         'doc_in_step':obj.doc_in_step,
                         'featured_doc_in_step':obj.featured_doc_in_step,
                         'featured_resource':obj.featured_resource,
+                        'path': brain.getPath(),
                 }
-            videos.append(data)
-        return videos
+            docs.append(data)
+        return docs
 
     def url_youtube_bg_img(self, url=None):
         return 'http://img.youtube.com/vi/{hash}/hqdefault.jpg'.format(hash=self._hash_from_url_youtube(url))
@@ -146,3 +147,17 @@ class Index(dexterity.DisplayForm):
     def url_youtube_embedded(self, url=None):
         return 'http://www.youtube.com/embed/{hash}'.format(hash=self._hash_from_url_youtube(url))
 
+
+    def soundcloud_url_embedded(self, soundcloud = None):
+        return 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{soundcloud}' \
+               '&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;' \
+               'show_user=false&amp;show_reposts=false'.format(
+            soundcloud=soundcloud
+        )
+
+    def soundcloud_url_frame(self, soundcloud = None):
+        return 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{soundcloud}' \
+               '&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;' \
+               'show_reposts=false&amp;visual=true'.format(
+            soundcloud=soundcloud
+        )

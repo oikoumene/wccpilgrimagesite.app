@@ -67,7 +67,6 @@
                                                 <div>
                                                       <a class="video-links fancybox.iframe" tal:attributes="href python: brain['url_youtube']">
                                                       <img tal:attributes="src python: view.url_youtube_bg_img(brain['url_youtube'])" alt="">
-                                                          
                                                       </a>
                                                 </div>
                                                 <ul class="no-bullet icons-box">
@@ -105,12 +104,8 @@
                                     <tal:block tal:define="brains view/sound_result">
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Sound One</h3>
-                                                <div>
-                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['soundcloud_id']">
-            
-                                                            <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
-                                                      </a>
-                                                </div>
+                                                <iframe tal:attributes="src python: brain['soundcloud_id']" width="100%" height="166" scrolling="no" frameborder="no"></iframe>
+
                                                 <ul class="no-bullet icons-box">
                                                       <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
@@ -148,11 +143,17 @@
                                     <tal:block tal:define="brains view/document_result">
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Document One</h3>
-                                                <div>
-                                                <!--   <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/document'">
-                                                      <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
-                                                      </a> -->
-                                                </div>
+                                               
+                                                   <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/file'">
+
+                                                <img tal:condition="python: brain['file_thumb']" tal:attributes="src python: brain['path']+ '/@@display-file/file_thumb'" alt="">
+
+                                                <p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> 
+                                               
+
+                                             </a>
+      
+                                              
                                                 <ul class="no-bullet icons-box">
                                                       <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
