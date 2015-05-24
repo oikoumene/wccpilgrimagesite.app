@@ -86,7 +86,7 @@
                                           <div class="cl-details">
                                                 <div class="heart-box">
                                                       <a tal:attributes="data-votable python: brain.getId" ><i class="fa fa-heart"></i></a>
-                                                      <span class="heart-number" tal:attributes="data-votes-count python: brain.getId" tal:content="brain['votes_count']">0</span>
+                                                      <span class="heart-number" tal:attributes="data-votes-count python: brain.getId" tal:content="python: brain.getObject().votes_count">0</span>
                                                 </div>
                                                 <h4 tal:content="python: brain.getObject().title"></h4>
                                                 <p tal:content="python: view.datetime_result(brain.getObject().datetime_added)"></p>
