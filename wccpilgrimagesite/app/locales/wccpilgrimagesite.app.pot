@@ -66,3 +66,19 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:107
 msgid "documents"
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:153
+msgid "Save"
+msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:156
+msgid "Cancel"
+msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
+msgid "add_resource"
+msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:232
+msgid "message"
+msgstr ""
