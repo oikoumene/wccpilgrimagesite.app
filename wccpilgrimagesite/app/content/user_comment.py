@@ -64,6 +64,12 @@ class IUserComment(form.Schema, IImageScaleTraversable):
         required=False,
     )
 
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
 #    comment_in_steps = RelationList(
 #        title=u'Pilgrimage step',
 #        default=[],

@@ -25,6 +25,11 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from wccpilgrimagesite.app import MessageFactory as _
 
+featured = SimpleVocabulary(
+[
+    SimpleTerm(u'Featured', title=u'Featured'),
+  
+])
 
 # Interface class; used to define content-type schema.
 
@@ -40,6 +45,11 @@ class ISound(form.Schema, IImageScaleTraversable):
 
     description = schema.Text(
         title=u'Sound description',
+        required=True,
+    )
+
+    church = schema.Text(
+        title=u'church',
         required=True,
     )
 
@@ -62,11 +72,15 @@ class ISound(form.Schema, IImageScaleTraversable):
 
     form.widget(featured_resource=CheckBoxFieldWidget)
     featured_resource = schema.List(
-           title=_(u"Set as Featured?"),
-            value_type=schema.Choice(
-	   values=[u"Featured"]),
-	   required=False,
+           title=u'Is this sound featured?',value_type=schema.Choice(vocabulary=featured)
         )
+
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
 
     #sound_in_step = RelationList(
         #title=u'In pilgrimage steps',

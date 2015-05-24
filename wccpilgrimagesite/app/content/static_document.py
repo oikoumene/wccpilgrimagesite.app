@@ -26,7 +26,15 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from wccpilgrimagesite.app import MessageFactory as _
 
 
+
 # Interface class; used to define content-type schema.
+
+
+featured = SimpleVocabulary(
+[
+    SimpleTerm(u'Featured', title=u'Featured'),
+  
+])
 
 class IStaticDocument(form.Schema, IImageScaleTraversable):
     """
@@ -42,6 +50,12 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
         title=u'Document description',
         required=True,
     )
+
+    church = schema.Text(
+        title=u'Church',
+        required=True,
+    )
+
 
     file = NamedBlobFile(
         title=u'File',
@@ -68,11 +82,15 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
 
     form.widget(featured_resource=CheckBoxFieldWidget)
     featured_resource = schema.List(
-           title=_(u"Set as Featured?"),
-            value_type=schema.Choice(
-	   values=[u"Featured"]),
-	   required=False,
+           title=u'Is this document featured?',value_type=schema.Choice(vocabulary=featured)
         )
+
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
 
     #doc_in_step = RelationList(
         #title=u'In pilgrimage steps',

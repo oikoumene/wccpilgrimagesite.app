@@ -44,6 +44,12 @@ from Products.CMFDefault.exceptions import EmailAddressInvalid
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
 
+class InvalidYoutubeUrl(ValidationError):
+    "Youtube link is not valid."
+
+class InvalidSoundCloudId(ValidationError):
+    "Please specify the Soundcloud track ID. If you don't know where to find it, please put 0 in the Audio field and include the URL of the sound file in the Message field."
+
 
 def validateaddress(value):
     try:
@@ -51,6 +57,21 @@ def validateaddress(value):
     except EmailAddressInvalid:
         raise InvalidEmailAddress(value)
     return True
+
+
+def validatevideo(url):
+
+    if bool(re.match(r'^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$',url)) == False:
+        raise InvalidYoutubeUrl(url)
+    else:
+        return True
+
+def validatesound(id):
+    try: 
+        int(id)
+        return True
+    except ValueError:
+        raise InvalidSoundCloudId(id)
 
 
 # Interface class; used to define content-type schema.
@@ -84,11 +105,13 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     video = schema.Text(
         title=u'Video',
         required=False,
+        constraint=validatevideo,
     )
 
     sound = schema.Text(
         title=u'Sound',
         required=False,
+        constraint=validatesound
     )
 
     document = NamedBlobFile(
@@ -156,6 +179,7 @@ alsoProvides(IResourceUpload, IFormFieldProvider)
 def _createObject(context, event):
     parent = context.aq_parent
     id = context.getId()
+    
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
     brains = catalog.unrestrictedSearchResults(object_provides = IResourceUpload.__identifier__)
@@ -180,20 +204,28 @@ def _createObject(context, event):
     #exclude from navigation code
     behavior = IExcludeFromNavigation(context)
     behavior.exclude_from_nav = True
+
     
     if context.video:
-        item = createContentInContainer(parent,'wccpilgrimagesite.app.video', checkConstraints=False,title='Video')
+        item = createContentInContainer(parent,'wccpilgrimagesite.app.video', checkConstraints=False,title=context.name, )
         item.url_youtube = context.video
+        item.description = context.message
+        item.church = context.church
+
         item.reindexObject()
     
     if context.sound:
-        item2 = createContentInContainer(parent,'wccpilgrimagesite.app.sound', checkConstraints=False,title='Sound')
+        item2 = createContentInContainer(parent,'wccpilgrimagesite.app.sound', checkConstraints=False,title=context.name)
         item2.soundcloud_id = context.sound
+        item2.description = context.message
+        item2.church = context.church
         item2.reindexObject()
         
     if context.document:
-        item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title='Document')
+        item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title=context.name)
         item3.file = context.document
+        item3.description = context.message
+        item3.church = context.church
         item3.reindexObject()
     context.reindexObject()
     return

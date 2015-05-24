@@ -28,6 +28,12 @@ from wccpilgrimagesite.app import MessageFactory as _
 
 # Interface class; used to define content-type schema.
 
+featured = SimpleVocabulary(
+[
+    SimpleTerm(u'Featured', title=u'Featured'),
+  
+])
+
 class IVideo(form.Schema, IImageScaleTraversable):
     """
     Video
@@ -43,6 +49,11 @@ class IVideo(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
+    church = schema.Text(
+        title=u'church',
+        required=True,
+    )
+
     url_youtube = schema.TextLine(
         title=u'Youtube URL',
         required=True,
@@ -53,20 +64,28 @@ class IVideo(form.Schema, IImageScaleTraversable):
         description=u'Select pilgrimage steps where this video will appear.',
         required=True,
     )
-
+    # form.widget(featured_video_in_step=CheckBoxFieldWidget)
     featured_video_in_step = schema.Text(
         title=u'As featured in pilgrimage steps',
         description=u'Select pilgrimage steps where this video will appear as a featured resource.',
-        required=True,
+        required=False,
     )
 
     form.widget(featured_resource=CheckBoxFieldWidget)
     featured_resource = schema.List(
-           title=_(u"Set as Featured?"),
-            value_type=schema.Choice(
-	   values=[u"Featured"]),
-	   required=False,
+           title=u'Is this video featured?',value_type=schema.Choice(vocabulary=featured)
         )
+
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
+
+
+
+
 
     #video_in_step = RelationList(
         #title=u'In pilgrimage steps',
