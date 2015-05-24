@@ -207,18 +207,25 @@ def _createObject(context, event):
 
     
     if context.video:
-        item = createContentInContainer(parent,'wccpilgrimagesite.app.video', checkConstraints=False,title=context.name)
+        item = createContentInContainer(parent,'wccpilgrimagesite.app.video', checkConstraints=False,title=context.name, )
         item.url_youtube = context.video
+        item.description = context.message
+        item.church = context.church
+
         item.reindexObject()
     
     if context.sound:
         item2 = createContentInContainer(parent,'wccpilgrimagesite.app.sound', checkConstraints=False,title=context.name)
         item2.soundcloud_id = context.sound
+        item2.description = context.message
+        item2.church = context.church
         item2.reindexObject()
         
     if context.document:
         item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title=context.name)
         item3.file = context.document
+        item3.description = context.message
+        item3.church = context.church
         item3.reindexObject()
     context.reindexObject()
     return

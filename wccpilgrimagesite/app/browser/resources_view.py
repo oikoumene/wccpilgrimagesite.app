@@ -29,6 +29,7 @@ class Index(dexterity.DisplayForm):
                         'message': obj.message,
                         'resource':obj.video,
                         'path':brain.getPath(),
+                        'uid': brain.UID,
                 }
                 videos.append(data)
 
@@ -41,6 +42,7 @@ class Index(dexterity.DisplayForm):
                         'message': obj.message,
                         'resource':obj.sound,
                         'path':brain.getPath(),
+                        'uid': brain.UID,
                 }
                 sound.append(data)
 
@@ -54,6 +56,7 @@ class Index(dexterity.DisplayForm):
                         'message': obj.message,
                         'resource':obj.document.filename,
                         'path':brain.getPath(),
+                        'uid': brain.UID,
                 }
                 documents.append(data)
         return {'videos': videos, 'sound': sound, 'documents': documents}
@@ -76,6 +79,8 @@ class Index(dexterity.DisplayForm):
                         'video_in_step': obj.video_in_step,
                         'featured_video_in_step':obj.featured_video_in_step,
                         'featured_resource':obj.featured_resource,
+                        'uid': brain.UID,
+                        'votes_count': obj.votes_count,
                 }
             videos.append(data)
         return videos
@@ -97,6 +102,7 @@ class Index(dexterity.DisplayForm):
                         'sound_in_step': obj.sound_in_step,
                         'featured_sound_in_step':obj.featured_sound_in_step,
                         'featured_resource':obj.featured_resource,
+                        'uid': brain.UID,
                 }
             sounds.append(data)
         return sounds
@@ -120,6 +126,7 @@ class Index(dexterity.DisplayForm):
                         'featured_doc_in_step':obj.featured_doc_in_step,
                         'featured_resource':obj.featured_resource,
                         'path': brain.getPath(),
+                        'uid': brain.UID,
                 }
             docs.append(data)
         return docs
