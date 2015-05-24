@@ -48,13 +48,26 @@
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="videos">Videos</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-                                    <tal:block tal:define="brains view/resource_result">
-                                          <li tal:repeat="brain python:brains['videos']">
-                                                <h3 tal:content="python: brain['name']">Video One</h3>
+   <!--                               <tal:block tal:define="brains view/video_result">
+           <li tal:repeat="brain brains">
+                                             <div tal:content="python: brain['title']"></div>
+                                             <div tal:content="python: brain['description']"></div>
+                                             <div tal:content="python: brain['url_youtube']"></div>
+                                             <div tal:content="python: brain['video_in_step']"></div>
+                                             <div tal:content="python: brain['featured_video_in_step']"></div>
+                                             <div tal:content="python: brain['featured_resource']"></div>
+
+
+                                          </li>
+         </tal:block>   -->
+
+                                    <tal:block tal:define="brains view/video_result">
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Video One</h3>
                                                 <div>
-                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['resource']">
-            
-                                                            <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
+                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['url_youtube']">
+                                                      <img tal:attributes="src python: view.url_youtube_bg_img(brain['url_youtube'])" alt="">
+                                                          
                                                       </a>
                                                 </div>
                                                 <ul class="no-bullet icons-box">
@@ -62,7 +75,7 @@
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
                                                       <li class="heart-count" >0</li>
                                                 </ul>
-                                                <p tal:content="python: brain['message']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
+                                                <p tal:content="python: brain['description']"></p>
                                           </li>
                                     </tal:block>
                               </ul>
@@ -77,11 +90,23 @@
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="sounds">Sounds</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-                                    <tal:block tal:define="brains view/resource_result">
-                                          <li tal:repeat="brain python:brains['sound']">
-                                                <h3 tal:content="python: brain['name']">Video One</h3>
+                                        <!--  <tal:block tal:define="brains view/sound_result">
+           <li tal:repeat="brain brains">
+                                             <div tal:content="python: brain['title']"></div>
+                                             <div tal:content="python: brain['description']"></div>
+                                             <div tal:content="python: brain['soundcloud_id']"></div>
+                                             <div tal:content="python: brain['sound_in_step']"></div>
+                                             <div tal:content="python: brain['featured_sound_in_step']"></div>
+                                             <div tal:content="python: brain['featured_resource']"></div>
+
+
+                                          </li>
+         </tal:block>  -->
+                                    <tal:block tal:define="brains view/sound_result">
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Sound One</h3>
                                                 <div>
-                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['resource']">
+                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['soundcloud_id']">
             
                                                             <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
                                                       </a>
@@ -91,7 +116,7 @@
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
                                                       <li class="heart-count" >0</li>
                                                 </ul>
-                                                <p tal:content="python: brain['message']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
+                                                <p tal:content="python: brain['description']"></p>
                                           </li>
                                     </tal:block>
                               </ul>
@@ -106,20 +131,34 @@
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="documents">Documents</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-                                    <tal:block tal:define="brains view/resource_result">
-                                          <li tal:repeat="brain python:brains['documents']">
-                                                <h3 tal:content="python: brain['name']">Video One</h3>
+  <!--                               
+         <tal:block tal:define="brains view/document_result">
+           <li tal:repeat="brain brains">
+                                             <div tal:content="python: brain['title']"></div>
+                                             <div tal:content="python: brain['description']"></div>
+                                             <div tal:content="python: brain['file']"></div>
+                                             <div tal:content="python: brain['file_thumb']"></div>
+                                             <div tal:content="python: brain['doc_in_step']"></div>
+                                             <div tal:content="python: brain['featured_doc_in_step']"></div>
+                                             <div tal:content="python: brain['featured_resource']"></div>
+
+
+                                          </li>
+         </tal:block>  -->
+                                    <tal:block tal:define="brains view/document_result">
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Document One</h3>
                                                 <div>
-                                                  <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/document'">
+                                                <!--   <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/document'">
                                                       <img src="http://img.youtube.com/vi/EmBH9TAkioc/hqdefault.jpg" alt="">
-                                                      </a>
+                                                      </a> -->
                                                 </div>
                                                 <ul class="no-bullet icons-box">
                                                       <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
                                                       <li class="heart-count" >0</li>
                                                 </ul>
-                                                <p tal:content="python: brain['message']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
+                                                <p tal:content="python: brain['description']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
                                           </li>
                                     </tal:block>
                               </ul>
@@ -128,41 +167,7 @@
                   </div>
             </section>
       
-      <!--<tal:block tal:define="brains view/resource_result">
-       <table>
-       <tbody>
-         <tr tal:repeat="brain python:brains['videos']">
-           <td tal:content="python: brain['name']"></td>
-           <td tal:content="python: brain['email']"></td>
-           <td tal:content="python: brain['message']"></td>
-           <td tal:content="python: brain['resource']"></td>
-         </tr>
-       </tbody>
-      </table>
-      
-      <table>
-       <tbody>
-         <tr tal:repeat="brain python:brains['sound']">
-           <td tal:content="python: brain['name']"></td>
-           <td tal:content="python: brain['email']"></td>
-           <td tal:content="python: brain['message']"></td>
-           <td tal:content="python: brain['resource']"></td>
-         </tr>
-       </tbody>
-      </table>
- 
-      <table>
-       <tbody>
-         <tr tal:repeat="brain python:brains['documents']">
-           <td tal:content="python: brain['name']"></td>
-           <td tal:content="python: brain['email']"></td>
-           <td tal:content="python: brain['message']"></td>
-           <td ><a tal:attributes="href python: brain['path']+'/view/++widget++form.widgets.document/@@download/'+brain['resource']" tal:content="python: brain['resource']"></a></td>
-         </tr>
-       </tbody>
-      </table>
-      </tal:block>-->
- 
+
             <!--add resource-->
             <section class="content-strip grey-strip">
                   <div class="row">
@@ -270,93 +275,6 @@
  
  
  
-<!--  <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
- 
-     <fieldset id="fieldset-default" class="formPanel" style="display: block;">
-         <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">
- 
-             Default
- 
-         </legend>
-         <div id="formfield-form-widgets-name" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.name empty" data-fieldname="form.widgets.name">
-             <label class="horizontal" for="form-widgets-name">
- 
-                         Name
- 
-                 <span class="required horizontal" title="Required">
-                 </span>
-             </label>
-             <div class="fieldErrorBox"></div>
-             <input id="form-widgets-name" class="text-widget required textline-field" type="text" value="" name="form.widgets.name"/>
-         </div>
-         <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
-             <label class="horizontal" for="form-widgets-email">
-                         E-mail
- 
-             </label>
-             <div class="fieldErrorBox"></div>
-             <input id="form-widgets-email" class="text-widget textline-field" type="text" value="" name="form.widgets.email"/>
-         </div>
-         <div id="formfield-form-widgets-church" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.church empty" data-fieldname="form.widgets.church">
-             <label class="horizontal" for="form-widgets-church">
- 
-                         Your church
- 
-             </label>
-             <div class="fieldErrorBox"></div>
-             <input id="form-widgets-church" class="text-widget textline-field" type="text" value="" name="form.widgets.church"/>
-         </div>
-         <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
-             <label class="horizontal" for="form-widgets-message">
-                         Message
- 
-                 <span class="required horizontal" title="Required">
-                 </span>
-             </label>
-             <div class="fieldErrorBox"></div>
-             <textarea id="form-widgets-message" class="textarea-widget required text-field" name="form.widgets.message"></textarea>
-         </div>
-         <div id="formfield-form-widgets-video" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.video empty" data-fieldname="form.widgets.video">
-             <label class="horizontal" for="form-widgets-video">
- 
-                         Video
-             </label>
-             <div class="fieldErrorBox"></div>
-             <textarea id="form-widgets-video" class="textarea-widget text-field" name="form.widgets.video"></textarea>
-         </div>
-         <div id="formfield-form-widgets-sound" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.sound empty" data-fieldname="form.widgets.sound">
-             <label class="horizontal" for="form-widgets-sound">
-                         Sound
- 
-             </label>
-             <div class="fieldErrorBox"></div>
-             <textarea id="form-widgets-sound" class="textarea-widget text-field" name="form.widgets.sound"></textarea>
-         </div>
-         <div id="formfield-form-widgets-document" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.document empty" data-fieldname="form.widgets.document">
-             <label class="horizontal" for="form-widgets-document">
-                         Document
- 
-                 <span class="formHelp">
- 
-                     Please attach a file
- 
-                 </span>
-             </label>
-             <div class="fieldErrorBox"></div>
-             <span id="form-widgets-document" class="named-file-widget namedblobfile-field">
-                 <input id="form-widgets-document-input" type="file" name="form.widgets.document"/>
-             </span>
-         </div>
-     </fieldset>
-
-    
-     <div class="formControls">
-         <input id="form-buttons-save" class="submit-widget button-field context" type="submit" value="Save" name="form.buttons.save"/>
-         <input id="form-buttons-cancel" class="submit-widget button-field standalone" type="submit" value="Cancel" name="form.buttons.cancel"/>
-     </div>
- 
- </form>
-       -->
     </div><!--end color page container-->
 
   </metal:content-core>
