@@ -3,6 +3,9 @@ from plone.directives import dexterity, form
 from wccpilgrimagesite.app.content.resources import IResources
 from Products.CMFCore.utils import getToolByName
 import urlparse
+from wccpilgrimagesite.app import MessageFactory as _
+from zope.i18n import translate
+
 grok.templatedir('templates')
 
 class Index(dexterity.DisplayForm):
@@ -145,4 +148,10 @@ class Index(dexterity.DisplayForm):
 
     def url_youtube_embedded(self, url=None):
         return 'http://www.youtube.com/embed/{hash}'.format(hash=self._hash_from_url_youtube(url))
+    
+    def save_translation(self):
+        return self.context.translate(_(u"Save"))
+    
+    def cancel_translation(self):
+        return self.context.translate(_(u"Cancel"))
 
