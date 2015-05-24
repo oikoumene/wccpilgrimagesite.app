@@ -42,26 +42,13 @@
             </header>
             
             <!--videos-->
-            <section class="content-strip white-bg">
+            <section class="content-strip white-bg" tal:define="brains view/video_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="videos">Videos</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-   <!--                               <tal:block tal:define="brains view/video_result">
-           <li tal:repeat="brain brains">
-                                             <div tal:content="python: brain['title']"></div>
-                                             <div tal:content="python: brain['description']"></div>
-                                             <div tal:content="python: brain['url_youtube']"></div>
-                                             <div tal:content="python: brain['video_in_step']"></div>
-                                             <div tal:content="python: brain['featured_video_in_step']"></div>
-                                             <div tal:content="python: brain['featured_resource']"></div>
 
-
-                                          </li>
-         </tal:block>   -->
-
-                                    <tal:block tal:define="brains view/video_result">
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Video One</h3>
                                                 <div>
@@ -76,32 +63,23 @@
                                                 </ul>
                                                 <p tal:content="python: brain['description']"></p>
                                           </li>
-                                    </tal:block>
+                                   
                               </ul>
-                              <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: len(brains) > 3">
+                               <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
                         </div>
                   </div>
             </section>
 
-            <section class="content-strip white-bg">
+            <section class="content-strip white-bg" tal:define="brains view/sound_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="sounds">Sounds</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-                                        <!--  <tal:block tal:define="brains view/sound_result">
-           <li tal:repeat="brain brains">
-                                             <div tal:content="python: brain['title']"></div>
-                                             <div tal:content="python: brain['description']"></div>
-                                             <div tal:content="python: brain['soundcloud_id']"></div>
-                                             <div tal:content="python: brain['sound_in_step']"></div>
-                                             <div tal:content="python: brain['featured_sound_in_step']"></div>
-                                             <div tal:content="python: brain['featured_resource']"></div>
 
-
-                                          </li>
-         </tal:block>  -->
-                                    <tal:block tal:define="brains view/sound_result">
+                                   
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Sound One</h3>
                                                 <iframe tal:attributes="src python: brain['soundcloud_id']" width="100%" height="166" scrolling="no" frameborder="no"></iframe>
@@ -113,34 +91,21 @@
                                                 </ul>
                                                 <p tal:content="python: brain['description']"></p>
                                           </li>
-                                    </tal:block>
                               </ul>
-                              <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: len(brains) > 3">
+                                 <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
                         </div>
                   </div>
             </section>
 
-          <section class="content-strip white-bg">
+          <section class="content-strip white-bg" tal:define="brains view/document_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="documents">Documents</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
-  <!--                               
-         <tal:block tal:define="brains view/document_result">
-           <li tal:repeat="brain brains">
-                                             <div tal:content="python: brain['title']"></div>
-                                             <div tal:content="python: brain['description']"></div>
-                                             <div tal:content="python: brain['file']"></div>
-                                             <div tal:content="python: brain['file_thumb']"></div>
-                                             <div tal:content="python: brain['doc_in_step']"></div>
-                                             <div tal:content="python: brain['featured_doc_in_step']"></div>
-                                             <div tal:content="python: brain['featured_resource']"></div>
-
-
-                                          </li>
-         </tal:block>  -->
-                                    <tal:block tal:define="brains view/document_result">
+                                   
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Document One</h3>
                                                
@@ -149,21 +114,19 @@
                                                 <img tal:condition="python: brain['file_thumb']" tal:attributes="src python: brain['path']+ '/@@display-file/file_thumb'" alt="">
 
                                                 <p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> 
-                                               
-
                                              </a>
-      
-                                              
                                                 <ul class="no-bullet icons-box">
                                                       <li class="user-icon wcc-user"><a href=""><img src="images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
                                                       <li class="heart-icon"><a href=""><i class="fa fa-heart"></i></a></li>
                                                       <li class="heart-count" >0</li>
                                                 </ul>
-                                                <p tal:content="python: brain['description']">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita voluptatibus, laudantium, ipsam quae eaque ab quas delectus voluptates. Aliquid quibusdam hic consequuntur soluta deleniti itaque, voluptas commodi recusandae pariatur fugiat.</p>
+                                                <p tal:content="python: brain['description']"></p>
                                           </li>
-                                    </tal:block>
+                                   
                               </ul>
-                              <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: len(brains) > 3">
+                               <a  href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
                         </div>
                   </div>
             </section>
