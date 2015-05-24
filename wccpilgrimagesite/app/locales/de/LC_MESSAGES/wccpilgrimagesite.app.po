@@ -29,6 +29,18 @@ msgstr ""
 "Generated-By: zope/app/locales/extract.py\n"
 "Language: de\n"
 
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:156
+msgid "Cancel"
+msgstr "Stornieren"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:153
+msgid "Save"
+msgstr "Sparen"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
+msgid "add_resource"
+msgstr "Beitrag hinzufügen"
+
 #. Default: "Documents"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:107
 msgid "documents"
@@ -37,6 +49,10 @@ msgstr "Dokumente"
 #: wccpilgrimagesite/app/portlet/templates/burgermenuportlet.pt:3
 msgid "home"
 msgstr "Startseite"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:232
+msgid "message"
+msgstr "Kommentar"
 
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:220
 msgid "resources"
