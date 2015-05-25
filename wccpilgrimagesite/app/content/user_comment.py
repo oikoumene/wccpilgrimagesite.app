@@ -35,7 +35,7 @@ import re
 # Interface class; used to define content-type schema.
 from wccpilgrimagesite.app import utils
 
-class IUserComment(form.Schema, IImageScaleTraversable):
+class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     """
     User Comment
     """
