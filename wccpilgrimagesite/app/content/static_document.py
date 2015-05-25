@@ -85,11 +85,11 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
            title=u'Is this document featured?',value_type=schema.Choice(vocabulary=featured)
         )
 
-    votes_count = schema.Int(
-        title=u'Current votes count',
-        required=False,
-        default=0
-    )
+    # votes_count = schema.Int(
+    #     title=u'Current votes count',
+    #     required=False,
+    #     default=0
+    # )
 
 
     #doc_in_step = RelationList(
