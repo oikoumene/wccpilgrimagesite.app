@@ -24,6 +24,7 @@ from collective import dexteritytextindexer
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 from wccpilgrimagesite.app import MessageFactory as _
+from wccpilgrimagesite.app import utils
 
 
 # Interface class; used to define content-type schema.
@@ -34,7 +35,7 @@ featured = SimpleVocabulary(
   
 ])
 
-class IVideo(form.Schema, IImageScaleTraversable):
+class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     """
     Video
     """
@@ -76,11 +77,11 @@ class IVideo(form.Schema, IImageScaleTraversable):
            title=u'Is this video featured?',value_type=schema.Choice(vocabulary=featured)
         )
 
-    votes_count = schema.Int(
-        title=u'Current votes count',
-        required=False,
-        default=0
-    )
+    # votes_count = schema.Int(
+    #     title=u'Current votes count',
+    #     required=False,
+    #     default=0
+    # )
 
 
 

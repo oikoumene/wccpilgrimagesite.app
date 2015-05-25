@@ -22,4 +22,7 @@
 
     <!-- -*- extra stuff goes here -*- -->
 
+    <browser:view name="api+upvote1" for="*" class=".api.ApiUpvoteView" permission="zope.Public"/>
+  
+
 </configure>

@@ -248,7 +248,7 @@
                   </div>
             </section>
  
- 
+  <span tal:attributes="data-root-api-url python: 'http://localhost:8080/Plone/'"></span>
  
  
     </div><!--end color page container-->

@@ -75,11 +75,11 @@ class ISound(form.Schema, IImageScaleTraversable):
            title=u'Is this sound featured?',value_type=schema.Choice(vocabulary=featured)
         )
 
-    votes_count = schema.Int(
-        title=u'Current votes count',
-        required=False,
-        default=0
-    )
+    # votes_count = schema.Int(
+    #     title=u'Current votes count',
+    #     required=False,
+    #     default=0
+    # )
 
 
     #sound_in_step = RelationList(
