@@ -61,6 +61,16 @@ class Renderer(base.Renderer):
             results.sort(key=lambda result:result['position'])
         return results
     
+    def home_link(self, ):
+        portal_state = getMultiAdapter((self.context, self.request), name="plone_portal_state")
+        path = portal_state.navigation_root_path()
+        brains = self.catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimageapp')
+        
+        for brain in brains:
+            return brain.getPath()
+        return '#'
+    
+    
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IBurgerMenuPortlet)
