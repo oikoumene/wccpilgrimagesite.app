@@ -4,7 +4,9 @@ from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import urlparse
 from wccpilgrimagesite.app.content.video import IVideo
-from Products.CMFCore.utils import getToolByName
+from wccpilgrimagesite.app.content.sound import ISound
+from wccpilgrimagesite.app.content.static_document import IStaticDocument
+
 
 
 grok.templatedir('templates')
@@ -21,33 +23,6 @@ class Index(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')[:3]
         return brains
-
-    # def video_result(self):
-    #     context = self.context
-    #     catalog = getToolByName(context, 'portal_catalog')
-    #     path = '/'.join(context.getPhysicalPath())
-    #     result = []
-    #     query = {}
-    #     data = {}
-    #     query['Subject'] = 'featured'
-    #     brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
-    #             sort_order='reverse', )
-    #     if not brains:
-    #         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
-    #             sort_order='reverse',)
-    #     for brain in brains:
-    #         obj = brain._unrestrictedGetObject()
-    #         if obj.video:
-    #             data= { 'name': obj.name,
-    #                     'email':obj.email,
-    #                     'church': obj.church,
-    #                     'message': obj.message,
-    #                     'resource':obj.video,
-    #                     'path':brain.getPath(),
-    #                     'tags': brain.Subject
-    #                 }
-    #             break;
-    #     return data
 
     def video_result(self):
         context = self.context
@@ -120,7 +95,6 @@ class Index(dexterity.DisplayForm):
         return data
 
 
-
     # def sound_result(self):
     #     context = self.context
     #     catalog = getToolByName(context, 'portal_catalog')
@@ -128,24 +102,31 @@ class Index(dexterity.DisplayForm):
     #     result = []
     #     query = {}
     #     data = {}
-    #     query['Subject'] = 'featured'
-    #     brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
-    #             sort_order='reverse', )
-    #     if not brains:
-    #         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+
+    #     brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
     #             sort_order='reverse',)
+
     #     for brain in brains:
     #         obj = brain._unrestrictedGetObject()
-    #         if obj.sound:
-    #             data= { 'name': obj.name,
-    #                     'email':obj.email,
-    #                     'church': obj.church,
-    #                     'message': obj.message,
-    #                     'resource':obj.video,
-    #                     'path':brain.getPath(),
-    #                     'tags': brain.Subject
-    #                 }
+    #         if 'Featured' in str(obj.featured_resource): 
+    #             data= { 'title': obj.title,
+    #                     'description':obj.description,
+    #                     'church':obj.church,
+    #                     'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+    #                     'featured_resource': obj.featured_resource,
+    #                     }
     #             break;
+    #     if bool(data) == False:
+    #         for brain in brains:
+    #             obj = brain._unrestrictedGetObject()
+    #             data= { 'title': obj.title,
+    #                         'description':obj.description,
+    #                         'church':obj.church,
+    #                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+    #                         'featured_resource': obj.featured_resource,
+    #                         }
+    #             break;
+              
     #     return data
 
     def sound_result(self):
@@ -158,17 +139,19 @@ class Index(dexterity.DisplayForm):
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
                 sort_order='reverse',)
-
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if 'Featured' in str(obj.featured_resource): 
-                data= { 'title': obj.title,
-                        'description':obj.description,
-                        'church':obj.church,
-                        'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                        'featured_resource': obj.featured_resource,
-                        }
-                break;
+            if obj.featured_sound_in_step:
+                if context.UID in obj.featured_sound_in_step: 
+                    data= { 'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+                            'featured_sound_in_step': obj.featured_sound_in_step,
+                            'created': brain.created
+
+                            }
+                    break;
         if bool(data) == False:
             for brain in brains:
                 obj = brain._unrestrictedGetObject()
@@ -176,10 +159,42 @@ class Index(dexterity.DisplayForm):
                             'description':obj.description,
                             'church':obj.church,
                             'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                            'featured_resource': obj.featured_resource,
+                            'featured_sound_in_step': obj.featured_sound_in_step,
+                            'created': brain.created
                             }
                 break;
-              
+        if data:
+            result = data
+        if self.sounds(context.UID()):
+            result = self.sounds(context.UID())
+        if data and self.sounds(context.UID()):
+            if data['created'] > self.sounds(context.UID())['created']:
+                result = data
+
+            else: 
+                result = self.sounds(context.UID())
+
+
+        return result
+
+    def sounds(self, uid = None):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        result = []
+        data = {}
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse')
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            if obj.featured_sound_in_step:
+                if uid in obj.featured_sound_in_step:
+                    data = {'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+                            'featured_sound_in_step': obj.featured_sound_in_step,
+                            'created': brain.created}
+                    break;
         return data
 
 
@@ -190,24 +205,33 @@ class Index(dexterity.DisplayForm):
     #     result = []
     #     query = {}
     #     data = {}
-    #     query['Subject'] = 'featured'
-    #     brains = catalog.searchResults(query,path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
-    #             sort_order='reverse', )
-    #     if not brains:
-    #         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
+
+    #     brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
     #             sort_order='reverse',)
+
     #     for brain in brains:
     #         obj = brain._unrestrictedGetObject()
-    #         if obj.document:
-    #             data= { 'name': obj.name,
-    #                     'email':obj.email,
-    #                     'church': obj.church,
-    #                     'message': obj.message,
-    #                     'resource':obj.video,
-    #                     'path':brain.getPath(),
-    #                     'tags': brain.Subject
-    #                 }
+    #         if 'Featured' in str(obj.featured_resource): 
+    #             data= { 'title': obj.title,
+    #                     'description':obj.description,
+    #                     'church':obj.church,
+    #                     'file': obj.file,
+    #                     'featured_resource': obj.featured_resource,
+    #                     'path': brain.getPath(),
+    #                     }
     #             break;
+    #     if bool(data) == False:
+    #         for brain in brains:
+    #             obj = brain._unrestrictedGetObject()
+    #             data= { 'title': obj.title,
+    #                         'description':obj.description,
+    #                         'church':obj.church,
+    #                         'file': obj.file,
+    #                         'featured_resource': obj.featured_resource,
+    #                         'path': brain.getPath(),
+    #                         }
+    #             break;
+              
     #     return data
 
     def document_result(self):
@@ -220,18 +244,19 @@ class Index(dexterity.DisplayForm):
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
                 sort_order='reverse',)
-
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if 'Featured' in str(obj.featured_resource): 
-                data= { 'title': obj.title,
-                        'description':obj.description,
-                        'church':obj.church,
-                        'file': obj.file,
-                        'featured_resource': obj.featured_resource,
-                        'path': brain.getPath(),
-                        }
-                break;
+            if obj.featured_doc_in_step:
+                if context.UID in obj.featured_doc_in_step: 
+                    data= { 'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'featured_doc_in_step': obj.featured_doc_in_step,
+                            'created': brain.created,
+                            'path': brain.getPath(),
+
+                            }
+                    break;
         if bool(data) == False:
             for brain in brains:
                 obj = brain._unrestrictedGetObject()
@@ -239,12 +264,46 @@ class Index(dexterity.DisplayForm):
                             'description':obj.description,
                             'church':obj.church,
                             'file': obj.file,
-                            'featured_resource': obj.featured_resource,
+                            'featured_doc_in_step': obj.featured_doc_in_step,
+                            'created': brain.created,
                             'path': brain.getPath(),
                             }
                 break;
-              
+        if data:
+            result = data
+        if self.documents(context.UID()):
+            result = self.documents(context.UID())
+        if data and self.documents(context.UID()):
+            if data['created'] > self.documents(context.UID())['created']:
+                result = data
+
+            else: 
+                result = self.documents(context.UID())
+
+
+        return result
+
+    def documents(self, uid = None):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        result = []
+        data = {}
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse')
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            if obj.featured_doc_in_step:
+                if uid in obj.featured_doc_in_step:
+                    data = {'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'file': obj.file,
+                            'featured_doc_in_step': obj.featured_doc_in_step,
+                            'created': brain.created,
+                            'path': brain.getPath(),}
+                    break;
         return data
+
 
 
     def datetime_result(self, value=None):

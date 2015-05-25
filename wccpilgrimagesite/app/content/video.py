@@ -27,6 +27,7 @@ from wccpilgrimagesite.app import MessageFactory as _
 from wccpilgrimagesite.app import utils
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
+import datetime
 
 
 # Interface class; used to define content-type schema.
@@ -38,8 +39,9 @@ class featured_steps(object):
         catalog = getToolByName(context,'portal_catalog')
         brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
         items = []
+        
         for brain in brains:
-            items.append(SimpleTerm(brain.UID, title=brain.Title))
+            items.append(SimpleTerm(now, title=brain.Title))
         return SimpleVocabulary(items)
 
 
