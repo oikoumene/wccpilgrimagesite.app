@@ -32,7 +32,7 @@ class Index(dexterity.DisplayForm):
                         'video_in_step': obj.video_in_step,
                         'featured_video_in_step':obj.featured_video_in_step,
                         'uid': brain.UID,
-                        'votes_count': obj.votes_count,
+                        'votes_count': obj.votes_count
                 }
             videos.append(data)
         return videos
@@ -54,6 +54,7 @@ class Index(dexterity.DisplayForm):
                         'sound_in_step': obj.sound_in_step,
                         'featured_sound_in_step':obj.featured_sound_in_step,
                         'uid': brain.UID,
+                        'votes_count': obj.votes_count
                 }
             sounds.append(data)
         return sounds
@@ -77,6 +78,7 @@ class Index(dexterity.DisplayForm):
                         'featured_doc_in_step':obj.featured_doc_in_step,
                         'path': brain.getPath(),
                         'uid': brain.UID,
+                        'votes_count': obj.votes_count
                 }
             docs.append(data)
         return docs
