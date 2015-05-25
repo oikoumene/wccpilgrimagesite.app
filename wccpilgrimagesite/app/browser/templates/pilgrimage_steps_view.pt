@@ -40,7 +40,7 @@
               <div tal:content="structure widget/render" />
           </div>
       </tal:block> -->
-      
+     
       <!--color page container-->
       <div tal:define="classes string:${context/colour}-page animated fadeIn" tal:attributes="class classes">
       

@@ -27,6 +27,7 @@ class Index(dexterity.DisplayForm):
             data['url'] = brain.getPath()
             data['obj'] = obj
             data['image'] = obj.image
+            data['uid'] = brain.UID
             
             results.append(data)
         if results:
