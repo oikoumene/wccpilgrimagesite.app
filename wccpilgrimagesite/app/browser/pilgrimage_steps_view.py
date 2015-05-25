@@ -3,6 +3,8 @@ from plone.directives import dexterity, form
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import urlparse
+from wccpilgrimagesite.app.content.video import IVideo
+from Products.CMFCore.utils import getToolByName
 
 
 grok.templatedir('templates')
@@ -57,17 +59,19 @@ class Index(dexterity.DisplayForm):
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
                 sort_order='reverse',)
-
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if 'Featured' in str(obj.featured_resource): 
-                data= { 'title': obj.title,
-                        'description':obj.description,
-                        'church':obj.church,
-                        'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                        'featured_resource': obj.featured_resource,
-                        }
-                break;
+            if obj.featured_video_in_step:
+                if context.UID in obj.featured_video_in_step: 
+                    data= { 'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'url_youtube': self.url_youtube_embedded(obj.url_youtube),
+                            'featured_video_in_step': obj.featured_video_in_step,
+                            'created': brain.created
+
+                            }
+                    break;
         if bool(data) == False:
             for brain in brains:
                 obj = brain._unrestrictedGetObject()
@@ -75,11 +79,47 @@ class Index(dexterity.DisplayForm):
                             'description':obj.description,
                             'church':obj.church,
                             'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                            'featured_resource': obj.featured_resource,
+                            'featured_video_in_step': obj.featured_video_in_step,
+                            'created': brain.created
                             }
                 break;
-              
+        if data:
+            result = data
+        if self.videos(context.UID()):
+            result = self.videos(context.UID())
+        if data and self.videos(context.UID()):
+            if data['created'] > self.videos(context.UID())['created']:
+                result = data
+
+            else: 
+                result = self.videos(context.UID())
+
+
+        return result
+
+    def videos(self, uid = None):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        result = []
+        data = {}
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse')
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            if obj.featured_video_in_step:
+                if uid in obj.featured_video_in_step:
+                    data = {'title': obj.title,
+                            'description':obj.description,
+                            'church':obj.church,
+                            'url_youtube': self.url_youtube_embedded(obj.url_youtube),
+                            'featured_video_in_step': obj.featured_video_in_step,
+                            'created': brain.created}
+                    break;
+
+            
         return data
+
+
 
     # def sound_result(self):
     #     context = self.context
