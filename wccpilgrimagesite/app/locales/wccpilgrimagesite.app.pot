@@ -82,3 +82,7 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:232
 msgid "message"
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:106
+msgid "show_less"
+msgstr ""
