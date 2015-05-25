@@ -85,8 +85,8 @@
                                           </div>
                                           <div class="cl-details">
                                                 <div class="heart-box">
-                                                      <a tal:attributes="data-votable python: brain.getId" ><i class="fa fa-heart"></i></a>
-                                                      <span class="heart-number" tal:attributes="data-votes-count python: brain.getId" tal:content="python: brain.getObject().votes_count">0</span>
+                                                      <a tal:attributes="data-votable python: brain.UID" ><i class="fa fa-heart"></i></a>
+                                                      <span class="heart-number" tal:attributes="data-votes-count python: brain.UID" tal:content="python: brain.getObject().votes_count">0</span>
                                                 </div>
                                                 <h4 tal:content="python: brain.getObject().title"></h4>
                                                 <p tal:content="python: view.datetime_result(brain.created)"></p>
@@ -370,7 +370,7 @@
         </tal:block>
     </fieldset> -->
     
-
+      <span tal:attributes="data-root-api-url string:${context/@@plone_portal_state/navigation_root_path}/"></span>
   </metal:content-core>
 </metal:main>
 
