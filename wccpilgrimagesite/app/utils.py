@@ -14,10 +14,10 @@ from zope.security import checkPermission
 from zope import schema
 from zc.relation.interfaces import ICatalog
 from zope.component.hooks import getSite
+from plone.directives import dexterity, form
 
-
-class IVotingMixin(model.Schema):
-
+class IVotingMixin(form.Schema):
+    form.mode(votes_count='hidden')
     votes_count = schema.Int(
         title=u'Current votes count',
         required=False,
