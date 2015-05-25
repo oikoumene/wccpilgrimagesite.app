@@ -41,7 +41,7 @@ class featured_steps(object):
         items = []
         
         for brain in brains:
-            items.append(SimpleTerm(now, title=brain.Title))
+            items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
 
 
