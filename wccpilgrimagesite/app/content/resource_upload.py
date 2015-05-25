@@ -121,13 +121,13 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     )
 
 
-    form.widget(featured_resource=CheckBoxFieldWidget)
-    featured_resource = schema.List(
-           title=_(u"Set as Featured?"),
-            value_type=schema.Choice(
-              values=[u"Featured"]),
-            required=False,
-        )
+    # form.widget(featured_resource=CheckBoxFieldWidget)
+    # featured_resource = schema.List(
+    #        title=_(u"Set as Featured?"),
+    #         value_type=schema.Choice(
+    #           values=[u"Featured"]),
+    #         required=False,
+    #     )
 
 #    video = RelationList(
 #        title=u'Video',
@@ -202,8 +202,8 @@ def _createObject(context, event):
     context.setTitle(context.name)
 
     #exclude from navigation code
-    behavior = IExcludeFromNavigation(context)
-    behavior.exclude_from_nav = True
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
 
     
     if context.video:
