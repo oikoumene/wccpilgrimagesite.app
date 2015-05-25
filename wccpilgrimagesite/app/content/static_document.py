@@ -29,6 +29,7 @@ from wccpilgrimagesite.app import MessageFactory as _
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import datetime
+from wccpilgrimagesite.app import utils
 
 
 # Interface class; used to define content-type schema.
@@ -45,7 +46,7 @@ class featured_steps(object):
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
 
-class IStaticDocument(form.Schema, IImageScaleTraversable):
+class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     """
     Static Document
     """
