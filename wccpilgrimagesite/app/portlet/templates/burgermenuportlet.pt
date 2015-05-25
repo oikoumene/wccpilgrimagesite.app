@@ -1,6 +1,6 @@
 
 <ul class="no-bullet side-nav-list" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="wccpilgrimagesite.app">
-    <li><a href="" i18n:translate="home">Home</a></li>
+    <li><a href="" i18n:translate="home" tal:attributes="href view/home_link">Home</a></li>
     <tal:block tal:define="contents view/pilgrimage_steps" tal:condition="contents">
         <tal:entry tal:repeat="content contents">
             <li><a tal:attributes="href python: content['url']" tal:content="python: content['title']"/></li>
