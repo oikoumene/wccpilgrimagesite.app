@@ -101,7 +101,10 @@
       <section class="small-slider-cover white-bg">
             <div class="row">
                   <div class="small-12 columns text-center">
-                        <a href="" class="button tiny more-circles" i18n:translate="see_more">Show More</a>
+                        <a href="" class="button tiny more-circles">
+                              <span id='show-more' i18n:translate="see_more">Show More</span>
+                              <span id='show-less' style="display: none" i18n:translate="show_less">Show Less</span>
+                        </a>
                   </div>
             </div>
       </section>
