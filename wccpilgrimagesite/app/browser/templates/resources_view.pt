@@ -96,7 +96,7 @@
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
                                                       <li>
 
-                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']">0</li>
+                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
                                                 </ul>
                                                 <p tal:content="python: brain['description']"></p>
                                           </li>
@@ -130,7 +130,7 @@
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
                                                       <li>
 
-                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']">0</li>
+                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
                                                 </ul>
                                                 <p tal:content="python: brain['description']"></p>
                                           </li>
