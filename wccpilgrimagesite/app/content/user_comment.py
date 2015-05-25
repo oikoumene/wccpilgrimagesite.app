@@ -55,10 +55,10 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=False,
     )
 
-    datetime_added = schema.Datetime(
-        title=u'Datetime added',
-        required=True,
-    )
+    # datetime_added = schema.Datetime(
+    #     title=u'Datetime added',
+    #     required=True,
+    # )
 
     image = NamedBlobImage(
         title=u'Image',
@@ -124,6 +124,6 @@ def _createObject(context, event):
     context.reindexObject()
     return
 
-@form.default_value(field=IUserComment['datetime_added'])
-def currentDate(self):
-    return datetime.datetime.today()
+# @form.default_value(field=IUserComment['datetime_added'])
+# def currentDate(self):
+#     return datetime.datetime.today()
