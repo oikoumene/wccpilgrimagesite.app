@@ -62,6 +62,10 @@ msgstr "Materialien"
 msgid "see_more"
 msgstr "Mehr anzeigen"
 
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:106
+msgid "show_less"
+msgstr "Zeigen weniger"
+
 #. Default: "Social Media"
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:261
 msgid "social_media"
