@@ -33,6 +33,7 @@ import datetime
 from zope.interface import invariant, Invalid
 import re
 # Interface class; used to define content-type schema.
+from wccpilgrimagesite.app import utils
 
 class IUserComment(form.Schema, IImageScaleTraversable):
     """
