@@ -26,6 +26,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from wccpilgrimagesite.app import MessageFactory as _
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
+from wccpilgrimagesite.app import utils
 
 class featured_steps(object):
     grok.implements(IContextSourceBinder)
@@ -39,7 +40,7 @@ class featured_steps(object):
         return SimpleVocabulary(items)
 # Interface class; used to define content-type schema.
 
-class ISound(form.Schema, IImageScaleTraversable):
+class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     """
     Sound
     """
