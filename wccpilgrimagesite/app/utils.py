@@ -3,7 +3,7 @@ import base64
 import time
 import hashlib
 
-from plone import api
+#from plone import api
 from plone.supermodel import model
 from plone.uuid.interfaces import IUUID
 from OFS.interfaces import IOrderedContainer

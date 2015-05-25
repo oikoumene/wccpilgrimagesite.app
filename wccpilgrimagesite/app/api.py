@@ -2,10 +2,10 @@ import json
 
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-import plone.api
+#import plone.api
 
 
-from wccpilgrimagesite.app import utils, content
+#from wccpilgrimagesite.app import utils, content
 
 
 class ApiView(BrowserView):
