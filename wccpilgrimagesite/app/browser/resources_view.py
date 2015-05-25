@@ -14,56 +14,6 @@ class Index(dexterity.DisplayForm):
     grok.template('resources_view')
     grok.name('view')
 
-    def resource_result(self):
-        context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
-        path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.resourceupload',sort_on='Date',
-                sort_order='reverse',)
-        videos = []
-        sound = []
-        documents = []
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.video:
-                data= {'name': obj.name,
-                        'email':obj.email,
-                        'church': obj.church,
-                        'message': obj.message,
-                        'resource':obj.video,
-                        'path':brain.getPath(),
-                        'uid': brain.UID,
-                }
-                videos.append(data)
-
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.sound:
-                data= {'name': obj.name,
-                        'email':obj.email,
-                        'church': obj.church,
-                        'message': obj.message,
-                        'resource':obj.sound,
-                        'path':brain.getPath(),
-                        'uid': brain.UID,
-                }
-                sound.append(data)
-
-
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.document:
-                data= {'name': obj.name,
-                        'email':obj.email,
-                        'church': obj.church,
-                        'message': obj.message,
-                        'resource':obj.document.filename,
-                        'path':brain.getPath(),
-                        'uid': brain.UID,
-                }
-                documents.append(data)
-        return {'videos': videos, 'sound': sound, 'documents': documents}
-
 
     def video_result(self):
         context = self.context
@@ -103,7 +53,6 @@ class Index(dexterity.DisplayForm):
                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
                         'sound_in_step': obj.sound_in_step,
                         'featured_sound_in_step':obj.featured_sound_in_step,
-                        'featured_resource':obj.featured_resource,
                         'uid': brain.UID,
                 }
             sounds.append(data)
@@ -126,7 +75,6 @@ class Index(dexterity.DisplayForm):
                         'file_thumb': obj.file_thumb,
                         'doc_in_step':obj.doc_in_step,
                         'featured_doc_in_step':obj.featured_doc_in_step,
-                        'featured_resource':obj.featured_resource,
                         'path': brain.getPath(),
                         'uid': brain.UID,
                 }
