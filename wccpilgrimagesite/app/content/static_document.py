@@ -26,15 +26,24 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from wccpilgrimagesite.app import MessageFactory as _
 
 
+from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
+from Products.CMFCore.utils import getToolByName
+import datetime
+
 
 # Interface class; used to define content-type schema.
 
 
-featured = SimpleVocabulary(
-[
-    SimpleTerm(u'Featured', title=u'Featured'),
-  
-])
+class featured_steps(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context,'portal_catalog')
+        brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
+        items = []
+        
+        for brain in brains:
+            items.append(SimpleTerm(brain.UID, title=brain.Title))
+        return SimpleVocabulary(items)
 
 class IStaticDocument(form.Schema, IImageScaleTraversable):
     """
@@ -73,17 +82,24 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
         description=u'Select pilgrimage steps where this document will appear.',
         required=True,
     )
-
-    featured_doc_in_step = schema.Text(
+    form.widget(featured_doc_in_step=CheckBoxFieldWidget)
+    featured_doc_in_step = schema.List(
         title=u'As featured in pilgrimage steps',
         description=u'Select pilgrimage steps where this document will appear as a featured resource.',
-        required=True,
+        required=False,
+        value_type=schema.Choice(source=featured_steps())
     )
 
-    form.widget(featured_resource=CheckBoxFieldWidget)
-    featured_resource = schema.List(
-           title=u'Is this document featured?',value_type=schema.Choice(vocabulary=featured)
-        )
+    # featured_doc_in_step = schema.Text(
+    #     title=u'As featured in pilgrimage steps',
+    #     description=u'Select pilgrimage steps where this document will appear as a featured resource.',
+    #     required=True,
+    # )
+
+    # form.widget(featured_resource=CheckBoxFieldWidget)
+    # featured_resource = schema.List(
+    #        title=u'Is this document featured?',value_type=schema.Choice(vocabulary=featured)
+    #     )
 
     # votes_count = schema.Int(
     #     title=u'Current votes count',
