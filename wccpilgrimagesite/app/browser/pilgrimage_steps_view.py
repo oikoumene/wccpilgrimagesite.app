@@ -7,6 +7,9 @@ from wccpilgrimagesite.app.content.video import IVideo
 from wccpilgrimagesite.app.content.sound import ISound
 from wccpilgrimagesite.app.content.static_document import IStaticDocument
 
+from wccpilgrimagesite.app import MessageFactory as _
+from zope.i18n import translate
+
 
 
 grok.templatedir('templates')
@@ -356,3 +359,10 @@ class Index(dexterity.DisplayForm):
                'show_user=false&amp;show_reposts=false'.format(
             soundcloud=soundcloud
         )
+            
+    def save_translation(self):
+        return self.context.translate(_(u"Save"))
+    
+    def cancel_translation(self):
+        return self.context.translate(_(u"Cancel"))
+    
