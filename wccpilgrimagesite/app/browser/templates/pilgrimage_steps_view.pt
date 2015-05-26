@@ -144,7 +144,7 @@
                                                 
                                                 
                                                 <div id="formfield-form-widgets-message" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.message empty" data-fieldname="form.widgets.message">
-                                                      <label class="horizontal" for="form-widgets-message">Message</label>
+                                                      <label class="horizontal" for="form-widgets-message" i18n:translate="message">Message</label>
                                                       <div class="fieldErrorBox"></div>
                                                       <textarea id="form-widgets-message" class="textarea-widget text-field" name="form.widgets.message"></textarea>
                                                 </div>
@@ -181,8 +181,8 @@
                                               </div>
                                           </fieldset>
                                           <div class="formControls">
-                                              <input id="form-buttons-save" class="submit-widget button-field context button tiny" type="submit" value="Save" name="form.buttons.save"/>
-                                              <input id="form-buttons-cancel" class="submit-widget button-field standalone button tiny" type="submit" value="Cancel" name="form.buttons.cancel"/>
+                                              <input id="form-buttons-save" class="submit-widget button-field context button tiny" type="submit" tal:attributes="value view/save_translation" name="form.buttons.save"/>
+                                              <input id="form-buttons-cancel" class="submit-widget button-field standalone button tiny" type="submit" tal:attributes="value view/cancel_translation" name="form.buttons.cancel"/>
                                           </div>
 
                                     </form>
