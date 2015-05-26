@@ -35,6 +35,20 @@ import re
 # Interface class; used to define content-type schema.
 from wccpilgrimagesite.app import utils
 
+from zope.schema import ValidationError
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
+
+class InvalidEmailAddress(ValidationError):
+    "Invalid email address"
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        raise InvalidEmailAddress(value)
+    return True
+
 class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     """
     User Comment
@@ -48,6 +62,7 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     email = schema.TextLine(
         title=u'E-mail',
         required=True,
+        constraint=validateaddress,
     )
 
     message = schema.Text(
