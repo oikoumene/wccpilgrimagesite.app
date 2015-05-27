@@ -39,6 +39,7 @@ from plone.dexterity.utils import createContentInContainer, createContent
 from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
+from zope.schema.interfaces import RequiredMissing
 
 
 class InvalidEmailAddress(ValidationError):
@@ -47,9 +48,9 @@ class InvalidEmailAddress(ValidationError):
 class InvalidYoutubeUrl(ValidationError):
     "Youtube link is not valid."
 
+
 class InvalidSoundCloudId(ValidationError):
     "Please specify the Soundcloud track ID. If you don't know where to find it, please put 0 in the Audio field and include the URL of the sound file in the Message field."
-
 
 def validateaddress(value):
     try:
@@ -57,7 +58,6 @@ def validateaddress(value):
     except EmailAddressInvalid:
         raise InvalidEmailAddress(value)
     return True
-
 
 def validatevideo(url):
 
@@ -72,7 +72,6 @@ def validatesound(id):
         return True
     except ValueError:
         raise InvalidSoundCloudId(id)
-
 
 # Interface class; used to define content-type schema.
 
@@ -119,58 +118,12 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
             description=_(u"Please attach a file"),
             required=False,
     )
-
-
-    # form.widget(featured_resource=CheckBoxFieldWidget)
-    # featured_resource = schema.List(
-    #        title=_(u"Set as Featured?"),
-    #         value_type=schema.Choice(
-    #           values=[u"Featured"]),
-    #         required=False,
-    #     )
-
-#    video = RelationList(
-#        title=u'Video',
-#        default=[],
-#        value_type=RelationChoice(
-#            source=ObjPathSourceBinder(
-#                path={'query': '/en/resources/videos'}
-#            ),
-#        ),
-#        required=False
-#    )
-
-#    sound = RelationList(
-#        title=u'Sound',
-#        default=[],
-#        value_type=RelationChoice(
-#            source=ObjPathSourceBinder(
-#                path={'query': '/en/resources/sounds'}
-#            ),
-#        ),
-#        required=False
-#    )
-
-#    document = RelationList(
-#        title=u'Document',
-#        default=[],
-#        value_type=RelationChoice(
-#            source=ObjPathSourceBinder(
-#                path={'query': '/en/resources/documents'}
-#            ),
-#        ),
-#        required=False
-#    )
     
+    @invariant
+    def resourcesInvariant(data):
+       if not any([data.video, data.sound, data.document]):
+            raise Invalid(_(u"At least one resource is required."))
     
-    #@invariant
-    #def addressInvariant(data):
-    #    if data.email:
-    #        if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
-    #            raise Invalid(_(u"Invalid email!"))
-    
-    pass
-
 alsoProvides(IResourceUpload, IFormFieldProvider)
 
 
@@ -231,3 +184,10 @@ def _createObject(context, event):
     return
 
 
+@form.error_message(field=IResourceUpload['name'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No name provided."
+
+@form.error_message(field=IResourceUpload['message'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No message provided."

@@ -38,6 +38,7 @@ from wccpilgrimagesite.app import utils
 from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
+from zope.schema.interfaces import RequiredMissing
 
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
@@ -67,7 +68,7 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
 
     message = schema.Text(
         title=u'Message',
-        required=False,
+        required=True,
     )
 
     # datetime_added = schema.Datetime(
@@ -80,11 +81,11 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=False,
     )
 
-    votes_count = schema.Int(
-        title=u'Current votes count',
-        required=False,
-        default=0
-    )
+    # votes_count = schema.Int(
+    #     title=u'Current votes count',
+    #     required=False,
+    #     default=0
+    # )
 
 #    comment_in_steps = RelationList(
 #        title=u'Pilgrimage step',
@@ -97,11 +98,11 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
 #        required=False,
 #    )
 
-    @invariant
-    def addressInvariant(data):
-        if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
-            raise Invalid(_(u"Invalid email!"))
-    pass
+    # @invariant
+    # def addressInvariant(data):
+    #     if not re.match("[^@]+@[^@]+\.[^@]+", data.email):
+    #         raise Invalid(_(u"Invalid email!"))
+    # pass
 
 alsoProvides(IUserComment, IFormFieldProvider)
 
@@ -142,3 +143,16 @@ def _createObject(context, event):
 # @form.default_value(field=IUserComment['datetime_added'])
 # def currentDate(self):
 #     return datetime.datetime.today()
+
+
+@form.error_message(field=IUserComment['title'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No name provided."
+
+@form.error_message(field=IUserComment['message'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No message provided."
+
+@form.error_message(field=IUserComment['email'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No email provided."
