@@ -70,10 +70,17 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=True,
     )
 
-    video_in_step = schema.Text(
+    # video_in_step = schema.Text(
+    #     title=u'In pilgrimage steps',
+    #     description=u'Select pilgrimage steps where this video will appear.',
+    #     required=True,
+    # )
+    form.widget(video_in_step=CheckBoxFieldWidget)
+    video_in_step = schema.List(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this video will appear.',
         required=True,
+        value_type=schema.Choice(source=featured_steps())
     )
     form.widget(featured_video_in_step=CheckBoxFieldWidget)
     featured_video_in_step = schema.List(

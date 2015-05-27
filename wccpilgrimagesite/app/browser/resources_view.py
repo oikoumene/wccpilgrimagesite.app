@@ -5,7 +5,11 @@ from Products.CMFCore.utils import getToolByName
 import urlparse
 from wccpilgrimagesite.app import MessageFactory as _
 from zope.i18n import translate
-
+from operator import itemgetter
+from wccpilgrimagesite.app.content.video import IVideo
+from wccpilgrimagesite.app.content.sound import ISound
+from wccpilgrimagesite.app.content.static_document import IStaticDocument
+import itertools
 grok.templatedir('templates')
 
 class Index(dexterity.DisplayForm):
@@ -14,28 +18,48 @@ class Index(dexterity.DisplayForm):
     grok.template('resources_view')
     grok.name('view')
 
-
-    def video_result(self):
+    def videos_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
+        resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
                 sort_order='reverse',)
-        videos = []
-      
-        for brain in brains:
+        steps = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse')
+        videos_resources = []
+        videos_steps = []
+        for brain in resources:
             obj = brain._unrestrictedGetObject()
-            
-            data= {'title': obj.title,
+            data_resources = {'title': obj.title,
                         'description':obj.description,
                         'url_youtube': self.url_youtube_embedded(obj.url_youtube),
                         'video_in_step': obj.video_in_step,
                         'featured_video_in_step':obj.featured_video_in_step,
                         'uid': brain.UID,
-                        'votes_count': obj.votes_count
-                }
-            videos.append(data)
-        return videos
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,}
+            videos_resources.append(data_resources)
+
+        for brain in steps:
+            obj = brain._unrestrictedGetObject()
+            if obj.video_in_step:
+                if context.aq_parent.UID() in obj.video_in_step:
+                    data_steps = {'title': obj.title,
+                        'description':obj.description,
+                        'url_youtube': self.url_youtube_embedded(obj.url_youtube),
+                        'video_in_step': obj.video_in_step,
+                        'featured_video_in_step':obj.featured_video_in_step,
+                        'uid': brain.UID,
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,}
+                
+                    videos_steps.append(data_steps)
+
+        for video in videos_resources:
+            if video not in videos_steps:
+                videos_steps.append(video)
+        return sorted(videos_steps, key=itemgetter('created'), reverse=True)
+
+
 
     def sound_result(self):
         context = self.context
