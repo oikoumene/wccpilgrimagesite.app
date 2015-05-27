@@ -32,8 +32,6 @@ class Index(dexterity.DisplayForm):
             data_resources = {'title': obj.title,
                         'description':obj.description,
                         'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                        'video_in_step': obj.video_in_step,
-                        'featured_video_in_step':obj.featured_video_in_step,
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,}
@@ -46,8 +44,6 @@ class Index(dexterity.DisplayForm):
                     data_steps = {'title': obj.title,
                         'description':obj.description,
                         'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                        'video_in_step': obj.video_in_step,
-                        'featured_video_in_step':obj.featured_video_in_step,
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,}
