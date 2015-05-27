@@ -118,6 +118,8 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
             description=_(u"Please attach a file"),
             required=False,
     )
+
+    
     
     @invariant
     def resourcesInvariant(data):
@@ -135,14 +137,15 @@ def _createObject(context, event):
     
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IResourceUpload.__identifier__)
+    path = '/'.join(parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.resourceupload')
     for brain in brains:
         object_Ids.append(brain.id)
     
-    last_name = str(idnormalizer.normalize(context.name))
-    temp_new_id = last_name
+    temp_new_id = str(idnormalizer.normalize(context.name))
     new_id = temp_new_id.replace("-","")
     test = ''
+    # import pdb;pdb.set_trace()
     if new_id in object_Ids:
         test = filter(lambda name: new_id in name, object_Ids)
         if '-' not in (max(test)):
@@ -150,8 +153,9 @@ def _createObject(context, event):
         if '-' in (max(test)):
             new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
 
+
+
     parent.manage_renameObject(id, new_id )
-    new_title = last_name
     context.setTitle(context.name)
 
     #exclude from navigation code
