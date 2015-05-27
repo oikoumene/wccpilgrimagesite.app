@@ -119,7 +119,7 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
             required=False,
     )
 
-    
+
     
     @invariant
     def resourcesInvariant(data):
@@ -148,6 +148,8 @@ def _createObject(context, event):
     # import pdb;pdb.set_trace()
     if new_id in object_Ids:
         test = filter(lambda name: new_id in name, object_Ids)
+        if len(test) > 1:
+            test = filter(lambda name: new_id+'-' in name, object_Ids)
         if '-' not in (max(test)):
             new_id = new_id + '-1'
         if '-' in (max(test)):
