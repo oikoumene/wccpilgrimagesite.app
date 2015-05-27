@@ -157,7 +157,9 @@ class Index(dexterity.DisplayForm):
                         'file_thumb': obj.file_thumb,
                         'path': brain.getPath(),
                         'uid': brain.UID,
-                        'votes_count': obj.votes_count
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,
+
                 }
             docs_resources.append(data_resources)
 
@@ -171,7 +173,8 @@ class Index(dexterity.DisplayForm):
                         'file_thumb': obj.file_thumb,
                         'path': brain.getPath(),
                         'uid': brain.UID,
-                        'votes_count': obj.votes_count
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,
                 }
                 
                     docs_steps.append(data_steps)
