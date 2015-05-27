@@ -30,6 +30,7 @@ from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import datetime
 from wccpilgrimagesite.app import utils
+from zope.schema.interfaces import RequiredMissing
 
 
 # Interface class; used to define content-type schema.
@@ -145,3 +146,20 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     pass
 
 alsoProvides(IStaticDocument, IFormFieldProvider)
+
+@form.error_message(field=IStaticDocument['title'], error=RequiredMissing)
+def titleOmittedErrorMessage(value):
+    return u"No name provided."
+
+@form.error_message(field=IStaticDocument['description'], error=RequiredMissing)
+def descriptionOmittedErrorMessage(value):
+    return u"No description provided."
+
+@form.error_message(field=IStaticDocument['church'], error=RequiredMissing)
+def churchOmittedErrorMessage(value):
+    return u"No church provided."
+
+@form.error_message(field=IStaticDocument['file'], error=RequiredMissing)
+def fileOmittedErrorMessage(value):
+    return u"No file uploaded."
+
