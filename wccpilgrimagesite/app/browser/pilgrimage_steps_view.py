@@ -367,3 +367,56 @@ class Index(dexterity.DisplayForm):
     def cancel_translation(self):
         return self.context.translate(_(u"Cancel"))
     
+    def pilgrimage_steps_position(self):
+        context = self.context
+        parent = context.aq_parent
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog.unrestrictedSearchResults(path={'query':'/'.join(parent.getPhysicalPath()), 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps')
+        result = {}
+        for brain in brains:
+            result[parent.getObjectPosition(brain.id)+1] = brain.id
+        
+        return result
+            
+    
+    def current_object_position(self):
+        parent = self.context.aq_parent
+        return  parent.getObjectPosition(self.context.id) + 1
+    
+    def max_position(self):
+        if self.pilgrimage_steps_position():
+            return max(self.pilgrimage_steps_position())
+        return None
+    
+    def min_position(self):
+        if self.pilgrimage_steps_position():
+            return min(self.pilgrimage_steps_position())
+        return None
+    
+    def next_content(self, pos=None):
+        parent = self.context.aq_parent
+        path = '/'.join(parent.getPhysicalPath())
+        if pos:
+            current_pos = self.current_object_position()
+            positions = self.pilgrimage_steps_position()
+            min_pos = self.min_position()
+            max_pos = self.max_position()
+            if current_pos >= min_pos and current_pos < max_pos:
+                return path+'/'+positions[current_pos+1]
+        return '#'
+    
+    def previous_content(self, pos=None):
+        parent = self.context.aq_parent
+        path = '/'.join(parent.getPhysicalPath())
+        if pos:
+            current_pos = self.current_object_position()
+            positions = self.pilgrimage_steps_position()
+            min_pos = self.min_position()
+            max_pos = self.max_position()
+            if current_pos <= max_pos and current_pos > min_pos:
+                return path+'/'+positions[current_pos-1]
+        return '#'
+    
+    
+    
+    
