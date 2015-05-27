@@ -53,12 +53,12 @@
                               </div>
                               <h1 tal:content="structure context/Title">What is a pilgrimage?</h1>
                               <p tal:content="structure context/Description">Share your thoughts about pilgrimage from your context.</p>
-                              <a class="item-arrow previous-item" href="#">
+                               <a class="item-arrow previous-item" tal:define="current_pos view/current_object_position" tal:attributes="href python: view.previous_content(current_pos)">
                                     <i class="fa fa-chevron-left">
                                           <span class="access">Last Item</span>
                                     </i>
                               </a>
-                              <a class="item-arrow next-item" href="#">
+                                <a class="item-arrow next-item" tal:define="current_pos view/current_object_position" tal:attributes="href python: view.next_content(current_pos)">
                                     <i class="fa fa-chevron-right">
                                           <span class="access">Next Item</span>
                                     </i>
