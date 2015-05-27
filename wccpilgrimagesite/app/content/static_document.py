@@ -141,6 +141,11 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         #),
         #required=False,
     #)
+    
+    @invariant
+    def resourcesInvariant(data):
+        if not data.doc_in_step:
+            raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass
