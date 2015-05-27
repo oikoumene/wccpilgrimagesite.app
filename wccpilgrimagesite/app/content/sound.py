@@ -123,6 +123,11 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         #),
         #required=False,
     #)
+    
+    @invariant
+    def resourcesInvariant(data):
+        if not data.sound_in_step:
+            raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass
@@ -144,3 +149,5 @@ def churchOmittedErrorMessage(value):
 @form.error_message(field=ISound['soundcloud_id'], error=RequiredMissing)
 def soundCloudOmittedErrorMessage(value):
     return u"No sound cloud ID provided."
+
+
