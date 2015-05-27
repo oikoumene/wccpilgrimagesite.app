@@ -24,7 +24,8 @@ class Index(dexterity.DisplayForm):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')[:3]
+        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment',sort_on='Date',
+                sort_order='reverse')[:3]
         return brains
 
     def video_result(self):

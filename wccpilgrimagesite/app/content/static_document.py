@@ -78,11 +78,19 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=False,
     )
 
-    doc_in_step = schema.Text(
+    # doc_in_step = schema.Text(
+    #     title=u'In pilgrimage steps',
+    #     description=u'Select pilgrimage steps where this document will appear.',
+    #     required=True,
+    # )
+    form.widget(doc_in_step=CheckBoxFieldWidget)
+    doc_in_step = schema.List(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this document will appear.',
         required=True,
+        value_type=schema.Choice(source=featured_steps())
     )
+
     form.widget(featured_doc_in_step=CheckBoxFieldWidget)
     featured_doc_in_step = schema.List(
         title=u'As featured in pilgrimage steps',
