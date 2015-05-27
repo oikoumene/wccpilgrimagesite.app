@@ -27,6 +27,7 @@ from wccpilgrimagesite.app import MessageFactory as _
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 from wccpilgrimagesite.app import utils
+from zope.schema.interfaces import RequiredMissing
 
 class featured_steps(object):
     grok.implements(IContextSourceBinder)
@@ -127,3 +128,19 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     pass
 
 alsoProvides(ISound, IFormFieldProvider)
+
+@form.error_message(field=ISound['title'], error=RequiredMissing)
+def titleOmittedErrorMessage(value):
+    return u"No name provided."
+
+@form.error_message(field=ISound['description'], error=RequiredMissing)
+def descriptionOmittedErrorMessage(value):
+    return u"No description provided."
+
+@form.error_message(field=ISound['church'], error=RequiredMissing)
+def churchOmittedErrorMessage(value):
+    return u"No church provided."
+
+@form.error_message(field=ISound['soundcloud_id'], error=RequiredMissing)
+def soundCloudOmittedErrorMessage(value):
+    return u"No sound cloud ID provided."
