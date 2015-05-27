@@ -130,6 +130,11 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         #),
         #required=False,
     #)
+    
+    @invariant
+    def resourcesInvariant(data):
+        if not data.video_in_step:
+            raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass
@@ -151,3 +156,5 @@ def churchOmittedErrorMessage(value):
 @form.error_message(field=IVideo['url_youtube'], error=RequiredMissing)
 def youtubeURLOmittedErrorMessage(value):
     return u"No Youtube URL provided."
+
+
