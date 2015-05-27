@@ -40,9 +40,8 @@
                         </div>
                   </div>
             </header>
-            
-            <!--videos-->
-            <section class="content-strip white-bg" tal:define="brains view/video_result" tal:condition="brains">
+           
+            <section class="content-strip white-bg" tal:define="brains view/videos_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
