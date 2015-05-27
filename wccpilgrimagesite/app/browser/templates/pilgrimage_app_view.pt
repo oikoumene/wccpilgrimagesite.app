@@ -69,7 +69,7 @@
       </section>
       
       <!--small circle-->
-      <section class="sc-wrapper white-bg" tal:define="color_list python: {1:'circle-three blue-circle', 2:'circle-three green-circle',0:'circle-three yellow-circle'}">
+      <!--<section class="sc-wrapper white-bg" tal:define="color_list python: {1:'circle-three blue-circle', 2:'circle-three green-circle',0:'circle-three yellow-circle'}">
             <div class="row">
                   <div class="columns small-12 text-center animated fadeIn">
                         <div class="little-circle-slider" tal:define="brains view/pilgrimage_steps">
@@ -107,7 +107,7 @@
                         </a>
                   </div>
             </div>
-      </section>
+      </section>-->
 
     <!--<tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
