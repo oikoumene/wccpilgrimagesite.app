@@ -77,10 +77,10 @@
                   </div>
             </section>
 
-            <section class="content-strip white-bg" tal:define="brains view/sound_result" tal:condition="brains">
+            <section class="content-strip alt-strip" tal:define="brains view/sound_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
-                              <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
+                              <div class="resource-icon"><i class="fa fa-soundcloud"></i></div>
                               <h2 i18n:translate="sounds">Sounds</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
 
@@ -110,7 +110,7 @@
           <section class="content-strip white-bg" tal:define="brains view/document_result" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
-                              <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
+                              <div class="resource-icon"><i class="fa fa-file-o"></i></div>
                               <h2 i18n:translate="documents">Documents</h2>
                               <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
                                    
