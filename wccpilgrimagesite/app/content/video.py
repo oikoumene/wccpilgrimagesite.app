@@ -28,6 +28,7 @@ from wccpilgrimagesite.app import utils
 from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import datetime
+from zope.schema.interfaces import RequiredMissing
 
 
 # Interface class; used to define content-type schema.
@@ -134,3 +135,19 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
     pass
 
 alsoProvides(IVideo, IFormFieldProvider)
+
+@form.error_message(field=IVideo['title'], error=RequiredMissing)
+def titleOmittedErrorMessage(value):
+    return u"No name provided."
+
+@form.error_message(field=IVideo['description'], error=RequiredMissing)
+def descriptionOmittedErrorMessage(value):
+    return u"No description provided."
+
+@form.error_message(field=IVideo['church'], error=RequiredMissing)
+def churchOmittedErrorMessage(value):
+    return u"No church provided."
+
+@form.error_message(field=IVideo['url_youtube'], error=RequiredMissing)
+def youtubeURLOmittedErrorMessage(value):
+    return u"No Youtube URL provided."
