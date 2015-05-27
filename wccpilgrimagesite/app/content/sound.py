@@ -65,17 +65,20 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=True,
     )
 
-    sound_in_step = schema.TextLine(
+    # sound_in_step = schema.TextLine(
+    #     title=u'In pilgrimage steps',
+    #     description=u'Select pilgrimage steps where this sound will appear.',
+    #     required=True,
+    # )
+    form.widget(sound_in_step=CheckBoxFieldWidget)
+    sound_in_step = schema.List(
         title=u'In pilgrimage steps',
         description=u'Select pilgrimage steps where this sound will appear.',
         required=True,
+        value_type=schema.Choice(source=featured_steps())
     )
 
-    # featured_sound_in_step = schema.TextLine(
-    #     title=u'As featured in pilgrimage steps',
-    #     description=u'Select pilgrimage steps where this sound will appear as a featured resource.',
-    #     required=True,
-    # )
+
     form.widget(featured_sound_in_step=CheckBoxFieldWidget)
     featured_sound_in_step = schema.List(
         title=u'As featured in pilgrimage steps',

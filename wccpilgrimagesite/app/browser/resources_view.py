@@ -57,51 +57,129 @@ class Index(dexterity.DisplayForm):
 
 
 
+    # def sound_result(self):
+    #     context = self.context
+    #     catalog = getToolByName(context, 'portal_catalog')
+    #     path = '/'.join(context.getPhysicalPath())
+    #     brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
+    #             sort_order='reverse',)
+    #     sounds = []
+      
+    #     for brain in brains:
+    #         obj = brain._unrestrictedGetObject()
+            
+    #         data= {'title': obj.title,
+    #                     'description':obj.description,
+    #                     'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+    #                     'sound_in_step': obj.sound_in_step,
+    #                     'featured_sound_in_step':obj.featured_sound_in_step,
+    #                     'uid': brain.UID,
+    #                     'votes_count': obj.votes_count
+    #             }
+    #         sounds.append(data)
+    #     return sounds
+
     def sound_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
+        resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
                 sort_order='reverse',)
-        sounds = []
-      
-        for brain in brains:
+        steps = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse')
+        sounds_resources = []
+        sounds_steps = []
+        for brain in resources:
             obj = brain._unrestrictedGetObject()
-            
-            data= {'title': obj.title,
+            data_resources = {'title': obj.title,
                         'description':obj.description,
                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                        'sound_in_step': obj.sound_in_step,
-                        'featured_sound_in_step':obj.featured_sound_in_step,
                         'uid': brain.UID,
-                        'votes_count': obj.votes_count
-                }
-            sounds.append(data)
-        return sounds
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,}
+            sounds_resources.append(data_resources)
+
+        for brain in steps:
+            obj = brain._unrestrictedGetObject()
+            if obj.sound_in_step:
+                if context.aq_parent.UID() in obj.sound_in_step:
+                    data_steps = {'title': obj.title,
+                        'description':obj.description,
+                        'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+                        'uid': brain.UID,
+                        'votes_count': obj.votes_count,
+                        'created': brain.created,}
+                
+                    sounds_steps.append(data_steps)
+
+        for sound in sounds_resources:
+            if sound not in sounds_steps:
+                sounds_steps.append(sound)
+        return sorted(sounds_steps, key=itemgetter('created'), reverse=True)
+
+    # def document_result(self):
+    #     context = self.context
+    #     catalog = getToolByName(context, 'portal_catalog')
+    #     path = '/'.join(context.getPhysicalPath())
+    #     brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
+    #             sort_order='reverse',)
+    #     docs = []
+      
+    #     for brain in brains:
+    #         obj = brain._unrestrictedGetObject()
+            
+    #         data= {'title': obj.title,
+    #                     'description':obj.description,
+    #                     'file':obj.file,
+    #                     'file_thumb': obj.file_thumb,
+    #                     'doc_in_step':obj.doc_in_step,
+    #                     'featured_doc_in_step':obj.featured_doc_in_step,
+    #                     'path': brain.getPath(),
+    #                     'uid': brain.UID,
+    #                     'votes_count': obj.votes_count
+    #             }
+    #         docs.append(data)
+    #     return docs
 
     def document_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
+        resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
                 sort_order='reverse',)
-        docs = []
-      
-        for brain in brains:
+        steps = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse')
+        docs_resources = []
+        docs_steps = []
+        for brain in resources:
             obj = brain._unrestrictedGetObject()
-            
-            data= {'title': obj.title,
+            data_resources= {'title': obj.title,
                         'description':obj.description,
                         'file':obj.file,
                         'file_thumb': obj.file_thumb,
-                        'doc_in_step':obj.doc_in_step,
-                        'featured_doc_in_step':obj.featured_doc_in_step,
                         'path': brain.getPath(),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count
                 }
-            docs.append(data)
-        return docs
+            docs_resources.append(data_resources)
+
+        for brain in steps:
+            obj = brain._unrestrictedGetObject()
+            if obj.doc_in_step:
+                if context.aq_parent.UID() in obj.doc_in_step:
+                    data_steps= {'title': obj.title,
+                        'description':obj.description,
+                        'file':obj.file,
+                        'file_thumb': obj.file_thumb,
+                        'path': brain.getPath(),
+                        'uid': brain.UID,
+                        'votes_count': obj.votes_count
+                }
+                
+                    docs_steps.append(data_steps)
+
+        for doc in docs_resources:
+            if doc not in docs_steps:
+                docs_steps.append(doc)
+        return sorted(docs_steps, key=itemgetter('created'), reverse=True)
 
     def url_youtube_bg_img(self, url=None):
         return 'http://img.youtube.com/vi/{hash}/hqdefault.jpg'.format(hash=self._hash_from_url_youtube(url))
