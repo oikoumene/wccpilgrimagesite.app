@@ -90,7 +90,7 @@
                                                       <img tal:condition="python: not brain.getObject().image" src="++theme++wccpilgrimagesite.theme/images/mussel.png">
 
                                                 </span>
-                                             <!--    <span class="cl-image-mask"><img src="++theme++wccpilgrimagesite.theme/images/mussel.png"></span> -->
+                                                <span class="cl-image-mask"><img src="++theme++wccpilgrimagesite.theme/images/circle-mask.png"></span>
                                                 <span class="quotes">
                                                       <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
                                                 </span>
