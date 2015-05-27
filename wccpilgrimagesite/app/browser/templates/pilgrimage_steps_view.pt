@@ -87,8 +87,10 @@
                                           <div class="cl-image-wrapper">
                                                 <span class="cl-image">
                                                       <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/comment'">
+                                                      <img tal:condition="python: not brain.getObject().image" src="++theme++wccpilgrimagesite.theme/images/mussel.png">
+
                                                 </span>
-                                                <span class="cl-image-mask"><img src="++theme++wccpilgrimagesite.theme/images/mussel.png"></span>
+                                             <!--    <span class="cl-image-mask"><img src="++theme++wccpilgrimagesite.theme/images/mussel.png"></span> -->
                                                 <span class="quotes">
                                                       <img alt="Quotes" src="++theme++wccpilgrimagesite.theme/images/quotes.png">
                                                 </span>
