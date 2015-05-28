@@ -114,28 +114,29 @@ def _createObject(context, event):
     id = context.getId()
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog.unrestrictedSearchResults(object_provides = IUserComment.__identifier__)
+    path = '/'.join(parent.getPhysicalPath())
+    brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')
     for brain in brains:
         object_Ids.append(brain.id)
     
-    last_name = str(idnormalizer.normalize(context.title))
-    temp_new_id = last_name
+    temp_new_id = str(idnormalizer.normalize(context.title))
     new_id = temp_new_id.replace("-","")
     test = ''
     if new_id in object_Ids:
         test = filter(lambda name: new_id in name, object_Ids)
+        if len(test) > 1:
+            test = filter(lambda name: new_id+'-' in name, object_Ids)
         if '-' not in (max(test)):
             new_id = new_id + '-1'
         if '-' in (max(test)):
             new_id = new_id +'-' +str(int(max(test).split('-')[-1])+1) 
 
     parent.manage_renameObject(id, new_id )
-    new_title = last_name
     context.setTitle(context.title)
 
     #exclude from navigation code
-    behavior = IExcludeFromNavigation(context)
-    behavior.exclude_from_nav = True
+    # behavior = IExcludeFromNavigation(context)
+    # behavior.exclude_from_nav = True
 
     context.reindexObject()
     return
