@@ -37,7 +37,7 @@ class Index(dexterity.DisplayForm):
         data = {}
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
-                sort_order='reverse',)
+                sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_video_in_step:
@@ -82,7 +82,7 @@ class Index(dexterity.DisplayForm):
         result = []
         data = {}
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_video_in_step:
@@ -142,7 +142,7 @@ class Index(dexterity.DisplayForm):
         data = {}
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
-                sort_order='reverse',)
+                sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_sound_in_step:
@@ -187,7 +187,7 @@ class Index(dexterity.DisplayForm):
         result = []
         data = {}
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_sound_in_step:
@@ -247,7 +247,7 @@ class Index(dexterity.DisplayForm):
         data = {}
 
         brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
-                sort_order='reverse',)
+                sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_doc_in_step:
@@ -293,7 +293,7 @@ class Index(dexterity.DisplayForm):
         result = []
         data = {}
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.featured_doc_in_step:
@@ -316,7 +316,7 @@ class Index(dexterity.DisplayForm):
     
     def resources_path(self):
         catalog = getToolByName(self.context, 'portal_catalog')
-        brains = catalog.unrestrictedSearchResults(path={'query':'/'.join(self.context.getPhysicalPath()), 'depth':1}, portal_type='wccpilgrimagesite.app.resources')
+        brains = catalog.unrestrictedSearchResults(path={'query':'/'.join(self.context.getPhysicalPath()), 'depth':1}, portal_type='wccpilgrimagesite.app.resources',review_state= 'published')
         for brain in brains:
             return brain.getPath()
         return '#'

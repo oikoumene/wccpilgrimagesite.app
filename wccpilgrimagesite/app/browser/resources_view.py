@@ -23,8 +23,8 @@ class Index(dexterity.DisplayForm):
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
         resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
-                sort_order='reverse',)
-        steps = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse')
+                sort_order='reverse',review_state= 'published')
+        steps = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         videos_resources = []
         videos_steps = []
         for brain in resources:
@@ -84,8 +84,8 @@ class Index(dexterity.DisplayForm):
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
         resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
-                sort_order='reverse',)
-        steps = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse')
+                sort_order='reverse',review_state= 'published')
+        steps = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         sounds_resources = []
         sounds_steps = []
         for brain in resources:
@@ -145,8 +145,8 @@ class Index(dexterity.DisplayForm):
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
         resources = catalog.searchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
-                sort_order='reverse',)
-        steps = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse')
+                sort_order='reverse',review_state= 'published')
+        steps = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
         docs_resources = []
         docs_steps = []
         for brain in resources:
