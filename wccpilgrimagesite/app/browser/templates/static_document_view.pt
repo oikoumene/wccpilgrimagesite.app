@@ -39,7 +39,7 @@
                         <div class="columns small-12 text-center">
                               
                               <tal:block repeat="widget view/widgets/values">
-                                    <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
+                                    <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description','votes_count')">
                                         <label tal:content="widget/label" />
                                         <br />
                                         <div tal:content="structure widget/render" />
