@@ -34,7 +34,8 @@ class Index(dexterity.DisplayForm):
                         'url_youtube': self.url_youtube_embedded(obj.url_youtube),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
-                        'created': brain.created,}
+                        'created': brain.created,
+                        'wcc_user':obj.wcc_user}
             videos_resources.append(data_resources)
 
         for brain in steps:
@@ -46,7 +47,8 @@ class Index(dexterity.DisplayForm):
                         'url_youtube': self.url_youtube_embedded(obj.url_youtube),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
-                        'created': brain.created,}
+                        'created': brain.created,
+                        'wcc_user':obj.wcc_user}
                 
                     videos_steps.append(data_steps)
 
@@ -95,7 +97,8 @@ class Index(dexterity.DisplayForm):
                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
-                        'created': brain.created,}
+                        'created': brain.created,
+                        'wcc_user':obj.wcc_user}
             sounds_resources.append(data_resources)
 
         for brain in steps:
@@ -107,7 +110,8 @@ class Index(dexterity.DisplayForm):
                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
-                        'created': brain.created,}
+                        'created': brain.created,
+                        'wcc_user':obj.wcc_user}
                 
                     sounds_steps.append(data_steps)
 
@@ -159,6 +163,7 @@ class Index(dexterity.DisplayForm):
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
+                        'wcc_user':obj.wcc_user
 
                 }
             docs_resources.append(data_resources)
@@ -175,6 +180,7 @@ class Index(dexterity.DisplayForm):
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
+                        'wcc_user':obj.wcc_user
                 }
                 
                     docs_steps.append(data_steps)

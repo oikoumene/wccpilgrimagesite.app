@@ -10,8 +10,6 @@ from wccpilgrimagesite.app.content.static_document import IStaticDocument
 from wccpilgrimagesite.app import MessageFactory as _
 from zope.i18n import translate
 
-
-
 grok.templatedir('templates')
 
 class Index(dexterity.DisplayForm):
@@ -32,283 +30,77 @@ class Index(dexterity.DisplayForm):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
+        steps = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
+        data_steps = {}
         result = []
-        query = {}
-        data = {}
+       
 
-        brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
-                sort_order='reverse',review_state= 'published')
-        for brain in brains:
+        for brain in steps:
             obj = brain._unrestrictedGetObject()
             if obj.featured_video_in_step:
-                if context.UID in obj.featured_video_in_step: 
-                    data= { 'title': obj.title,
+                if context.UID() in obj.featured_video_in_step:
+                    data_steps = { 'title': obj.title,
                             'description':obj.description,
                             'church':obj.church,
                             'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                            'featured_video_in_step': obj.featured_video_in_step,
                             'created': brain.created
-
                             }
                     break;
-        if bool(data) == False:
-            for brain in brains:
-                obj = brain._unrestrictedGetObject()
-                data= { 'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                            'featured_video_in_step': obj.featured_video_in_step,
-                            'created': brain.created
-                            }
-                break;
-        if data:
-            result = data
-        if self.videos(context.UID()):
-            result = self.videos(context.UID())
-        if data and self.videos(context.UID()):
-            if data['created'] > self.videos(context.UID())['created']:
-                result = data
-
-            else: 
-                result = self.videos(context.UID())
-
+        if data_steps:
+            result = data_steps
 
         return result
-
-    def videos(self, uid = None):
-        context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
-        result = []
-        data = {}
-        path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.featured_video_in_step:
-                if uid in obj.featured_video_in_step:
-                    data = {'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'url_youtube': self.url_youtube_embedded(obj.url_youtube),
-                            'featured_video_in_step': obj.featured_video_in_step,
-                            'created': brain.created}
-                    break;
-
-            
-        return data
-
-
-    # def sound_result(self):
-    #     context = self.context
-    #     catalog = getToolByName(context, 'portal_catalog')
-    #     path = '/'.join(context.getPhysicalPath())
-    #     result = []
-    #     query = {}
-    #     data = {}
-
-    #     brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
-    #             sort_order='reverse',)
-
-    #     for brain in brains:
-    #         obj = brain._unrestrictedGetObject()
-    #         if 'Featured' in str(obj.featured_resource): 
-    #             data= { 'title': obj.title,
-    #                     'description':obj.description,
-    #                     'church':obj.church,
-    #                     'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-    #                     'featured_resource': obj.featured_resource,
-    #                     }
-    #             break;
-    #     if bool(data) == False:
-    #         for brain in brains:
-    #             obj = brain._unrestrictedGetObject()
-    #             data= { 'title': obj.title,
-    #                         'description':obj.description,
-    #                         'church':obj.church,
-    #                         'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-    #                         'featured_resource': obj.featured_resource,
-    #                         }
-    #             break;
-              
-    #     return data
 
     def sound_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
+        steps = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
+        data_steps = {}
         result = []
-        query = {}
-        data = {}
+       
 
-        brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
-                sort_order='reverse',review_state= 'published')
-        for brain in brains:
+        for brain in steps:
             obj = brain._unrestrictedGetObject()
             if obj.featured_sound_in_step:
-                if context.UID in obj.featured_sound_in_step: 
-                    data= { 'title': obj.title,
+                if context.UID() in obj.featured_sound_in_step:
+                    data_steps = { 'title': obj.title,
                             'description':obj.description,
                             'church':obj.church,
                             'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                            'featured_sound_in_step': obj.featured_sound_in_step,
                             'created': brain.created
-
                             }
                     break;
-        if bool(data) == False:
-            for brain in brains:
-                obj = brain._unrestrictedGetObject()
-                data= { 'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                            'featured_sound_in_step': obj.featured_sound_in_step,
-                            'created': brain.created
-                            }
-                break;
-        if data:
-            result = data
-        if self.sounds(context.UID()):
-            result = self.sounds(context.UID())
-        if data and self.sounds(context.UID()):
-            if data['created'] > self.sounds(context.UID())['created']:
-                result = data
-
-            else: 
-                result = self.sounds(context.UID())
-
+        if data_steps:
+            result = data_steps
 
         return result
-
-    def sounds(self, uid = None):
-        context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
-        result = []
-        data = {}
-        path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.featured_sound_in_step:
-                if uid in obj.featured_sound_in_step:
-                    data = {'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
-                            'featured_sound_in_step': obj.featured_sound_in_step,
-                            'created': brain.created}
-                    break;
-        return data
-
-
-    # def document_result(self):
-    #     context = self.context
-    #     catalog = getToolByName(context, 'portal_catalog')
-    #     path = '/'.join(context.getPhysicalPath())
-    #     result = []
-    #     query = {}
-    #     data = {}
-
-    #     brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
-    #             sort_order='reverse',)
-
-    #     for brain in brains:
-    #         obj = brain._unrestrictedGetObject()
-    #         if 'Featured' in str(obj.featured_resource): 
-    #             data= { 'title': obj.title,
-    #                     'description':obj.description,
-    #                     'church':obj.church,
-    #                     'file': obj.file,
-    #                     'featured_resource': obj.featured_resource,
-    #                     'path': brain.getPath(),
-    #                     }
-    #             break;
-    #     if bool(data) == False:
-    #         for brain in brains:
-    #             obj = brain._unrestrictedGetObject()
-    #             data= { 'title': obj.title,
-    #                         'description':obj.description,
-    #                         'church':obj.church,
-    #                         'file': obj.file,
-    #                         'featured_resource': obj.featured_resource,
-    #                         'path': brain.getPath(),
-    #                         }
-    #             break;
-              
-    #     return data
 
     def document_result(self):
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         path = '/'.join(context.getPhysicalPath())
+        steps = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
+        data_steps = {}
         result = []
-        query = {}
-        data = {}
+       
 
-        brains = catalog.searchResults(path={'query':path, 'depth':3}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
-                sort_order='reverse',review_state= 'published')
-        for brain in brains:
+        for brain in steps:
             obj = brain._unrestrictedGetObject()
             if obj.featured_doc_in_step:
-                if context.UID in obj.featured_doc_in_step: 
-                    data= { 'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'featured_doc_in_step': obj.featured_doc_in_step,
-                            'created': brain.created,
-                            'path': brain.getPath(),
-
-                            }
-                    break;
-        if bool(data) == False:
-            for brain in brains:
-                obj = brain._unrestrictedGetObject()
-                data= { 'title': obj.title,
+                if context.UID() in obj.featured_doc_in_step:
+                    data_steps = { 'title': obj.title,
                             'description':obj.description,
                             'church':obj.church,
                             'file': obj.file,
-                            'featured_doc_in_step': obj.featured_doc_in_step,
                             'created': brain.created,
                             'path': brain.getPath(),
                             }
-                break;
-        if data:
-            result = data
-        if self.documents(context.UID()):
-            result = self.documents(context.UID())
-        if data and self.documents(context.UID()):
-            if data['created'] > self.documents(context.UID())['created']:
-                result = data
-
-            else: 
-                result = self.documents(context.UID())
-
+                    break;
+        if data_steps:
+            result = data_steps
 
         return result
-
-    def documents(self, uid = None):
-        context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
-        result = []
-        data = {}
-        path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.featured_doc_in_step:
-                if uid in obj.featured_doc_in_step:
-                    data = {'title': obj.title,
-                            'description':obj.description,
-                            'church':obj.church,
-                            'file': obj.file,
-                            'featured_doc_in_step': obj.featured_doc_in_step,
-                            'created': brain.created,
-                            'path': brain.getPath(),}
-                    break;
-        return data
-
-
 
     def datetime_result(self, value=None):
         return value.strftime("%Y-%m-%d %H:%M")

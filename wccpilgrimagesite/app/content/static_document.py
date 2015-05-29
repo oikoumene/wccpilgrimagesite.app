@@ -47,7 +47,7 @@ class featured_steps(object):
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
 
-class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
+class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
     """
     Static Document
     """

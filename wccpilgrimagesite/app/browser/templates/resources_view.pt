@@ -139,8 +139,14 @@
                                                       </a>
                                                 </div>
                                                 <ul class="no-bullet icons-box">
-                                                      <li class="user-icon wcc-user"><a href=""><img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
-
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
                                                       <li class="heart-icon">
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
                                                       <li>
@@ -173,7 +179,14 @@
                                                 <iframe tal:attributes="src python: brain['soundcloud_id']" width="100%" height="166" scrolling="no" frameborder="no"></iframe>
 
                                                 <ul class="no-bullet icons-box">
-                                                      <li class="user-icon wcc-user"><a href=""><img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
                                                       <li class="heart-icon">
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
                                                       <li>
@@ -207,7 +220,14 @@
                                                 <p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> 
                                              </a>
                                                 <ul class="no-bullet icons-box">
-                                                      <li class="user-icon wcc-user"><a href=""><img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt=""><span class="access">User</span></a></li>
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
                                                       <li class="heart-icon">
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
                                                       <li>
