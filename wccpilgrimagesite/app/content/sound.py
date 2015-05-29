@@ -41,7 +41,7 @@ class featured_steps(object):
         return SimpleVocabulary(items)
 # Interface class; used to define content-type schema.
 
-class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
+class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
     """
     Sound
     """

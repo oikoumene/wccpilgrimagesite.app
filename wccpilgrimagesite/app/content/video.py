@@ -46,7 +46,7 @@ class featured_steps(object):
         return SimpleVocabulary(items)
 
 
-class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
+class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
     """
     Video
     """
