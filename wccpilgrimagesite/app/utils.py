@@ -24,6 +24,14 @@ class IVotingMixin(form.Schema):
         default=0
     )
 
+class IUserMixin(model.Schema):
+
+    wcc_user = schema.Bool(
+        title=u'WCC is an owner',
+        required=True,
+        default=True
+    )
+
 class VotingMixin(object):
 
     def upvote1(self):
