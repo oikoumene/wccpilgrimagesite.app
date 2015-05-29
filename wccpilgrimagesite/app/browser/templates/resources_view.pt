@@ -22,6 +22,89 @@
     if needed.
 </tal:comment>
 
+<metal:javascript_head fill-slot="javascript_head_slot">
+      <script type="text/javascript">
+            $(document).ready(function(){
+                  ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
+                  
+                  docField = $('#form-widgets-document-input');
+                  var docFile = {};
+                  docField.change(function(e) {
+                        if (this.files && this.files[0]) {
+                            var f = this.files[0];
+                            var fr = new FileReader();
+                            fr.onload = function(e) {
+                                docFile.filename = f.name;
+                                docFile.data = e.target.result;
+                            };
+                            fr.readAsDataURL(f);
+                        }
+                        
+                    });
+                  $('form#form').submit(function(e){
+                        return false;
+                  });
+                  
+                  $('input#form-buttons-save').click(function(){
+                        var path = ROOT_API_URL+'/add+resourceupload';
+                        var name = $('#form-widgets-name').val();
+                        var email = $('#form-widgets-email').val();
+                        var church = $('#form-widgets-church').val();
+                        var video = $('#form-widgets-video').val();
+                        var sound = $('#form-widgets-sound').val();
+                        var message = $('#form-widgets-message').val();
+                        $.ajax({
+                              'url':path,
+                              'type':'POST',
+                              'dataType':'json',
+                              'data':{
+                                    name: name,
+                                    email: email,
+                                    church: church,
+                                    video: video,
+                                    sound: sound,
+                                    docName: docFile.filename,
+                                    docData: docFile.data,
+                                    message: message
+                              },
+                              'beforeSend':function(){
+                                  $('input#form-buttons-save').hide();
+                                  $('input#form-buttons-cancel').hide();
+                                  $('span#uploading').show();    
+                              },
+                              'success':function(result){
+                                $('#success-message').html(result.mssg);
+                                setTimeout(function(){$('#success-message').html('')}, 3000);
+                                $('form#form').slideUp();
+                                
+                                $('#form-widgets-name').val('');
+                                $('#form-widgets-email').val('');
+                                $('#form-widgets-church').val('');
+                                $('#form-widgets-video').val('');
+                                $('#form-widgets-sound').val('');
+                                $('#form-widgets-message').val('');
+                                $('#form-widgets-document-input').val('');
+                                $('span#uploading').hide();
+                                $('input#form-buttons-save').show();
+                                $('input#form-buttons-cancel').show();
+                                
+                              },
+                              'error':function(jqXHR, textStatus){
+                                    if (textStatus == 'error'){
+                                        alert('Unable to save data.');
+                                        
+                                    }
+                                },
+                              
+                        })
+                  })
+                  
+                  
+            });
+      </script>
+</metal:javascript_head>
+
+
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
       
@@ -149,7 +232,8 @@
                         <div class="columns small-12 text-center">
                               <a href="" class="action-button title-button"><span class="ab-circle">+</span><br><span class="access">Add a resource</span></a>
                               <h2 i18n:translate="add_resource">Add a Resource</h2>
-                              <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" action="++add++wccpilgrimagesite.app.resourceupload">
+                              <div id='success-message'></div>
+                              <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" tal:attributes="action python: '/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.resourceupload'">
                                     <fieldset id="fieldset-default" class="formPanel" style="display: block;">
                                           <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">Default</legend>
                                           
@@ -240,6 +324,7 @@
                                     <div class="formControls">
                                           <input id="form-buttons-save" class="button tiny submit-widget button-field context" type="submit" tal:attributes="value view/save_translation" name="form.buttons.save"/>
                                           <input id="form-buttons-cancel" class="button tiny submit-widget button-field standalone" type="submit" tal:attributes="value view/cancel_translation" name="form.buttons.cancel"/>
+                                          <span id="uploading" class="button tiny" style="display: none">Uploading...</span>
                                     </div>
                               </form>
                               <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text back-to-top">Back to top</span></a>
@@ -247,7 +332,7 @@
                   </div>
             </section>
  
-  <span tal:attributes="data-root-api-url string:${context/@@plone_portal_state/navigation_root_path}/"></span>
+  <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())"></span>
  
  
     </div><!--end color page container-->

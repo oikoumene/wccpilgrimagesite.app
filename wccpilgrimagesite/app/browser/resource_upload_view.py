@@ -19,6 +19,6 @@ class Index(dexterity.DisplayForm):
     def resourceUpload_result(self):
         context = self.context
         catalog = self.catalog
-	path = '/'.join(context.getPhysicalPath())
-	brains = catalog.searchResults(path={'query':path, 'depth':0}, portal_type='wccpilgrimagesite.app.resourceupload')
-	return brains
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.searchResults(path={'query':path, 'depth':0}, portal_type='wccpilgrimagesite.app.resourceupload')
+        return brains
