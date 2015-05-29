@@ -48,8 +48,11 @@
             <header class="content-header blue-bg">
                   <div class="row">
                         <div class="columns small-12 text-center">
-                              <div class="logo">
-                                    <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?">
+                              <div class="logo" tal:define="image context/image">
+                                    <!-- <img src="++theme++wccpilgrimagesite.theme/images/step1.png" alt="What is a pilgrimage?"> -->
+                          
+                                    <img tal:condition="image" tal:attributes="src string:${context/absolute_url}/@@images/image">
+
                               </div>
                               <h1 tal:content="structure context/Title">What is a pilgrimage?</h1>
                               <p tal:content="structure context/Description">Share your thoughts about pilgrimage from your context.</p>
