@@ -10,8 +10,6 @@ from wccpilgrimagesite.app.content.static_document import IStaticDocument
 from wccpilgrimagesite.app import MessageFactory as _
 from zope.i18n import translate
 
-
-
 grok.templatedir('templates')
 
 class Index(dexterity.DisplayForm):
