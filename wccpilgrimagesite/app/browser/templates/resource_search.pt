@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="wccpilgrimagesite.app">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+    
+    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
+    if needed.
+</tal:comment>
+
+<metal:styleslot fill-slot='style_slot'>
+      <style type="text/css" media="all">
+         
+      </style>
+
+
+    
+</metal:styleslot>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+      Resource Type:
+        <select name='resource_type' id='resource_type' tal:define='val python: view.searchedValue("resource_type")'>
+          <option value='All' tal:attributes='selected python: (val == "all")'>All</option>
+          <option value='Video' tal:attributes='selected python: (val == "supplier")'>Video</option>
+          <option value='Sound' tal:attributes='selected python: (val == "client")'>Sound</option>
+          <option value='Document' tal:attributes='selected python: (val == "client")'>Document</option>
+        </select>
+      <br />
+      Pilgrimage Step:
+        <select name='pilgrimage_steps' id='pilgrimage_steps' tal:define='val python: view.searchedValue("pilgrimage_steps")'>
+          <tal:entry tal:repeat='option view/pilgrimage_steps'>
+               <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
+          </tal:entry>
+        </select>
+        <br />
+      Keyword: 
+        <input type="text" name="keyword"/>
+
+
+
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
