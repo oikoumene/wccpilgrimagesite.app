@@ -49,9 +49,10 @@ class api_add_usercomment(grok.View):
                     message = form['message']
 
                 if 'image' in form:
-                    item.image = form['image']
-                    image = form['image']
-
+                    item.image = namedfile.NamedBlobFile(
+                        base64.b64decode(form['docData'].split(';base64,')[1]),
+                        filename = form['docName'].decode('utf-8', 'ignore')
+                    )
                 id = self.generate_id(parent_path, 'user-comment')
                 if id:
                     context.manage_renameObject(item.id, id)

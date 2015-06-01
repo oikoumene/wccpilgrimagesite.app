@@ -24,6 +24,22 @@
       <script type="text/javascript">
             $(document).ready(function(){
                   ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
+
+                  docField = $('#form-widgets-image-input');
+                  var docFile = {};
+                  docField.change(function(e) {
+                        if (this.files && this.files[0]) {
+                            var f = this.files[0];
+                            var fr = new FileReader();
+                            fr.onload = function(e) {
+                                docFile.filename = f.name;
+                                docFile.data = e.target.result;
+                            };
+                            fr.readAsDataURL(f);
+                        }
+                        
+                    });
+
                   $('form#form').submit(function(e){
                         return false;
                   });
@@ -43,6 +59,8 @@
                                     message: message,
                                     email: email,
                                     image: image,
+                                    docName: docFile.filename,
+                                    docData: docFile.data,
                                    
                                  
                               },
@@ -60,6 +78,8 @@
                                 $('#form-widgets-message').val('');
                                 $('#form-widgets-email').val('');
                                 $('#form-widgets-image').val('');
+                                $('#form-widgets-image-input').val('');
+
                   
                                 $('input#form-buttons-save').show();
                                 $('input#form-buttons-cancel').show();
