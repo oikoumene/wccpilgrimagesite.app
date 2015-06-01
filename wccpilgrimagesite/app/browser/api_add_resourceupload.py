@@ -38,6 +38,8 @@ class api_add_resourceupload(grok.View):
                 setattr(item, 'title', "Resource Upload")
                 item.name = form['name']
                 name = form['name']
+                
+                
                 if 'email' in form:
                     item.email = form['email']
                     
@@ -50,29 +52,31 @@ class api_add_resourceupload(grok.View):
                     
                 if 'video' in form:
                     item.video = form['video']
-                    video_item = createContentInContainer(context, 'wccpilgrimagesite.app.video', checkConstraints=False, title=form['name']+' Video')
-                    
-                    video_item.title = name
-                    video_item.url_youtube = form['video']
-                    video_item.church = church
-                    
-                    video_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Video')))
-                    if video_id:
-                        context.manage_renameObject(video_item.id, video_id)
-                    video_item.reindexObject()
+                    if form['video']:
+                        video_item = createContentInContainer(context, 'wccpilgrimagesite.app.video', checkConstraints=False, title=form['name']+' Video')
+                        
+                        video_item.title = name
+                        video_item.url_youtube = form['video']
+                        video_item.church = church
+                        
+                        video_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Video')))
+                        if video_id:
+                            context.manage_renameObject(video_item.id, video_id)
+                        video_item.reindexObject()
                     
                 if 'sound' in form:
                     item.sound = form['sound']
-                    sound_item = createContentInContainer(context, 'wccpilgrimagesite.app.sound', checkConstraints=False, title=form['name']+' Sound')
-                    
-                    sound_item.title = name
-                    sound_item.soundcloud_id = form['sound']
-                    sound_item.church = church
-                    
-                    sound_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Sound')))
-                    if sound_id:
-                        context.manage_renameObject(sound_item.id, sound_id)
-                    sound_item.reindexObject()
+                    if form['sound']:
+                        sound_item = createContentInContainer(context, 'wccpilgrimagesite.app.sound', checkConstraints=False, title=form['name']+' Sound')
+                        
+                        sound_item.title = name
+                        sound_item.soundcloud_id = form['sound']
+                        sound_item.church = church
+                        
+                        sound_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Sound')))
+                        if sound_id:
+                            context.manage_renameObject(sound_item.id, sound_id)
+                        sound_item.reindexObject()
                     
                 if 'docName' in form and 'docData' in form:
                     item.document = namedfile.NamedBlobFile(
