@@ -24,6 +24,22 @@
       <script type="text/javascript">
             $(document).ready(function(){
                   ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
+
+                  docField = $('#form-widgets-image-input');
+                  var docFile = {};
+                  docField.change(function(e) {
+                        if (this.files && this.files[0]) {
+                            var f = this.files[0];
+                            var fr = new FileReader();
+                            fr.onload = function(e) {
+                                docFile.filename = f.name;
+                                docFile.data = e.target.result;
+                            };
+                            fr.readAsDataURL(f);
+                        }
+                        
+                    });
+
                   $('form#form').submit(function(e){
                         return false;
                   });
@@ -31,6 +47,8 @@
                         var path = ROOT_API_URL+'/add+usercomment';
                         var title = $('#form-widgets-title').val();
                         var message = $('#form-widgets-message').val();
+                        var email = $('#form-widgets-email').val();
+                        var image = $('#form-widgets-image').val();
                    
                         $.ajax({
                               'url':path,
@@ -38,6 +56,11 @@
                               'dataType':'json',
                               'data':{
                                     title: title,
+                                    message: message,
+                                    email: email,
+                                    image: image,
+                                    docName: docFile.filename,
+                                    docData: docFile.data,
                                    
                                  
                               },
@@ -52,6 +75,11 @@
                                 $('form#form').slideUp();
                                 
                                 $('#form-widgets-title').val('');
+                                $('#form-widgets-message').val('');
+                                $('#form-widgets-email').val('');
+                                $('#form-widgets-image').val('');
+                                $('#form-widgets-image-input').val('');
+
                   
                                 $('input#form-buttons-save').show();
                                 $('input#form-buttons-cancel').show();
@@ -139,7 +167,7 @@
                                     <li tal:repeat="brain brains">
                                           <div class="cl-image-wrapper">
                                                 <span class="cl-image">
-                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/comment'">
+                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/'">
                                                       <img tal:condition="python: not brain.getObject().image" src="++theme++wccpilgrimagesite.theme/images/mussel.png">
 
                                                 </span>

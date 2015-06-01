@@ -41,7 +41,7 @@ class featured_steps(object):
     def __call__(self,context ):
         catalog = getToolByName(context,'portal_catalog')
         # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
-        if context.portal_type == 'wccpilgrimagesite.app.video':
+        if context.portal_type == 'wccpilgrimagesite.app.staticdocument':
             path = '/'.join(context.aq_parent.aq_parent.aq_parent.getPhysicalPath())
         else:
             path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())

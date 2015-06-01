@@ -31,25 +31,32 @@ class api_add_usercomment(grok.View):
         title = ''
         email = ''
         message = ''
+        iamge = ''
         parent_path = '/'.join(context.getPhysicalPath())
-        # if request.form:
-        #     form = request.form
-        #     if 'title' in form:
-        item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=u"User Comment")
-        setattr(item, 'title', "User Comment")
-        item.title = 'hi'
-        title = 'hi'
-        # if 'email' in form:
-        #     item.email = form['email']
-        #     email = form['email']
-            
-        # if 'message' in form:
-        #     item.message = form['message']
-        #     message = form['message']
-        # id = self.generate_id(parent_path, 'user-comment')
-        # if id:
-        #     context.manage_renameObject(item.id, id)
-        item.reindexObject()
+        if request.form:
+            form = request.form
+            if 'title' in form:
+                item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=u"User Comment")
+                setattr(item, 'title', "User Comment")
+                item.title = form['title']
+                title = form['title']
+                if 'email' in form:
+                    item.email = form['email']
+                    email = form['email']
+                    
+                if 'message' in form:
+                    item.message = form['message']
+                    message = form['message']
+
+                if 'image' in form:
+                    item.image = namedfile.NamedBlobFile(
+                        base64.b64decode(form['docData'].split(';base64,')[1]),
+                        filename = form['docName'].decode('utf-8', 'ignore')
+                    )
+                id = self.generate_id(parent_path, 'user-comment')
+                if id:
+                    context.manage_renameObject(item.id, id)
+                item.reindexObject()
 
       
         #import pdb; pdb.set_trace()
