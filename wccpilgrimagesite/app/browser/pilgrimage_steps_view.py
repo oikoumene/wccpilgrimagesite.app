@@ -41,7 +41,7 @@ class Index(dexterity.DisplayForm):
                 if context.UID() in obj.featured_video_in_step:
                     data_steps = { 'title': obj.title,
                             'description':obj.description,
-                            'church':obj.church,
+                            # 'church':obj.church,
                             'url_youtube': self.url_youtube_embedded(obj.url_youtube),
                             'created': brain.created
                             }
@@ -66,7 +66,7 @@ class Index(dexterity.DisplayForm):
                 if context.UID() in obj.featured_sound_in_step:
                     data_steps = { 'title': obj.title,
                             'description':obj.description,
-                            'church':obj.church,
+                            # 'church':obj.church,
                             'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
                             'created': brain.created
                             }
@@ -91,7 +91,7 @@ class Index(dexterity.DisplayForm):
                 if context.UID() in obj.featured_doc_in_step:
                     data_steps = { 'title': obj.title,
                             'description':obj.description,
-                            'church':obj.church,
+                            # 'church':obj.church,
                             'file': obj.file,
                             'created': brain.created,
                             'path': brain.getPath(),
