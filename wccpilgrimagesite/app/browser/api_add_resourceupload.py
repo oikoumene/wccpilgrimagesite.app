@@ -119,7 +119,7 @@ class api_add_resourceupload(grok.View):
                     arr2 = [int(x) for x in arr1 if is_number(x)]
                     
                     if arr2:
-                        return new_id+str(max(arr2)+1)
+                        return new_id+'-'+str(max(arr2)+1)
                     else:
                         return new_id+'-1'
                 else:
