@@ -5,6 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 #import plone.api
 from Products.CMFCore.utils import getToolByName
 from wccpilgrimagesite.app.content.video import IVideo
+from wccpilgrimagesite.app.content.sound import ISound
 from zope.component.hooks import getSite
 import urlparse
 
@@ -55,6 +56,8 @@ class ResourceVideosPaginate(ApiView):
                 form = self.request.form
                 path = form.get('path')[:-1]
                 step = form.get('step')
+                parent_path = form.get('parent_aqparent_path')
+                parent_UID = ''
                 startPage = 0
                 if is_number(step):
                     startPage = int(step)
@@ -63,6 +66,11 @@ class ResourceVideosPaginate(ApiView):
                 resources = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.video',sort_on='Date',
                                                 sort_order='reverse',review_state= 'published')
                 steps = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
+                
+                parents = catalog.unrestrictedSearchResults(path={'query':parent_path, 'depth':0}, portal_type='wccpilgrimagesite.app.pilgrimagesteps')
+                for prnt in parents:
+                    parent_UID = prnt.UID
+                
                 videos_resources = []
                 videos_steps = []
                 for brain in resources:
@@ -78,7 +86,7 @@ class ResourceVideosPaginate(ApiView):
                 for brain in steps:
                     obj = brain._unrestrictedGetObject()
                     if obj.video_in_step:
-                        if context.aq_parent.UID() in obj.video_in_step:
+                        if parent_UID in obj.video_in_step:
                             data_steps = {'title': obj.title,
                                 'description':obj.description,
                                 'url_youtube': self.url_youtube_embedded(obj.url_youtube),
@@ -149,7 +157,107 @@ class ResourceVideosPaginate(ApiView):
             if query.path[:3] == '/v/':
                 return query.path.split('/')[2]
         return ''
+    
+    
+class ResourceSoundsPaginate(ApiView):
+    def __call__(self):
+        html = ''
+        show_see_more = True
+        if self.request:
+            if self.request.form:
+                form = self.request.form
+                if form.get('path').endswith('/'):
+                    path = form.get('path')[:-1]
+                else:
+                    path = form.get('path')
+                step = form.get('step')
+                parent_path = form.get('parent_aqparent_path')
+                parent_UID = ''
+                startPage = 0
+                if is_number(step):
+                    startPage = int(step)
+                portal = getSite()
+                catalog = getToolByName(portal, 'portal_catalog')
+                resources = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.sound',sort_on='Date',
+                                                                sort_order='reverse',review_state= 'published')
+                steps = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
                 
+                
+                parnts = catalog.unrestrictedSearchResults(path={'query':parent_path, 'depth':0}, portal_type='wccpilgrimagesite.app.pilgrimagesteps')
+                
+                for prnt in parnts:
+                    parent_UID = prnt.UID
+                
+                sounds_resources = []
+                sounds_steps = []
+                for brain in resources:
+                    obj = brain._unrestrictedGetObject()
+                    data_resources = {'title': obj.title,
+                                'description':obj.description,
+                                'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+                                'uid': brain.UID,
+                                'votes_count': obj.votes_count,
+                                'created': brain.created,
+                                'wcc_user':obj.wcc_user}
+                    sounds_resources.append(data_resources)
+        
+                for brain in steps:
+                    obj = brain._unrestrictedGetObject()
+                    if obj.sound_in_step:
+                        if parent_UID in obj.sound_in_step:
+                            data_steps = {'title': obj.title,
+                                'description':obj.description,
+                                'soundcloud_id': self.soundcloud_url_embedded(obj.soundcloud_id),
+                                'uid': brain.UID,
+                                'votes_count': obj.votes_count,
+                                'created': brain.created,
+                                'wcc_user':obj.wcc_user}
+                        
+                            sounds_steps.append(data_steps)
+        
+                for sound in sounds_resources:
+                    if sound not in sounds_steps:
+                        sounds_steps.append(sound)
+                
+                paginated_sounds = []
+                if len(sounds_steps) > 3:
+                    paginated_sounds = sounds_steps[startPage*3:(startPage*3)+3]
+                
+                for ps in paginated_sounds:
+                    #html += "<li class='fadeInRight'>"
+                    html += '<li>'
+                    html += "<h3>"+ps['title']+"</h3>"
+                    html += "<iframe src="+ps['soundcloud_id']+" width='100%' height='166' scrolling='no' frameborder='no'></iframe>"
+                    html += "<ul class='no-bullet icons-box'>"
+                    if ps['wcc_user']:
+                        html += "<li class='user-icon wcc-user'>"
+                        html += "<img src='++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png' alt='' />"
+                        html += "<span class='access'>User</span>"
+                        html += "</li>"
+                    else:
+                        html += "<li class='user-icon unknown-user'>"
+                        html += "<i class='fa fa-user'></i>"
+                        html += "<span class='access'>User</span>"
+                        html += "</li>"
+                    html += "<li class='heart-icon'>"
+                    html += "<a data-votable="+ps['uid']+"><i class='fa fa-heart'></i></a>"
+                    html += "<li>"
+                    html += "<li class='heart-count' data-votes-count="+ps['uid']+">"+str(ps['votes_count'])+"</li>"
+                    html += "</ul>"
+                    html += "<p>"+ps['description']+"</p>"
+                    html += "</li>"
+                if len(sounds_steps)-1 >= startPage*3 and len(sounds_steps)-1 <= (startPage*3)+2:
+                    show_see_more = False
+        return self._response(response={'html':html, 'show_see_more':show_see_more})
+                
+                
+    
+    def soundcloud_url_embedded(self, soundcloud = None):
+        return 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{soundcloud}' \
+               '&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;' \
+               'show_user=false&amp;show_reposts=false'.format(
+            soundcloud=soundcloud
+        )
                 
                     
 
