@@ -55,7 +55,9 @@ class Index(dexterity.DisplayForm):
         for video in videos_resources:
             if video not in videos_steps:
                 videos_steps.append(video)
-        return sorted(videos_steps, key=itemgetter('created'), reverse=True)
+        if videos_steps:
+            return sorted(videos_steps, key=itemgetter('created'), reverse=True)
+        return videos_steps
 
 
 
@@ -233,3 +235,8 @@ class Index(dexterity.DisplayForm):
                'show_reposts=false&amp;visual=true'.format(
             soundcloud=soundcloud
         )
+            
+    
+    def see_more_button(self, resource_type=None):
+        if resource_type == 'videos':
+            return len(self.videos_result())
