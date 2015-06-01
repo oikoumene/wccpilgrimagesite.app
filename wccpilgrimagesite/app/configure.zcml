@@ -23,6 +23,7 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <browser:view name="api+upvote1" for="*" class=".api.ApiUpvoteView" permission="zope.Public"/>
+    <browser:view name="api+videos-paginate" for="*" class=".api.ResourceVideosPaginate" permission="zope.Public"/>
   
 
 </configure>
