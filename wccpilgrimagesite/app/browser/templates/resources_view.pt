@@ -24,8 +24,61 @@
 
 <metal:javascript_head fill-slot="javascript_head_slot">
       <script type="text/javascript">
+            function prepareVotables() {
+                  $('[data-votable]').each(function(index, element) {
+                      var votable = $(this);
+                      var votableId = votable.attr('data-votable');
+          
+                      votable.unbind('click');
+                      votable.click(function() {
+                          var votableCountElement = $('[data-votes-count="' + votableId + '"]');
+                          votableCountElement.fadeOut(function() {
+                              $(this).html((parseInt($(this).html()) + 1) + '').fadeIn();
+                          })
+                          var request = $.ajax({
+                              url: ROOT_API_URL + 'api+upvote/',
+                              type: 'POST',
+                              dataType: 'json',
+                              data: {
+                                  id: votableId
+                              }
+                          });
+                      });
+                  });
+              }
+          
+             
+            
             $(document).ready(function(){
                   ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
+                  videos_start = parseInt($('#more-videos').attr('nextpage'));
+                  $('#more-videos').click(function(e){
+                      e.preventDefault();
+                      
+                      $.ajax({
+                        'url':ROOT_API_URL+'api+videos-paginate',
+                        'type':'POST',
+                        'dataType':'json',
+                        'success':function(result){
+                              
+                             
+                             $('ul#videos-list').append(result.html);
+                             videos_start += 1;
+                             if (!result.show_see_more) {
+                                 $('#more-videos').hide();
+                             }
+                             prepareVotables();
+                             
+                        },
+                        'data':{
+                            path : ROOT_API_URL,
+                            step : videos_start
+                            
+                        }
+                      });
+                  });
+                  
+                  
                   
                   docField = $('#form-widgets-document-input');
                   var docFile = {};
@@ -126,12 +179,12 @@
                   </div>
             </header>
            
-            <section class="content-strip white-bg" tal:define="brains view/videos_result" tal:condition="brains">
-                  <div class="row">
+            <section class="content-strip white-bg" tal:define="results view/videos_result" tal:condition="results">
+                  <div class="row" tal:define="brains python: results[:3]">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
                               <h2 i18n:translate="videos">Videos</h2>
-                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type" id='videos-list'>
 
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Video One</h3>
@@ -151,7 +204,7 @@
                                                       </li>
                                                       <li class="heart-icon">
                                                       <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
-                                                      <li>
+                                                      </li>
 
                                                       <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
                                                     
@@ -161,8 +214,8 @@
                                           </li>
                                    
                               </ul>
-                              <div tal:condition="python: len(brains) > 3">
-                               <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: view.see_more_button('videos') > 3">
+                               <a href="" class="button tiny" nextpage='1' id='more-videos'>See More</a>
                               </div>
                         </div>
                   </div>
@@ -354,8 +407,8 @@
                   </div>
             </section>
  
-  <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())"></span>
- 
+  <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>
+
  
     </div><!--end color page container-->
 
