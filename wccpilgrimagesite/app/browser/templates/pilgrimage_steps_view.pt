@@ -31,6 +31,8 @@
                         var path = ROOT_API_URL+'/add+usercomment';
                         var title = $('#form-widgets-title').val();
                         var message = $('#form-widgets-message').val();
+                        var email = $('#form-widgets-email').val();
+                        var image = $('#form-widgets-image').val();
                    
                         $.ajax({
                               'url':path,
@@ -38,6 +40,9 @@
                               'dataType':'json',
                               'data':{
                                     title: title,
+                                    message: message,
+                                    email: email,
+                                    image: image,
                                    
                                  
                               },
@@ -52,6 +57,9 @@
                                 $('form#form').slideUp();
                                 
                                 $('#form-widgets-title').val('');
+                                $('#form-widgets-message').val('');
+                                $('#form-widgets-email').val('');
+                                $('#form-widgets-image').val('');
                   
                                 $('input#form-buttons-save').show();
                                 $('input#form-buttons-cancel').show();
