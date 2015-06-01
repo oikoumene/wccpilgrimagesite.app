@@ -51,7 +51,11 @@
             
             $(document).ready(function(){
                   ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
-                  videos_start = parseInt($('#more-videos').attr('nextpage'));
+                  PARENT_AQPARENT_URL = $('[context-aq-parent]').attr('context-aq-parent');
+                  
+                  var videos_start = parseInt($('#more-videos').attr('nextpage'));
+                  var sounds_start = 1;
+                  
                   $('#more-videos').click(function(e){
                       e.preventDefault();
                       
@@ -72,9 +76,38 @@
                         },
                         'data':{
                             path : ROOT_API_URL,
-                            step : videos_start
+                            step : videos_start,
+                            parent_aqparent_path:PARENT_AQPARENT_URL
                             
                         }
+                      });
+                  });
+                  
+                  $('#more-sounds').click(function(e){
+                      e.preventDefault();
+                      
+                      $.ajax({
+                          'url':ROOT_API_URL+'api+sounds-paginate',
+                          'type':'POST',
+                          'dataType':'json',
+                          'success':function(result){
+                              
+                             
+                             //$('ul#sounds-list').append(result.html).hide().fadeIn();
+                             $(result.html).appendTo('ul#sounds-list').hide().fadeIn('slow');
+                             sounds_start += 1;
+                             if (!result.show_see_more) {
+                                 $('#more-sounds').hide();
+                             }
+                             prepareVotables();
+                             
+                          },
+                          'data':{
+                            path : ROOT_API_URL,
+                            step : sounds_start,
+                            parent_aqparent_path:PARENT_AQPARENT_URL
+                            
+                          }
                       });
                   });
                   
@@ -221,12 +254,12 @@
                   </div>
             </section>
 
-            <section class="content-strip alt-strip" tal:define="brains view/sound_result" tal:condition="brains">
-                  <div class="row">
+            <section class="content-strip alt-strip" tal:define="results view/sound_result" tal:condition="results">
+                  <div class="row" tal:define="brains python: results[:3]">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-soundcloud"></i></div>
                               <h2 i18n:translate="sounds">Sounds</h2>
-                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type" id='sounds-list'>
 
                                    
                                           <li tal:repeat="brain brains">
@@ -251,8 +284,8 @@
                                                 <p tal:content="python: brain['description']"></p>
                                           </li>
                               </ul>
-                              <div tal:condition="python: len(brains) > 3">
-                                 <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: len(results) > 3">
+                                 <a href="" class="button tiny" id="more-sounds">See More</a>
                               </div>
                         </div>
                   </div>
@@ -408,6 +441,7 @@
             </section>
  
   <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>
+  <span tal:attributes="context-aq-parent python: '/'.join(context.getPhysicalPath()[:-1])"></span>
 
  
     </div><!--end color page container-->
