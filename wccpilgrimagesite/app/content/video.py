@@ -38,9 +38,10 @@ class featured_steps(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
         catalog = getToolByName(context,'portal_catalog')
-        brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
+        # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
+        path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
         items = []
-        
         for brain in brains:
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
