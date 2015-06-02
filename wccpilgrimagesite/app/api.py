@@ -7,6 +7,7 @@ from Products.CMFCore.utils import getToolByName
 from wccpilgrimagesite.app.content.video import IVideo
 from wccpilgrimagesite.app.content.sound import ISound
 from zope.component.hooks import getSite
+from wccpilgrimagesite.app.content.static_document import IStaticDocument
 import urlparse
 
 
@@ -258,6 +259,108 @@ class ResourceSoundsPaginate(ApiView):
                'show_user=false&amp;show_reposts=false'.format(
             soundcloud=soundcloud
         )
+            
+
+class ResourceDocumentsPaginate(ApiView):
+    def __call__(self):
+        html = ''
+        show_see_more = True
+        if self.request:
+            if self.request.form:
+                form = self.request.form
+                if form.get('path').endswith('/'):
+                    path = form.get('path')[:-1]
+                else:
+                    path = form.get('path')
+                step = form.get('step')
+                parent_path = form.get('parent_aqparent_path')
+                parent_UID = ''
+                startPage = 0
+                if is_number(step):
+                    startPage = int(step)
+                portal = getSite()
+                catalog = getToolByName(portal, 'portal_catalog')
+                resources = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.staticdocument',sort_on='Date',
+                                                sort_order='reverse',review_state= 'published')
+                steps = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__,sort_on='Date',sort_order='reverse',review_state= 'published')
+                
+                parnts = catalog.unrestrictedSearchResults(path={'query':parent_path, 'depth':0}, portal_type='wccpilgrimagesite.app.pilgrimagesteps')
+                
+                for prnt in parnts:
+                    parent_UID = prnt.UID
+                docs_resources = []
+                docs_steps = []
+                for brain in resources:
+                    obj = brain._unrestrictedGetObject()
+                    data_resources= {'title': obj.title,
+                                'description':obj.description,
+                                'file':obj.file,
+                                'file_thumb': obj.file_thumb,
+                                'path': brain.getPath(),
+                                'uid': brain.UID,
+                                'votes_count': obj.votes_count,
+                                'created': brain.created,
+                                'wcc_user':obj.wcc_user
+        
+                        }
+                    docs_resources.append(data_resources)
+        
+                for brain in steps:
+                    obj = brain._unrestrictedGetObject()
+                    if obj.doc_in_step:
+                        if parent_UID in obj.doc_in_step:
+                            data_steps= {'title': obj.title,
+                                'description':obj.description,
+                                'file':obj.file,
+                                'file_thumb': obj.file_thumb,
+                                'path': brain.getPath(),
+                                'uid': brain.UID,
+                                'votes_count': obj.votes_count,
+                                'created': brain.created,
+                                'wcc_user':obj.wcc_user
+                        }
+                        
+                            docs_steps.append(data_steps)
+        
+                for doc in docs_resources:
+                    if doc not in docs_steps:
+                        docs_steps.append(doc)
+                        
+                paginated_docs = []
+                if len(docs_steps) > 3:
+                    paginated_docs = docs_steps[startPage*3:(startPage*3)+3]
+                
+                for pd in paginated_docs:
+                    html += "<li class='animated fadeInRight'>"
+                    html += "<h3>"+pd['title']+"</h3>"
+                    html += "<a class='video-links fancybox.iframe' href="+pd['path']+"/@@images/file>"
+                    if pd['file_thumb']:
+                        html += "<img src="+pd['path']+"/@@display-file/file_thumb alt=''>"
+                    else:
+                        html += "<p class='fa fa-file-pdf-o' style='font-size: 150px;'></p> "
+                    html += "</a>"
+                    html += "<ul class='no-bullet icons-box'>"
+                    if pd['wcc_user']:
+                        html += "<li class='user-icon wcc-user'>"
+                        html += "<img src='++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png' alt='' />"
+                        html += "<span class='access'>User</span>"
+                        html += "</li>"
+                    else:
+                        html += "<li class='user-icon unknown-user'>"
+                        html += "<i class='fa fa-user'></i>"
+                        html += "<span class='access'>User</span>"
+                        html += "</li>"
+                    html += "<li class='heart-icon'>"
+                    html += "<a data-votable="+pd['uid']+"><i class='fa fa-heart'></i></a>"
+                    html += "<li>"
+                    html += "<li class='heart-count' data-votes-count="+pd['uid']+">"+str(pd['votes_count'])+"</li>"
+                    html += "</ul>"
+                    html += "<p>"+pd['description']+"</p>"
+                    html += "</li>"
+                if len(docs_steps)-1 >= startPage*3 and len(docs_steps)-1 <= (startPage*3)+2:
+                    show_see_more = False
+        return self._response(response={'html':html, 'show_see_more':show_see_more})
+                    
                 
                     
 
