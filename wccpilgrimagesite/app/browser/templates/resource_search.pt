@@ -1,3 +1,4 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
@@ -7,6 +8,13 @@
       i18n:domain="wccpilgrimagesite.app">
 <body>
 
+  <metal:styleslot fill-slot='style_slot'>
+      <style type="text/css" media="all">
+        .formTabs,{visibility: hidden;}
+         
+      </style>
+</metal:styleslot>
+
 <tal:comment tal:condition="nothing">
     This is a sample view template. It will not be used for rendering the
     content unless activated by creation of a view class with a matching name.
@@ -15,23 +23,16 @@
     if needed.
 </tal:comment>
 
-<metal:styleslot fill-slot='style_slot'>
-      <style type="text/css" media="all">
-         
-      </style>
-
-
-    
-</metal:styleslot>
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+    <form method='post'>
       Resource Type:
         <select name='resource_type' id='resource_type' tal:define='val python: view.searchedValue("resource_type")'>
-          <option value='All' tal:attributes='selected python: (val == "all")'>All</option>
-          <option value='Video' tal:attributes='selected python: (val == "supplier")'>Video</option>
-          <option value='Sound' tal:attributes='selected python: (val == "client")'>Sound</option>
-          <option value='Document' tal:attributes='selected python: (val == "client")'>Document</option>
+          <option value='all' tal:attributes='selected python: (val == "all")'>All</option>
+          <option value='video' tal:attributes='selected python: (val == "video")'>Video</option>
+          <option value='sound' tal:attributes='selected python: (val == "sound")'>Sound</option>
+          <option value='document' tal:attributes='selected python: (val == "document")'>Document</option>
         </select>
       <br />
       Pilgrimage Step:
@@ -42,10 +43,132 @@
         </select>
         <br />
       Keyword: 
-        <input type="text" name="keyword"/>
+        <input type="text" name="keyword" tal:attributes='value python: view.searchedValue("keyword") ' id="keyword"/>
+        <input type="submit" value="Search" name="input">
+  </form>
+            <section class="content-strip white-bg" tal:define="brains python: view.contents()['videos']" tal:condition="brains">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
+                              <h2 i18n:translate="videos">Videos</h2>
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
 
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Video One</h3>
+                                                <div>
+                                                      <a class="video-links fancybox.iframe" tal:attributes="href python: brain['url_youtube']">
+                                                      <img tal:attributes="src python: view.url_youtube_bg_img(brain['url_youtube'])" alt="">
+                                                      </a>
+                                                </div>
+                                                <ul class="no-bullet icons-box">
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li class="heart-icon">
+                                                      <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
+                                                      <li>
 
+                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
+                                                    
 
+                                                </ul>
+                                                <p tal:content="python: brain['description']"></p>
+                                          </li>
+                                   
+                              </ul>
+                              <div tal:condition="python: len(brains) > 3">
+                               <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
+                        </div>
+                  </div>
+            </section>
+
+            <section class="content-strip alt-strip" tal:define="brains python: view.contents()['sounds']" tal:condition="brains">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="resource-icon"><i class="fa fa-soundcloud"></i></div>
+                              <h2 i18n:translate="sounds">Sounds</h2>
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+
+                                   
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Sound One</h3>
+                                                <iframe tal:attributes="src python: brain['soundcloud_id']" width="100%" height="166" scrolling="no" frameborder="no"></iframe>
+
+                                                <ul class="no-bullet icons-box">
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li class="heart-icon">
+                                                      <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
+                                                      <li>
+
+                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
+                                                </ul>
+                                                <p tal:content="python: brain['description']"></p>
+                                          </li>
+                              </ul>
+                              <div tal:condition="python: len(brains) > 3">
+                                 <a href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
+                        </div>
+                  </div>
+            </section>
+
+          <section class="content-strip white-bg" tal:define="brains python: view.contents()['documents']" tal:condition="brains">
+                  <div class="row">
+                        <div class="columns small-12 text-center">
+                              <div class="resource-icon"><i class="fa fa-file-o"></i></div>
+                              <h2 i18n:translate="documents">Documents</h2>
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                                   
+                                          <li tal:repeat="brain brains">
+                                                <h3 tal:content="python: brain['title']">Document One</h3>
+                                               
+                                                   <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/file'">
+
+                                                <img tal:condition="python: brain['file_thumb']" tal:attributes="src python: brain['path']+ '/@@display-file/file_thumb'" alt="">
+
+                                                <p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> 
+                                             </a>
+                                                <ul class="no-bullet icons-box">
+                                                      <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">
+                                                            <img src="++theme++wccpilgrimagesite.theme/images/wcc-user-icon.png" alt="" />
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li tal:condition="python: brain['wcc_user'] == False" class="user-icon unknown-user">
+                                                            <i class="fa fa-user"></i>
+                                                            <span class="access">User</span>
+                                                      </li>
+                                                      <li class="heart-icon">
+                                                      <a tal:attributes="data-votable python: brain['uid']" ><i class="fa fa-heart"></i></a>
+                                                      <li>
+
+                                                      <li class="heart-count" tal:attributes="data-votes-count python: brain['uid']" tal:content="python: brain['votes_count']">0</li>
+                                                </ul>
+                                                <p tal:content="python: brain['description']"></p>
+                                          </li>
+                                   
+                              </ul>
+                              <div tal:condition="python: len(brains) > 3">
+                               <a  href="" class="button tiny see-more-videos see-more">See More</a>
+                              </div>
+                        </div>
+                  </div>
+            </section>
+      
+ 
+  <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())"></span>
 
   </metal:content-core>
 </metal:main>
