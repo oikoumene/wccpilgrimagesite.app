@@ -55,6 +55,7 @@
                   
                   var videos_start = parseInt($('#more-videos').attr('nextpage'));
                   var sounds_start = 1;
+                  var docs_start = 1;
                   
                   $('#more-videos').click(function(e){
                       e.preventDefault();
@@ -109,6 +110,34 @@
                             
                           }
                       });
+                  });
+                  
+                  $('#more-docs').click(function(e){
+                        e.preventDefault();
+                        $.ajax({
+                          'url':ROOT_API_URL+'api+docs-paginate',
+                          'type':'POST',
+                          'dataType':'json',
+                          'success':function(result){
+                              
+                             
+                             $('ul#docs-list').append(result.html);
+                             //$(result.html).appendTo('ul#docs-list').hide().fadeIn('slow');
+                             docs_start += 1;
+                             if (!result.show_see_more) {
+                                 $('#more-docs').hide();
+                             }
+                             prepareVotables();
+                             
+                          },
+                          'data':{
+                            path : ROOT_API_URL,
+                            step : docs_start,
+                            parent_aqparent_path:PARENT_AQPARENT_URL
+                            
+                          }
+                      });
+                        
                   });
                   
                   
@@ -291,12 +320,12 @@
                   </div>
             </section>
 
-          <section class="content-strip white-bg" tal:define="brains view/document_result" tal:condition="brains">
-                  <div class="row">
+          <section class="content-strip white-bg" tal:define="results view/document_result" tal:condition="results">
+                  <div class="row" tal:define="brains python: results[:3]">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-file-o"></i></div>
                               <h2 i18n:translate="documents">Documents</h2>
-                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type">
+                              <ul class="small-block-grid-1 medium-block-grid-3 resource-list-type" id="docs-list">
                                    
                                           <li tal:repeat="brain brains">
                                                 <h3 tal:content="python: brain['title']">Document One</h3>
@@ -326,8 +355,8 @@
                                           </li>
                                    
                               </ul>
-                              <div tal:condition="python: len(brains) > 3">
-                               <a  href="" class="button tiny see-more-videos see-more">See More</a>
+                              <div tal:condition="python: len(results) > 3">
+                               <a  href="" class="button tiny" id="more-docs">See More</a>
                               </div>
                         </div>
                   </div>
