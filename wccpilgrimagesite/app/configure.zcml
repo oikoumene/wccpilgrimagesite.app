@@ -25,6 +25,7 @@
     <browser:view name="api+upvote1" for="*" class=".api.ApiUpvoteView" permission="zope.Public"/>
     <browser:view name="api+videos-paginate" for="*" class=".api.ResourceVideosPaginate" permission="zope.Public"/>
     <browser:view name="api+sounds-paginate" for="*" class=".api.ResourceSoundsPaginate" permission="zope.Public"/>
+    <browser:view name="api+docs-paginate" for="*" class=".api.ResourceDocumentsPaginate" permission="zope.Public"/>
   
 
 </configure>
