@@ -46,7 +46,10 @@
         <input type="text" name="keyword" tal:attributes='value python: view.searchedValue("keyword") ' id="keyword"/>
         <input type="submit" value="Search" name="input">
   </form>
-            <section class="content-strip white-bg" tal:define="brains python: view.contents()['videos']" tal:condition="brains">
+
+
+
+            <section class="content-strip white-bg" tal:define="brains python: view.resources()['videos']" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
@@ -88,7 +91,7 @@
                   </div>
             </section>
 
-            <section class="content-strip alt-strip" tal:define="brains python: view.contents()['sounds']" tal:condition="brains">
+            <section class="content-strip alt-strip" tal:define="brains python: view.resources()['sounds']" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-soundcloud"></i></div>
@@ -125,7 +128,7 @@
                   </div>
             </section>
 
-          <section class="content-strip white-bg" tal:define="brains python: view.contents()['documents']" tal:condition="brains">
+          <section class="content-strip white-bg" tal:define="brains python: view.resources()['documents']" tal:condition="brains">
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-file-o"></i></div>
