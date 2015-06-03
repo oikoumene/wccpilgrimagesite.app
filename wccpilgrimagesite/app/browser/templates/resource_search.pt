@@ -26,7 +26,6 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-<<<<<<< HEAD
       
       <div class="blue-page animated fadeIn">
             
@@ -72,58 +71,35 @@
                                           </div>
                                     </div>
                                     
-                                <!--Resource Type:
-                                  <select name='resource_type' id='resource_type' tal:define='val python: view.searchedValue("resource_type")'>
-                                    <option value='all' tal:attributes='selected python: (val == "all")'>All</option>
-                                    <option value='video' tal:attributes='selected python: (val == "video")'>Video</option>
-                                    <option value='sound' tal:attributes='selected python: (val == "sound")'>Sound</option>
-                                    <option value='document' tal:attributes='selected python: (val == "document")'>Document</option>
-                                  </select>
-                                <br />
-                                Pilgrimage Step:
-                                  <select name='pilgrimage_steps' id='pilgrimage_steps' tal:define='val python: view.searchedValue("pilgrimage_steps")'>
-                                    <tal:entry tal:repeat='option view/pilgrimage_steps'>
-                                         <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
-                                    </tal:entry>
-                                  </select>
-                                  <br />
-                                Keyword: 
-                                  <input type="text" name="keyword" tal:attributes='value python: view.searchedValue("keyword") ' id="keyword"/>
-                                  <input type="submit" value="Search" name="input">-->
-                                    
-                                    
                               </form>
                         </div>
                   </div>
             </section>
-            
-            <section class="content-strip white-bg" tal:define="brains python: view.contents()['videos']" tal:condition="brains">
-=======
-    <form method='post'>
-      Resource Type:
-        <select name='resource_type' id='resource_type' tal:define='val python: view.searchedValue("resource_type")'>
-          <option value='all' tal:attributes='selected python: (val == "all")'>All</option>
-          <option value='video' tal:attributes='selected python: (val == "video")'>Video</option>
-          <option value='sound' tal:attributes='selected python: (val == "sound")'>Sound</option>
-          <option value='document' tal:attributes='selected python: (val == "document")'>Document</option>
-        </select>
-      <br />
-      Pilgrimage Step:
-        <select name='pilgrimage_steps' id='pilgrimage_steps' tal:define='val python: view.searchedValue("pilgrimage_steps")'>
-          <tal:entry tal:repeat='option view/pilgrimage_steps'>
-               <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
-          </tal:entry>
-        </select>
-        <br />
-      Keyword: 
-        <input type="text" name="keyword" tal:attributes='value python: view.searchedValue("keyword") ' id="keyword"/>
-        <input type="submit" value="Search" name="input">
-  </form>
+                  
+           <!-- <form method='post'>
+                  Resource Type:
+                    <select name='resource_type' id='resource_type' tal:define='val python: view.searchedValue("resource_type")'>
+                      <option value='all' tal:attributes='selected python: (val == "all")'>All</option>
+                      <option value='video' tal:attributes='selected python: (val == "video")'>Video</option>
+                      <option value='sound' tal:attributes='selected python: (val == "sound")'>Sound</option>
+                      <option value='document' tal:attributes='selected python: (val == "document")'>Document</option>
+                    </select>
+                  <br />
+                  Pilgrimage Step:
+                    <select name='pilgrimage_steps' id='pilgrimage_steps' tal:define='val python: view.searchedValue("pilgrimage_steps")'>
+                      <tal:entry tal:repeat='option view/pilgrimage_steps'>
+                           <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
+                      </tal:entry>
+                    </select>
+                    <br />
+                  Keyword: 
+                    <input type="text" name="keyword" tal:attributes='value python: view.searchedValue("keyword") ' id="keyword"/>
+                    <input type="submit" value="Search" name="input">
+            </form>-->
 
 
 
             <section class="content-strip white-bg" tal:define="brains python: view.resources()['videos']" tal:condition="brains">
->>>>>>> 948918b5e00756a6064ba8ac2b0bde8ba575942e
                   <div class="row">
                         <div class="columns small-12 text-center">
                               <div class="resource-icon"><i class="fa fa-play-circle-o"></i></div>
