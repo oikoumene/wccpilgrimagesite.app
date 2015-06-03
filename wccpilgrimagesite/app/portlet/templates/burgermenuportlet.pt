@@ -6,6 +6,7 @@
             <li><a tal:attributes="href python: content['url']" tal:content="python: content['title']"/></li>
         </tal:entry>
     </tal:block>
+    <li><a href="" i18n:translate="resource_search" tal:attributes="href python: view.home_link()+'/resource_search'">Resources/a></li>
     <!--<li><a href="http://www.oikoumene.org/">World Council of Churches</a></li>
     <li><a href="http://www.oikoumene.org/en/contact-wcc">Contact Us</a></li>-->
 </ul>
