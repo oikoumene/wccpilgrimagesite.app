@@ -189,7 +189,7 @@
                               },
                               'success':function(result){
                                 $('#success-message').html(result.mssg);
-                                setTimeout(function(){$('#success-message').html('')}, 3000);
+                                setTimeout(function(){$('#success-message').html('')}, 5000);
                                 $('form#form').slideUp();
                                 
                                 $('#form-widgets-name').val('');
