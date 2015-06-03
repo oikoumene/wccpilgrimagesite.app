@@ -54,93 +54,71 @@ class resource_search(dexterity.DisplayForm):
                         obj = brain1._unrestrictedGetObject()
                         if keyword:
                             if keyword in brain1.Title or keyword in obj.description:
-                                if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                    videos.append(self.video_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                    sounds.append(self.sound_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                    documents.append(self.document_result(brain1.UID))
+                                results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
                         else:
-                            if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                videos.append(self.video_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                sounds.append(self.sound_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                documents.append(self.document_result(brain1.UID))
-
+                            results.append({'uid': brain1.UID,
+                                            'portal_type': brain1.portal_type })
                 else:
                     brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type="wccpilgrimagesite.app."+resource_type, review_state= 'published')
-                    
                     for brain1 in brains1:
                         obj = brain1._unrestrictedGetObject()
                         if keyword:
                             if keyword in brain1.Title or keyword in obj.description:
-                                if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                    videos.append(self.video_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                    sounds.append(self.sound_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                    documents.append(self.document_result(brain1.UID))
+                                results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
                         else:
-                            if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                videos.append(self.video_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                sounds.append(self.sound_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                documents.append(self.document_result(brain1.UID))
-
-
-
+                            results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
             if brain.UID == pilgrimage_steps:
                 if resource_type == 'all':
                     brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type=['wccpilgrimagesite.app.video','wccpilgrimagesite.app.sound','wccpilgrimagesite.app.staticdocument'], review_state= 'published')
-                    
                     for brain1 in brains1:
                         obj = brain1._unrestrictedGetObject()
                         if keyword:
                             if keyword in brain1.Title or keyword in obj.description:
-                                if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                    videos.append(self.video_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                    sounds.append(self.sound_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                    documents.append(self.document_result(brain1.UID))
+                                results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
                         else:
-                            if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                videos.append(self.video_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                sounds.append(self.sound_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                documents.append(self.document_result(brain1.UID))
+                            results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
 
                 else:
                     brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type="wccpilgrimagesite.app."+resource_type, review_state= 'published')
-                    
                     for brain1 in brains1:
                         obj = brain1._unrestrictedGetObject()
                         if keyword:
                             if keyword in brain1.Title or keyword in obj.description:
-                                if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                    videos.append(self.video_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                    sounds.append(self.sound_result(brain1.UID))
-                                if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                    documents.append(self.document_result(brain1.UID))
+                                results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
                         else:
-                            if brain1.portal_type == 'wccpilgrimagesite.app.video':
-                                videos.append(self.video_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.sound':
-                                sounds.append(self.sound_result(brain1.UID))
-                            if brain1.portal_type == 'wccpilgrimagesite.app.staticdocument':
-                                documents.append(self.document_result(brain1.UID))
+                            results.append({'uid': brain1.UID,
+                                                'portal_type': brain1.portal_type })
 
-        return {'videos': videos, 'sounds':sounds, 'documents': documents}
+        return results
+    
+    #segregation by type of resource
+    def resources(self):
+        catalog = self.catalog
+        context = self.context
+        path = '/'.join(context.getPhysicalPath())
+        videos = []
+        sounds = []
+        documents = []
+        for brain in self.contents():
+            if brain['portal_type'] == 'wccpilgrimagesite.app.video':
+                videos.append(self.video_result(brain['uid']))
+            if brain['portal_type'] == 'wccpilgrimagesite.app.sound':
+                sounds.append(self.sound_result(brain['uid']))
+            if brain['portal_type'] == 'wccpilgrimagesite.app.staticdocument':
+                documents.append(self.document_result(brain['uid']))      
+        return {'videos': videos, 'sounds': sounds, 'documents': documents}
+
     #pilgrimage steps
-
     def pilgrimage_steps(self):
         results = [{'value':'all', 'name':'All'}]
         context = self.context
-        catalog = getToolByName(context, 'portal_catalog')
+        catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
         for brain in brains:
@@ -155,9 +133,9 @@ class resource_search(dexterity.DisplayForm):
             return request.form[val]
         return  
 
+    #returns all the video objects
     def video_result(self, uid = None):
         catalog = self.catalog
-        context = self.context
         data = {}
         brains = catalog.unrestrictedSearchResults(object_provides=IVideo.__identifier__, UID= uid)
         for brain in brains:
@@ -171,9 +149,9 @@ class resource_search(dexterity.DisplayForm):
                         'wcc_user':obj.wcc_user}      
         return data 
 
+    #returns all the sound objects
     def sound_result(self, uid = None):
         catalog = self.catalog
-        context = self.context
         data = {}
         brains = catalog.unrestrictedSearchResults(object_provides=ISound.__identifier__, UID= uid)
         for brain in brains:
@@ -187,9 +165,9 @@ class resource_search(dexterity.DisplayForm):
                         'wcc_user':obj.wcc_user}      
         return data 
 
+    #returns all the video objects
     def document_result(self, uid = None):
         catalog = self.catalog
-        context = self.context
         data = {}
         brains = catalog.unrestrictedSearchResults(object_provides=IStaticDocument.__identifier__, UID= uid)
         for brain in brains:
