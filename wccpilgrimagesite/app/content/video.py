@@ -29,6 +29,20 @@ from wccpilgrimagesite.app.content.pilgrimage_steps import IPilgrimageSteps
 from Products.CMFCore.utils import getToolByName
 import datetime
 from zope.schema.interfaces import RequiredMissing
+from zope.schema import ValidationError
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
+
+
+class InvalidEmailAddress(ValidationError):
+    "Invalid email address"
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        raise InvalidEmailAddress(value)
+    return True
 
 
 # Interface class; used to define content-type schema.
@@ -93,6 +107,18 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
         description=u'Select pilgrimage steps where this video will appear as a featured resource.',
         required=False,
         value_type=schema.Choice(source=featured_steps())
+    )
+    
+    uploader = schema.TextLine(
+        title=u"Name",
+        required=True,
+    )
+    
+    email = schema.TextLine(
+        title=u'E-mail',
+        required=True,
+        constraint=validateaddress,
+
     )
 
     # form.widget(featured_resource=CheckBoxFieldWidget)
