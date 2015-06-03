@@ -86,7 +86,7 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
 
     email = schema.TextLine(
         title=u'E-mail',
-        required=False,
+        required=True,
         constraint=validateaddress,
 
     )
