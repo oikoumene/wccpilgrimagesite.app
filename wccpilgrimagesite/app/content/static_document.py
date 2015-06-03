@@ -68,7 +68,7 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, u
 
     church = schema.Text(
         title=u'Church',
-        required=True,
+        required=False,
     )
 
 

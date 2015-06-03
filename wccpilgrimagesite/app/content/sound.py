@@ -62,7 +62,7 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
 
     church = schema.Text(
         title=u'church',
-        required=True,
+        required=False,
     )
 
     soundcloud_id = schema.TextLine(

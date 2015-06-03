@@ -67,7 +67,7 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
 
     church = schema.Text(
         title=u'church',
-        required=True,
+        required=False,
     )
 
     url_youtube = schema.TextLine(
