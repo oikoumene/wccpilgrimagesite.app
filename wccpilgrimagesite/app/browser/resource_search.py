@@ -107,11 +107,15 @@ class resource_search(dexterity.DisplayForm):
         documents = []
         for brain in self.contents():
             if brain['portal_type'] == 'wccpilgrimagesite.app.video':
-                videos.append(self.video_result(brain['uid']))
+                if self.video_result(brain['uid']):
+                    videos.append(self.video_result(brain['uid']))
             if brain['portal_type'] == 'wccpilgrimagesite.app.sound':
-                sounds.append(self.sound_result(brain['uid']))
+                if self.sound_result(brain['uid']):
+                    sounds.append(self.sound_result(brain['uid']))
             if brain['portal_type'] == 'wccpilgrimagesite.app.staticdocument':
-                documents.append(self.document_result(brain['uid']))      
+                if self.document_result(brain['uid']):
+                    documents.append(self.document_result(brain['uid']))
+        
         return {'videos': videos, 'sounds': sounds, 'documents': documents}
 
     #pilgrimage steps
