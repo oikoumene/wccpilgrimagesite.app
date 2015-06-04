@@ -57,13 +57,14 @@ class api_add_resourceupload(grok.View):
                 if 'video' in form:
                     #item.video = form['video']
                     if form['video']:
-                        video_item = createContentInContainer(context, 'wccpilgrimagesite.app.video', checkConstraints=False, title=form['name']+' Video')
+                        video_item = createContentInContainer(context, 'wccpilgrimagesite.app.video', checkConstraints=False, title=form['name']+' Video',
+                                                              url_youtube = form['video'], church=church, uploader=name, email=email, description=description)
                         
-                        video_item.title = name
-                        video_item.url_youtube = form['video']
-                        video_item.church = church
-                        video_item.uploader = name
-                        video_item.email = email
+                        #video_item.title = name
+                        #video_item.url_youtube = form['video']
+                        #video_item.church = church
+                        #video_item.uploader = name
+                        #video_item.email = email
                         
                         video_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Video')))
                         if video_id:
@@ -73,13 +74,14 @@ class api_add_resourceupload(grok.View):
                 if 'sound' in form:
                     #item.sound = form['sound']
                     if form['sound']:
-                        sound_item = createContentInContainer(context, 'wccpilgrimagesite.app.sound', checkConstraints=False, title=form['name']+' Sound')
+                        sound_item = createContentInContainer(context, 'wccpilgrimagesite.app.sound', checkConstraints=False, title=form['name']+' Sound',
+                                                              soundcloud_id=form['sound'], church=church, uploader=name, email=email)
                         
-                        sound_item.title = name
-                        sound_item.soundcloud_id = form['sound']
-                        sound_item.church = church
-                        sound_item.uploader = name
-                        sound_item.email = email
+                        #sound_item.title = name
+                        #sound_item.soundcloud_id = form['sound']
+                        #sound_item.church = church
+                        #sound_item.uploader = name
+                        #sound_item.email = email
                         
                         sound_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Sound')))
                         if sound_id:
@@ -91,15 +93,21 @@ class api_add_resourceupload(grok.View):
                     #    base64.b64decode(form['docData'].split(';base64,')[1]),
                     #    filename = form['docName'].decode('utf-8', 'ignore')
                     #)
-                    doc_item = createContentInContainer(context, 'wccpilgrimagesite.app.staticdocument', checkConstraints=False, title=form['name']+' Document')
-                    doc_item.title = name
-                    doc_item.church = church
-                    doc_item.uploader = name
-                    doc_item.email = email
-                    doc_item.file = namedfile.NamedBlobFile(
+                    file_1 = namedfile.NamedBlobFile(
                         base64.b64decode(form['docData'].split(';base64,')[1]),
                         filename = form['docName'].decode('utf-8', 'ignore')
                     )
+                    
+                    doc_item = createContentInContainer(context, 'wccpilgrimagesite.app.staticdocument', checkConstraints=False, title=form['name']+' Document',
+                                                        church=church, uploader=name, email=email, file=file_1)
+                    #doc_item.title = name
+                    #doc_item.church = church
+                    #doc_item.uploader = name
+                    #doc_item.email = email
+                    #doc_item.file = namedfile.NamedBlobFile(
+                    #    base64.b64decode(form['docData'].split(';base64,')[1]),
+                    #    filename = form['docName'].decode('utf-8', 'ignore')
+                    #)
                     doc_id = self.generate_id(parent_path, str(idnormalizer.normalize(form['name']+' Document')))
                     if doc_id:
                         context.manage_renameObject(doc_item.id, doc_id)
