@@ -32,6 +32,8 @@ from zope.schema.interfaces import RequiredMissing
 from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
+from zope.app.container.interfaces import IObjectAddedEvent
+from Products.statusmessages.interfaces import IStatusMessage
 
 
 class InvalidEmailAddress(ValidationError):
@@ -186,5 +188,55 @@ def churchOmittedErrorMessage(value):
 @form.error_message(field=IVideo['url_youtube'], error=RequiredMissing)
 def youtubeURLOmittedErrorMessage(value):
     return u"No Youtube URL provided."
+
+
+@grok.subscribe(IVideo, IObjectAddedEvent)
+def _createObject(context, event):
+    mailhost = getToolByName(context, 'MailHost')
+    uploader = ''
+    church = ''
+    description = ''
+    video = ''
+    email = ''
+    if context.uploader:
+        uploader = context.uploader
+    if context.church:
+        church = context.church
+    if context.description:
+        description = context.description
+    if context.url_youtube:
+        video = context.url_youtube
+    if context.email:
+        email = context.email
+    
+    mSubj = "New Video Has Been Submitted"
+    mFrom = 'pilgrimage@wcc-coe.org'
+    mTo = 'afterfive2015@gmail.com, pilgrimage@wcc-coe.org'
+    mBody = "A New Video Resource Has Been Submitted. Please see details below:\n"
+    mBody += "\n"
+    mBody += "Uploader: "+uploader+"\n"
+    mBody += "Email: "+email+"\n"
+    mBody += "Church: "+church+"\n"
+    mBody += "Message: "+description+"\n"
+    mBody += "Video: "+video+"\n"
+    mBody += "\n"
+    mBody += "To review the above pledge, visit:\n"
+    mBody += "\n"
+    mBody += context.absolute_url()+"\n"
+    mBody += "\n"
+    mBody += "To approve the post, click on the link below:\n"
+    mBody += "\n"
+    mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish\n"
+    mBody += "\n"
+    mBody += "Thank you.\n\n"
+    mBody += "----------\n"
+    mBody += "WCC Pilgrimage\n"
+    mBody += "pilgrimage@wcc-coe.org\n"
+    mBody += "http://wccpilgrimage.org\n"
+    try:
+        mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
+    except ValueError, e:
+        context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+        return None
 
 
