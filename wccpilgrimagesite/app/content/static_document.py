@@ -34,6 +34,7 @@ from zope.schema.interfaces import RequiredMissing
 from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
+from zope.app.container.interfaces import IObjectAddedEvent
 
 
 class InvalidEmailAddress(ValidationError):
@@ -197,4 +198,53 @@ def churchOmittedErrorMessage(value):
 @form.error_message(field=IStaticDocument['file'], error=RequiredMissing)
 def fileOmittedErrorMessage(value):
     return u"No file uploaded."
+
+@grok.subscribe(IStaticDocument, IObjectAddedEvent)
+def _createObject(context, event):
+    mailhost = getToolByName(context, 'MailHost')
+    uploader = ''
+    church = ''
+    description = ''
+    document = ''
+    email = ''
+    if context.uploader:
+        uploader = context.uploader
+    if context.church:
+        church = context.church
+    if context.description:
+        description = context.description
+    if context.file:
+        document = context.file.filename
+    if context.email:
+        email = context.email
+    
+    mSubj = "New Document Has Been Submitted"
+    mFrom = 'pilgrimage@wcc-coe.org'
+    mTo = 'afterfive2015@gmail.com, pilgrimage@wcc-coe.org'
+    mBody = "A New Audio Resource Has Been Submitted. Please see details below:\n"
+    mBody += "\n"
+    mBody += "Uploader: "+uploader+"\n"
+    mBody += "Email: "+email+"\n"
+    mBody += "Church: "+church+"\n"
+    mBody += "Message: "+description+"\n"
+    mBody += "Document: "+document+"\n"
+    mBody += "\n"
+    mBody += "To review the above pledge, visit:\n"
+    mBody += "\n"
+    mBody += context.absolute_url()+"\n"
+    mBody += "\n"
+    mBody += "To approve the post, click on the link below:\n"
+    mBody += "\n"
+    mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish\n"
+    mBody += "\n"
+    mBody += "Thank you.\n\n"
+    mBody += "----------\n"
+    mBody += "WCC Pilgrimage\n"
+    mBody += "pilgrimage@wcc-coe.org\n"
+    mBody += "http://wccpilgrimage.org\n"
+    try:
+        mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
+    except ValueError, e:
+        context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+        return None
 
