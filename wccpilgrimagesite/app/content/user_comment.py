@@ -190,12 +190,14 @@ def _createObject(context, event):
     mBody += "\n"
     mBody += context.absolute_url()+"\n"
     mBody += "\n"
+    mBody += context.absolute_url()+"/content_status_modify?workflow_action=publish\n"
+    mBody += "\n"
     
     mBody += "Thank you.\n\n"
-    #mBody += "----------\n"
-    #mBody += "WCC Pilgrimage\n"
-    #mBody += "pilgrimage@wcc-coe.org\n"
-    #mBody += "http://wccpilgrimage.org\n"
+    mBody += "----------\n"
+    mBody += "WCC Pilgrimage\n"
+    mBody += "pilgrimage@wcc-coe.org\n"
+    mBody += "http://wccpilgrimage.org\n"
     try:
         mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
     except ValueError, e:
