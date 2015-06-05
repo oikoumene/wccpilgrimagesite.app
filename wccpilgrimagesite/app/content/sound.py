@@ -113,7 +113,7 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
     
     email = schema.TextLine(
         title=u'E-mail',
-        required=True,
+        required=False,
         constraint=validateaddress,
 
     )

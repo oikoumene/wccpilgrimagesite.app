@@ -126,7 +126,7 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, u
     
     email = schema.TextLine(
         title=u'E-mail',
-        required=True,
+        required=False,
         constraint=validateaddress,
 
     )
