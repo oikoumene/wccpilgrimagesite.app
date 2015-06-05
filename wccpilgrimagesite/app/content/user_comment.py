@@ -174,10 +174,10 @@ def _createObject(context, event):
         email = context.email
     
     mSubj = "A New Comment Has Been Added"
-    #mFrom = 'pilgrimage@wcc-coe.org'
-    #mTo = 'afterfive2015@gmail.com, pilgrimage@wcc-coe.org'
-    mFrom = 'glenn@afterfivetech.com'
-    mTo = 'glenn@afterfivetech.com, glennfc27@gmail.com'
+    mFrom = 'pilgrimage@wcc-coe.org'
+    mTo = 'afterfive2015@gmail.com, pilgrimage@wcc-coe.org'
+    
+    
     
     mBody = "A site visitor has just commented. Below are the details of the comment.\n"
     mBody += "\n"
