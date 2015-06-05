@@ -31,61 +31,43 @@ class api_add_usercomment(grok.View):
         title = ''
         email = ''
         message = ''
-        image = ''
+        iamge = ''
         parent_path = '/'.join(context.getPhysicalPath())
         if request.form:
             form = request.form
             if 'title' in form:
+                item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=u"User Comment")
+                setattr(item, 'title', "User Comment")
+                item.title = form['title']
                 title = form['title']
                 if 'email' in form:
+                    item.email = form['email']
                     email = form['email']
+                    
                 if 'message' in form:
+                    item.message = form['message']
                     message = form['message']
-                if 'docName' in form and 'docData' in form:
-                    image = namedfile.NamedBlobFile(
+
+                if 'image' in form:
+                    item.image = namedfile.NamedBlobFile(
                         base64.b64decode(form['docData'].split(';base64,')[1]),
                         filename = form['docName'].decode('utf-8', 'ignore')
                     )
-                item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=title,
-                                                email=email, message=message, image=image)
-                setattr(item, 'title', "User Comment")
-                #item.title = form['title']
-                #title = form['title']
-                
-                    
-                
 
-                
-                id = self.generate_id(parent_path, 'user-comment')
-                if id:
-                    context.manage_renameObject(item.id, id)
-                
+                object_Ids = []
+                catalog = getToolByName(context, 'portal_catalog')
+               
+                brains = catalog.unrestrictedSearchResults(path={'query':parent_path, 'depth':1}, portal_type='wccpilgrimagesite.app.usercomment')
+                for brain in brains:
+                    object_Ids.append(brain.id)
+                id = str(idnormalizer.normalize(item.title))
+                if id in object_Ids:
+                    test = filter(lambda name: id in name, object_Ids)
+                    id = id +'-'+str(len(test))
+                context.manage_renameObject(item.id, id)
                 item.reindexObject()
 
-      
-        #import pdb; pdb.set_trace()
         return self._response(response={'mssg': 'Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members.'})
-    
-    def generate_id(self, path=None, new_id=None):
-        if path and new_id:
-            catalog = getToolByName(self.context, 'portal_catalog')
-            brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':0})
-            if brains:
-                brain = brains[0]
-                ids = brain._unrestrictedGetObject().objectIds()
-                
-                if new_id in ids:
-                    arr1 = [x.split('-')[-1] for x in ids if x.startswith(new_id)]
-                    arr2 = [int(x) for x in arr1 if is_number(x)]
-                    
-                    if arr2:
-                        return new_id+'-'+str(max(arr2)+1)
-                    else:
-                        return new_id+'-1'
-                else:
-                    return new_id
-        return None
-    
     
     def _response(self, response={}, status_code=200, status_message=''):
         view_response = self.request.response
