@@ -58,7 +58,6 @@
                                     title: title,
                                     message: message,
                                     email: email,
-                                    image: image,
                                     docName: docFile.filename,
                                     docData: docFile.data,
                                    
