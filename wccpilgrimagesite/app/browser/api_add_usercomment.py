@@ -31,31 +31,35 @@ class api_add_usercomment(grok.View):
         title = ''
         email = ''
         message = ''
-        iamge = ''
+        image = ''
         parent_path = '/'.join(context.getPhysicalPath())
         if request.form:
             form = request.form
             if 'title' in form:
-                item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=u"User Comment")
-                setattr(item, 'title', "User Comment")
-                item.title = form['title']
                 title = form['title']
                 if 'email' in form:
-                    item.email = form['email']
                     email = form['email']
-                    
                 if 'message' in form:
-                    item.message = form['message']
                     message = form['message']
-
-                if 'image' in form:
-                    item.image = namedfile.NamedBlobFile(
+                if 'docName' in form and 'docData' in form:
+                    image = namedfile.NamedBlobFile(
                         base64.b64decode(form['docData'].split(';base64,')[1]),
                         filename = form['docName'].decode('utf-8', 'ignore')
                     )
+                item = createContentInContainer(context, 'wccpilgrimagesite.app.usercomment', checkConstraints=False, title=title,
+                                                email=email, message=message, image=image)
+                setattr(item, 'title', "User Comment")
+                #item.title = form['title']
+                #title = form['title']
+                
+                    
+                
+
+                
                 id = self.generate_id(parent_path, 'user-comment')
                 if id:
                     context.manage_renameObject(item.id, id)
+                
                 item.reindexObject()
 
       
@@ -65,7 +69,7 @@ class api_add_usercomment(grok.View):
     def generate_id(self, path=None, new_id=None):
         if path and new_id:
             catalog = getToolByName(self.context, 'portal_catalog')
-            brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':0},portal_type='wccpilgrimagesite.app.usercomment')
+            brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':0})
             if brains:
                 brain = brains[0]
                 ids = brain._unrestrictedGetObject().objectIds()
@@ -75,7 +79,7 @@ class api_add_usercomment(grok.View):
                     arr2 = [int(x) for x in arr1 if is_number(x)]
                     
                     if arr2:
-                        return new_id+str(max(arr2)+1)
+                        return new_id+'-'+str(max(arr2)+1)
                     else:
                         return new_id+'-1'
                 else:
