@@ -39,6 +39,7 @@ from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 from zope.schema.interfaces import RequiredMissing
+from zope.app.container.interfaces import IObjectAddedEvent
 
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
@@ -157,3 +158,46 @@ def nameOmittedErrorMessage(value):
 @form.error_message(field=IUserComment['email'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
     return u"No email provided."
+
+@grok.subscribe(IUserComment, IObjectAddedEvent)
+def _createObject(context, event):
+    mailhost = getToolByName(context, 'MailHost')
+    email = ''
+    message = ''
+    image = ''
+    
+    if context.image:
+        image = context.image.filename
+    if context.message:
+        message = context.message
+    if context.email:
+        email = context.email
+    
+    mSubj = "A New Comment Has Been Added"
+    #mFrom = 'pilgrimage@wcc-coe.org'
+    #mTo = 'afterfive2015@gmail.com, pilgrimage@wcc-coe.org'
+    mFrom = 'glenn@afterfivetech.com'
+    mTo = 'glenn@afterfivetech.com, glennfc27@gmail.com'
+    
+    mBody = "A site visitor has just commented. Below are the details of the comment.\n"
+    mBody += "\n"
+    mBody += "Name: "+context.title+"\n"
+    mBody += "Email: "+email+"\n"
+    mBody += "Message: "+message+"\n"
+    
+    mBody += "\n"
+    mBody += "To review the above pledge, visit:\n"
+    mBody += "\n"
+    mBody += context.absolute_url()+"\n"
+    mBody += "\n"
+    
+    mBody += "Thank you.\n\n"
+    #mBody += "----------\n"
+    #mBody += "WCC Pilgrimage\n"
+    #mBody += "pilgrimage@wcc-coe.org\n"
+    #mBody += "http://wccpilgrimage.org\n"
+    try:
+        mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
+    except ValueError, e:
+        context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
+        return None
