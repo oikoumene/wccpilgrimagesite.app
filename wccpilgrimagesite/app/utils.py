@@ -29,7 +29,7 @@ class IUserMixin(model.Schema):
     wcc_user = schema.Bool(
         title=u'WCC is an owner',
         required=True,
-        default=True
+        default=False
     )
 
 class VotingMixin(object):
