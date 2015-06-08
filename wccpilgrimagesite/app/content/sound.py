@@ -43,6 +43,26 @@ def validateaddress(value):
         raise InvalidEmailAddress(value)
     return True
 
+class sound_in_step(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context,'portal_catalog')
+        # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
+        if context.portal_type == 'wccpilgrimagesite.app.sound':
+            path = '/'.join(context.aq_parent.aq_parent.aq_parent.getPhysicalPath())
+            uid = context.aq_parent.aq_parent.Title()
+        else:
+            path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())
+            uid = context.aq_parent.Title()
+        brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
+        items = []
+        
+        for brain in brains:
+            if uid != brain.Title:
+                items.append(SimpleTerm(brain.UID, title=brain.Title))
+        return SimpleVocabulary(items)
+
+
 class featured_steps(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
@@ -50,10 +70,13 @@ class featured_steps(object):
         # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
         if context.portal_type == 'wccpilgrimagesite.app.sound':
             path = '/'.join(context.aq_parent.aq_parent.aq_parent.getPhysicalPath())
+          
         else:
             path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())
+           
         brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
         items = []
+        
         for brain in brains:
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
@@ -92,9 +115,9 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
     form.widget(sound_in_step=CheckBoxFieldWidget)
     sound_in_step = schema.List(
         title=u'In pilgrimage steps',
-        description=u'Select pilgrimage steps where this sound will appear.',
+        description=u'Also show this on:',
         required=True,
-        value_type=schema.Choice(source=featured_steps())
+        value_type=schema.Choice(source=sound_in_step())
     )
 
 

@@ -34,6 +34,8 @@ from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.statusmessages.interfaces import IStatusMessage
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 
 
 class InvalidEmailAddress(ValidationError):
@@ -50,6 +52,26 @@ def validateaddress(value):
 # Interface class; used to define content-type schema.
 
 
+class video_in_step(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        catalog = getToolByName(context,'portal_catalog')
+        # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
+        if context.portal_type == 'wccpilgrimagesite.app.video':
+            path = '/'.join(context.aq_parent.aq_parent.aq_parent.getPhysicalPath())
+            uid = context.aq_parent.aq_parent.Title()
+        else:
+            path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())
+            uid = context.aq_parent.Title()
+        brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
+        items = []
+        
+        for brain in brains:
+            if uid != brain.Title:
+                items.append(SimpleTerm(brain.UID, title=brain.Title))
+        return SimpleVocabulary(items)
+
+
 class featured_steps(object):
     grok.implements(IContextSourceBinder)
     def __call__(self,context ):
@@ -57,10 +79,13 @@ class featured_steps(object):
         # brains = catalog(object_provides=IPilgrimageSteps.__identifier__)
         if context.portal_type == 'wccpilgrimagesite.app.video':
             path = '/'.join(context.aq_parent.aq_parent.aq_parent.getPhysicalPath())
+          
         else:
             path = '/'.join(context.aq_parent.aq_parent.getPhysicalPath())
+           
         brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
         items = []
+        
         for brain in brains:
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
@@ -99,9 +124,9 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
     form.widget(video_in_step=CheckBoxFieldWidget)
     video_in_step = schema.List(
         title=u'In pilgrimage steps',
-        description=u'Select pilgrimage steps where this video will appear.',
-        required=True,
-        value_type=schema.Choice(source=featured_steps())
+        description=u'Also show this on:',
+        required=False,
+        value_type=schema.Choice(source=video_in_step())
     )
     form.widget(featured_video_in_step=CheckBoxFieldWidget)
     featured_video_in_step = schema.List(
@@ -134,11 +159,6 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
     #     default=0
     # )
 
-
-
-
-
-
     #video_in_step = RelationList(
         #title=u'In pilgrimage steps',
         #description=u'Select pilgrimage steps where this video will appear.',
@@ -163,10 +183,10 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
         #required=False,
     #)
     
-    @invariant
-    def resourcesInvariant(data):
-        if not data.video_in_step:
-            raise Invalid(_(u"No Pilgrimage Steps selected."))
+    # @invariant
+    # def resourcesInvariant(data):
+    #     if not data.video_in_step:
+    #         raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass
@@ -185,9 +205,16 @@ def descriptionOmittedErrorMessage(value):
 def churchOmittedErrorMessage(value):
     return u"No church provided."
 
-@form.error_message(field=IVideo['url_youtube'], error=RequiredMissing)
-def youtubeURLOmittedErrorMessage(value):
-    return u"No Youtube URL provided."
+# @form.default_value(field=IVideo['featured_video_in_step'])
+# def value(self):
+#     import pdb; pdb.set_trace()
+#     return True
+
+
+# @form.default_value(field=IVideo['featured_video_in_step'][''])
+# def value(self):
+
+#     return True
 
 
 @grok.subscribe(IVideo, IObjectAddedEvent)
@@ -238,5 +265,4 @@ def _createObject(context, event):
     except ValueError, e:
         context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
         return None
-
 
