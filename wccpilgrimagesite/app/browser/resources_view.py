@@ -10,6 +10,8 @@ from wccpilgrimagesite.app.content.video import IVideo
 from wccpilgrimagesite.app.content.sound import ISound
 from wccpilgrimagesite.app.content.static_document import IStaticDocument
 import itertools
+import copy
+
 grok.templatedir('templates')
 
 class Index(dexterity.DisplayForm):
@@ -51,13 +53,14 @@ class Index(dexterity.DisplayForm):
                         'wcc_user':obj.wcc_user}
                 
                     videos_steps.append(data_steps)
-
+        
+        videos_final =copy.copy(videos_steps)
         for video in videos_resources:
             if video not in videos_steps:
-                videos_steps.append(video)
-        if videos_steps:
-            return sorted(videos_steps, key=itemgetter('created'), reverse=True)
-        return videos_steps
+                videos_final.append(video)
+        if videos_final:
+            videos_final.sort(key=lambda k: k['created'], reverse=True) 
+        return videos_final
 
 
 
@@ -116,11 +119,14 @@ class Index(dexterity.DisplayForm):
                         'wcc_user':obj.wcc_user}
                 
                     sounds_steps.append(data_steps)
-
+        
+        sounds_final = copy.copy(sounds_steps)
         for sound in sounds_resources:
             if sound not in sounds_steps:
-                sounds_steps.append(sound)
-        return sorted(sounds_steps, key=itemgetter('created'), reverse=True)
+                sounds_final.append(sound)
+        if sounds_final:
+            sounds_final.sort(key=lambda k: k['created'], reverse=True) 
+        return sounds_final
 
     # def document_result(self):
     #     context = self.context
@@ -186,11 +192,16 @@ class Index(dexterity.DisplayForm):
                 }
                 
                     docs_steps.append(data_steps)
-
+        docs_final = copy.copy(docs_steps)
+        
         for doc in docs_resources:
             if doc not in docs_steps:
-                docs_steps.append(doc)
-        return sorted(docs_steps, key=itemgetter('created'), reverse=True)
+                docs_final.append(doc)
+        if docs_final:
+            docs_final.sort(key=lambda k: k['created'], reverse=True)    
+        #return sorted(docs_final, key=itemgetter('created'), reverse=True)
+        
+        return docs_final
 
     def url_youtube_bg_img(self, url=None):
         return 'http://img.youtube.com/vi/{hash}/hqdefault.jpg'.format(hash=self._hash_from_url_youtube(url))
