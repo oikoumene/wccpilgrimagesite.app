@@ -9,6 +9,8 @@ from wccpilgrimagesite.app.content.sound import ISound
 from zope.component.hooks import getSite
 from wccpilgrimagesite.app.content.static_document import IStaticDocument
 import urlparse
+import copy
+from operator import itemgetter
 
 
 #from wccpilgrimagesite.app import utils, content
@@ -98,13 +100,14 @@ class ResourceVideosPaginate(ApiView):
                         
                             videos_steps.append(data_steps)
         
+                videos_final =copy.copy(videos_steps)
                 for video in videos_resources:
                     if video not in videos_steps:
-                        videos_steps.append(video)
+                        videos_final.append(video)
                 paginated_videos = []
-                if len(videos_steps) > 3:
-                    
-                    paginated_videos = videos_steps[startPage*3:(startPage*3)+3]
+                if len(videos_final) > 3:
+                    videos_final.sort(key=lambda k: k['created'], reverse=True) 
+                    paginated_videos = videos_final[startPage*3:(startPage*3)+3]
                 
                 for pv in paginated_videos:
                     html += "<li class='animated fadeInRight'>"
@@ -132,7 +135,7 @@ class ResourceVideosPaginate(ApiView):
                     html += "<p>"+pv['description']+"</p>"
                     html += "</li>"
                 
-                if len(videos_steps)-1 >= startPage*3 and len(videos_steps)-1 <= (startPage*3)+2:
+                if len(videos_final)-1 >= startPage*3 and len(videos_final)-1 <= (startPage*3)+2:
                     show_see_more = False
         return self._response(response={'html':html, 'show_see_more':show_see_more})
                     
@@ -215,14 +218,16 @@ class ResourceSoundsPaginate(ApiView):
                                 'wcc_user':obj.wcc_user}
                         
                             sounds_steps.append(data_steps)
-        
+                
+                sounds_final =copy.copy(sounds_steps)
                 for sound in sounds_resources:
                     if sound not in sounds_steps:
-                        sounds_steps.append(sound)
+                        sounds_final.append(sound)
                 
                 paginated_sounds = []
-                if len(sounds_steps) > 3:
-                    paginated_sounds = sounds_steps[startPage*3:(startPage*3)+3]
+                if len(sounds_final) > 3:
+                    sounds_final.sort(key=lambda k: k['created'], reverse=True) 
+                    paginated_sounds = sounds_final[startPage*3:(startPage*3)+3]
                 
                 for ps in paginated_sounds:
                     #html += "<li class='fadeInRight'>"
@@ -247,7 +252,7 @@ class ResourceSoundsPaginate(ApiView):
                     html += "</ul>"
                     html += "<p>"+ps['description']+"</p>"
                     html += "</li>"
-                if len(sounds_steps)-1 >= startPage*3 and len(sounds_steps)-1 <= (startPage*3)+2:
+                if len(sounds_final)-1 >= startPage*3 and len(sounds_final)-1 <= (startPage*3)+2:
                     show_see_more = False
         return self._response(response={'html':html, 'show_see_more':show_see_more})
                 
@@ -322,13 +327,15 @@ class ResourceDocumentsPaginate(ApiView):
                         
                             docs_steps.append(data_steps)
         
+                docs_final = copy.copy(docs_steps)
                 for doc in docs_resources:
                     if doc not in docs_steps:
-                        docs_steps.append(doc)
-                        
+                        docs_final.append(doc)
+                  
                 paginated_docs = []
-                if len(docs_steps) > 3:
-                    paginated_docs = docs_steps[startPage*3:(startPage*3)+3]
+                if len(docs_final) > 3:
+                    docs_final.sort(key=lambda k: k['created'], reverse=True) 
+                    paginated_docs = docs_final[startPage*3:(startPage*3)+3]
                 
                 for pd in paginated_docs:
                     html += "<li class='animated fadeInRight'>"
@@ -357,7 +364,7 @@ class ResourceDocumentsPaginate(ApiView):
                     html += "</ul>"
                     html += "<p>"+pd['description']+"</p>"
                     html += "</li>"
-                if len(docs_steps)-1 >= startPage*3 and len(docs_steps)-1 <= (startPage*3)+2:
+                if len(docs_final)-1 >= startPage*3 and len(docs_final)-1 <= (startPage*3)+2:
                     show_see_more = False
         return self._response(response={'html':html, 'show_see_more':show_see_more})
                     
