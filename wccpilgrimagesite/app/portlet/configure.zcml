@@ -12,6 +12,7 @@
         assignment=".burgermenuportlet.Assignment"
         renderer=".burgermenuportlet.Renderer"
         addview=".burgermenuportlet.AddForm"
+        editview=".burgermenuportlet.EditForm"
         />
 
     <plone:portlet

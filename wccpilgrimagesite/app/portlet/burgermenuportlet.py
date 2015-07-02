@@ -81,6 +81,11 @@ class AddForm(base.AddForm):
         assignment = Assignment()
         form.applyChanges(assignment, self.form_fields, data)
         return assignment
+    
+class EditForm(base.EditForm):
+    form_fields = form.Fields(IBurgerMenuPortlet)
+    label = u"Edit Burger Menu Portlet"
+    description = ''
 
 
     
