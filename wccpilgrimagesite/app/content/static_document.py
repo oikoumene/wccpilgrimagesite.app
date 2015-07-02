@@ -130,7 +130,7 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, u
     doc_in_step = schema.List(
         title=u'In pilgrimage steps',
         description=u'Also show this on:',
-        required=True,
+        required=False,
         value_type=schema.Choice(source=doc_in_step())
     )
 

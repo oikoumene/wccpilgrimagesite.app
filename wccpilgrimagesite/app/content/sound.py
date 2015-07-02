@@ -116,7 +116,7 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
     sound_in_step = schema.List(
         title=u'In pilgrimage steps',
         description=u'Also show this on:',
-        required=True,
+        required=False,
         value_type=schema.Choice(source=sound_in_step())
     )
 
