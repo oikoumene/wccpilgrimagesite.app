@@ -82,10 +82,17 @@ class featured_steps(object):
         return SimpleVocabulary(items)
 # Interface class; used to define content-type schema.
 
-class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+# class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+class ISound(form.Schema, IImageScaleTraversable):
     """
     Sound
     """
+
+    wcc_user = schema.Bool(
+            title=u'WCC is an owner',
+            required=True,
+            default=False
+    )
 
     title = schema.TextLine(
         title=u'Sound name',
@@ -141,6 +148,15 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
 
     )
 
+    form.mode(votes_count='hidden')
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
+
+
     # form.widget(featured_resource=CheckBoxFieldWidget)
     # featured_resource = schema.List(
     #        title=u'Is this sound featured?',value_type=schema.Choice(vocabulary=featured)
@@ -177,10 +193,10 @@ class ISound(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
         #required=False,
     #)
     
-    @invariant
-    def resourcesInvariant(data):
-        if not data.sound_in_step:
-            raise Invalid(_(u"No Pilgrimage Steps selected."))
+    # @invariant
+    # def resourcesInvariant(data):
+    #     if not data.sound_in_step:
+    #         raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass

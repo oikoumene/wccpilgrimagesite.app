@@ -91,10 +91,17 @@ class featured_steps(object):
         return SimpleVocabulary(items)
 
 
-class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+# class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+class IVideo(form.Schema, IImageScaleTraversable):
     """
     Video
     """
+
+    wcc_user = schema.Bool(
+            title=u'WCC is an owner',
+            required=True,
+            default=False
+        )
 
     title = schema.TextLine(
         title=u'Video name',
@@ -146,6 +153,13 @@ class IVideo(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUse
         required=False,
         constraint=validateaddress,
 
+    )
+
+    form.mode(votes_count='hidden')
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
     )
 
     # form.widget(featured_resource=CheckBoxFieldWidget)

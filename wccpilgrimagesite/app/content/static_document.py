@@ -89,10 +89,17 @@ class featured_steps(object):
             items.append(SimpleTerm(brain.UID, title=brain.Title))
         return SimpleVocabulary(items)
 
-class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+# class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, utils.IUserMixin):
+class IStaticDocument(form.Schema, IImageScaleTraversable):
     """
     Static Document
     """
+
+    wcc_user = schema.Bool(
+            title=u'WCC is an owner',
+            required=True,
+            default=False
+    )
 
     title = schema.TextLine(
         title=u'Document name',
@@ -154,6 +161,13 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, u
 
     )
 
+    form.mode(votes_count='hidden')
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
+
     # featured_doc_in_step = schema.Text(
     #     title=u'As featured in pilgrimage steps',
     #     description=u'Select pilgrimage steps where this document will appear as a featured resource.',
@@ -196,10 +210,10 @@ class IStaticDocument(form.Schema, IImageScaleTraversable, utils.IVotingMixin, u
         #required=False,
     #)
     
-    @invariant
-    def resourcesInvariant(data):
-        if not data.doc_in_step:
-            raise Invalid(_(u"No Pilgrimage Steps selected."))
+    # @invariant
+    # def resourcesInvariant(data):
+    #     if not data.doc_in_step:
+    #         raise Invalid(_(u"No Pilgrimage Steps selected."))
 
 
     pass
