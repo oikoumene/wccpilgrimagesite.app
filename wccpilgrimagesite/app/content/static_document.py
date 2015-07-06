@@ -267,7 +267,7 @@ def _createObject(context, event):
     mBody += "http://wccpilgrimage.org\n"
     try:
         mailhost.send(mBody, mto=mTo, mfrom=mFrom, subject=mSubj, immediate=True, charset='utf8', msg_type=None)
-    except ValueError, e:
+    except Exception, e:
         context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
         return None
 
