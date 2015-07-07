@@ -51,7 +51,7 @@ def validateaddress(value):
         raise InvalidEmailAddress(value)
     return True
 
-class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
+class IUserComment(form.Schema, IImageScaleTraversable):
     """
     User Comment
     """
@@ -82,11 +82,12 @@ class IUserComment(form.Schema, IImageScaleTraversable, utils.IVotingMixin):
         required=False,
     )
 
-    # votes_count = schema.Int(
-    #     title=u'Current votes count',
-    #     required=False,
-    #     default=0
-    # )
+    form.mode(votes_count='hidden')
+    votes_count = schema.Int(
+        title=u'Current votes count',
+        required=False,
+        default=0
+    )
 
 #    comment_in_steps = RelationList(
 #        title=u'Pilgrimage step',
