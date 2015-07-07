@@ -331,10 +331,13 @@
                                                 <h3 tal:content="python: brain['title']">Document One</h3>
                                                
                                                    <a class="video-links fancybox.iframe" tal:attributes="href python: brain['path']+'/@@images/file'">
-
-                                                <img tal:condition="python: brain['file_thumb']" tal:attributes="src python: brain['path']+ '/@@display-file/file_thumb'" alt="">
-
-                                                <p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> 
+                                                <tal:if tal:condition="python: 'pdf' in brain['app_type']">
+                                                      <img tal:condition="python: brain['file_thumb']" tal:attributes="src python: brain['path']+ '/@@images/file_thumb/mini'" alt="">
+                                                </tal:if>
+                                                <tal:if tal:condition="python: 'pdf' not in brain['app_type']">
+                                                      <img tal:condition="python: brain['file']" tal:attributes="src python: brain['path']+ '/@@images/file/mini'" alt="">
+                                                </tal:if>
+                                                <!--<p tal:condition="python: not brain['file_thumb']" class="fa fa-file-pdf-o" style="font-size: 150px;"></p> -->
                                              </a>
                                                 <ul class="no-bullet icons-box">
                                                       <li tal:condition="python: brain['wcc_user'] == True" class="user-icon wcc-user">

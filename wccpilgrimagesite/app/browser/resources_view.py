@@ -171,7 +171,8 @@ class Index(dexterity.DisplayForm):
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
-                        'wcc_user':obj.wcc_user
+                        'wcc_user':obj.wcc_user,
+                        'app_type':obj.file.contentType
 
                 }
             docs_resources.append(data_resources)
@@ -188,7 +189,8 @@ class Index(dexterity.DisplayForm):
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
-                        'wcc_user':obj.wcc_user
+                        'wcc_user':obj.wcc_user,
+                        'app_type':obj.file.contentType
                 }
                 
                     docs_steps.append(data_steps)

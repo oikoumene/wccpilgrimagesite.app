@@ -305,7 +305,8 @@ class ResourceDocumentsPaginate(ApiView):
                                 'uid': brain.UID,
                                 'votes_count': obj.votes_count,
                                 'created': brain.created,
-                                'wcc_user':obj.wcc_user
+                                'wcc_user':obj.wcc_user,
+                                'app_type':obj.file.contentType
         
                         }
                     docs_resources.append(data_resources)
@@ -322,7 +323,8 @@ class ResourceDocumentsPaginate(ApiView):
                                 'uid': brain.UID,
                                 'votes_count': obj.votes_count,
                                 'created': brain.created,
-                                'wcc_user':obj.wcc_user
+                                'wcc_user':obj.wcc_user,
+                                'app_type':obj.file.contentType
                         }
                         
                             docs_steps.append(data_steps)
@@ -341,8 +343,10 @@ class ResourceDocumentsPaginate(ApiView):
                     html += "<li class='animated fadeInRight'>"
                     html += "<h3>"+pd['title']+"</h3>"
                     html += "<a class='video-links fancybox.iframe' href="+pd['path']+"/@@images/file>"
-                    if pd['file_thumb']:
-                        html += "<img src="+pd['path']+"/@@display-file/file_thumb alt=''>"
+                    if pd['file_thumb'] and 'pdf' in pd['app_type']:
+                        html += "<img src="+pd['path']+"/@@images/file_thumb/mini alt=''>"
+                    elif pd['file'] and 'pdf' not in pd['app_type']:
+                        html += "<img src="+pd['path']+"/@@images/file/mini alt=''>"
                     else:
                         html += "<p class='fa fa-file-pdf-o' style='font-size: 150px;'></p> "
                     html += "</a>"

@@ -35,6 +35,7 @@ from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 from zope.app.container.interfaces import IObjectAddedEvent
+
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 from plone import namedfile
@@ -43,6 +44,11 @@ import os
 import subprocess
 import shutil
 import base64
+
+
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form.interfaces import IAddForm, IEditForm
+import subprocess
 
 
 class InvalidEmailAddress(ValidationError):
@@ -157,11 +163,19 @@ class IStaticDocument(form.Schema, IImageScaleTraversable):
         required=False,
         value_type=schema.Choice(source=featured_steps())
     )
-    
+
+
+    form.mode(IAddForm, uploader='hidden')
+    form.mode(IEditForm, uploader='input')
+
+
     uploader = schema.TextLine(
         title=u"Name",
-        required=True,
+        required=False,
     )
+
+    form.mode(IAddForm, email='hidden')
+    form.mode(IEditForm, email='input')
     
     email = schema.TextLine(
         title=u'E-mail',
@@ -247,6 +261,7 @@ def fileOmittedErrorMessage(value):
 
 @grok.subscribe(IStaticDocument, IObjectAddedEvent)
 def _createObject(context, event):
+
     
     if 'pdf' in context.file.contentType:
         img = Pdf2Img(limit=1)
@@ -272,6 +287,7 @@ def _createObject(context, event):
                     os.remove(i)
             context.reindexObject()
             
+
     mailhost = getToolByName(context, 'MailHost')
     uploader = ''
     church = ''
@@ -318,6 +334,7 @@ def _createObject(context, event):
     except Exception, e:
         context.plone_utils.addPortalMessage(u'Unable to send email', 'info')
         return None
+
     
     
     
@@ -434,3 +451,4 @@ class Pdf2Img(object):
                 print "Error Code: {0}".format(return_code)
 
         return resoruces
+
