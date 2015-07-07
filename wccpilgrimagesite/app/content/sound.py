@@ -32,6 +32,7 @@ from zope.schema import ValidationError
 from Products.CMFDefault.utils import checkEmailAddress
 from Products.CMFDefault.exceptions import EmailAddressInvalid
 from zope.app.container.interfaces import IObjectAddedEvent
+from z3c.form.interfaces import IAddForm, IEditForm
 
 class InvalidEmailAddress(ValidationError):
     "Invalid email address"
@@ -136,10 +137,17 @@ class ISound(form.Schema, IImageScaleTraversable):
         value_type=schema.Choice(source=featured_steps())
     )
     
+    form.mode(IAddForm, uploader='hidden')
+    form.mode(IEditForm, uploader='input')
+
+
     uploader = schema.TextLine(
         title=u"Name",
-        required=True,
+        required=False,
     )
+
+    form.mode(IAddForm, email='hidden')
+    form.mode(IEditForm, email='input')
     
     email = schema.TextLine(
         title=u'E-mail',
