@@ -216,15 +216,19 @@ alsoProvides(IVideo, IFormFieldProvider)
 
 @form.error_message(field=IVideo['title'], error=RequiredMissing)
 def titleOmittedErrorMessage(value):
-    return u"No name provided."
+    return u"No video name provided."
 
 @form.error_message(field=IVideo['description'], error=RequiredMissing)
 def descriptionOmittedErrorMessage(value):
-    return u"No description provided."
+    return u"No video description provided."
 
 @form.error_message(field=IVideo['church'], error=RequiredMissing)
 def churchOmittedErrorMessage(value):
     return u"No church provided."
+
+@form.error_message(field=IVideo['url_youtube'], error=RequiredMissing)
+def churchOmittedErrorMessage(value):
+    return u"No Youtube URL provided."
 
 # @form.default_value(field=IVideo['featured_video_in_step'])
 # def value(self):

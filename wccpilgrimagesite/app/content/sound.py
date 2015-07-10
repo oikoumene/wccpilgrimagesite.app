@@ -213,11 +213,11 @@ alsoProvides(ISound, IFormFieldProvider)
 
 @form.error_message(field=ISound['title'], error=RequiredMissing)
 def titleOmittedErrorMessage(value):
-    return u"No name provided."
+    return u"No sound name provided."
 
 @form.error_message(field=ISound['description'], error=RequiredMissing)
 def descriptionOmittedErrorMessage(value):
-    return u"No description provided."
+    return u"No sound description provided."
 
 @form.error_message(field=ISound['church'], error=RequiredMissing)
 def churchOmittedErrorMessage(value):

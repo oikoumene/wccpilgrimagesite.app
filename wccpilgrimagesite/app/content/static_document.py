@@ -245,11 +245,11 @@ alsoProvides(IStaticDocument, IFormFieldProvider)
 
 @form.error_message(field=IStaticDocument['title'], error=RequiredMissing)
 def titleOmittedErrorMessage(value):
-    return u"No name provided."
+    return u"No document name provided."
 
 @form.error_message(field=IStaticDocument['description'], error=RequiredMissing)
 def descriptionOmittedErrorMessage(value):
-    return u"No description provided."
+    return u"No document description provided."
 
 @form.error_message(field=IStaticDocument['church'], error=RequiredMissing)
 def churchOmittedErrorMessage(value):
