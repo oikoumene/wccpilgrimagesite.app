@@ -197,3 +197,8 @@ def nameOmittedErrorMessage(value):
 @form.error_message(field=IResourceUpload['message'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
     return u"No message provided."
+
+
+@form.error_message(field=IResourceUpload['email'], error=RequiredMissing)
+def nameOmittedErrorMessage(value):
+    return u"No email provided."
