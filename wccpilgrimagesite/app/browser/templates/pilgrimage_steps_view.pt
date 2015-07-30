@@ -54,7 +54,7 @@
                         return false;
                   });
                   $('input#form-buttons-save').click(function(){
-                        var path = ROOT_API_URL+'/add+usercomment';
+                        var path = ROOT_API_URL+'add+usercomment';
                         var title = $('#form-widgets-title').val();
                         var message = $('#form-widgets-message').val();
                         var email = $('#form-widgets-email').val();
@@ -513,7 +513,8 @@
         </tal:block>
     </fieldset> -->
     
-     <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>
+     <!--<span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>-->
+     <span tal:attributes="data-root-api-url string:${context/absolute_url}/"></span>
 
   </metal:content-core>
 </metal:main>
