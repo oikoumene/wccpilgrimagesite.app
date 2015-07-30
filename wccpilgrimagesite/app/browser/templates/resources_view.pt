@@ -52,6 +52,7 @@
             $(document).ready(function(){
                   ROOT_API_URL = $('[data-root-api-url]').attr('data-root-api-url');
                   PARENT_AQPARENT_URL = $('[context-aq-parent]').attr('context-aq-parent');
+                  CONTEXT_URL = $('[context-path]').attr('context-path');
                   
                   var videos_start = parseInt($('#more-videos').attr('nextpage'));
                   var sounds_start = 1;
@@ -59,7 +60,7 @@
                   
                   $('#more-videos').click(function(e){
                       e.preventDefault();
-                      
+
                       $.ajax({
                         'url':ROOT_API_URL+'api+videos-paginate',
                         'type':'POST',
@@ -76,7 +77,7 @@
                              
                         },
                         'data':{
-                            path : ROOT_API_URL,
+                            path : CONTEXT_URL,
                             step : videos_start,
                             parent_aqparent_path:PARENT_AQPARENT_URL
                             
@@ -104,7 +105,7 @@
                              
                           },
                           'data':{
-                            path : ROOT_API_URL,
+                            path : CONTEXT_URL,
                             step : sounds_start,
                             parent_aqparent_path:PARENT_AQPARENT_URL
                             
@@ -131,7 +132,7 @@
                              
                           },
                           'data':{
-                            path : ROOT_API_URL,
+                            path : CONTEXT_URL,
                             step : docs_start,
                             parent_aqparent_path:PARENT_AQPARENT_URL
                             
@@ -162,7 +163,7 @@
                   
                   $('input#form-buttons-save').click(function(){
                         
-                        var path = ROOT_API_URL+'/add+resourceupload';
+                        var path = ROOT_API_URL+'add+resourceupload';
                         var name = $('#form-widgets-name').val();
                         var email = $('#form-widgets-email').val();
                         var church = $('#form-widgets-church').val();
@@ -170,6 +171,7 @@
                         var sound = $('#form-widgets-sound').val();
                         var message = $('#form-widgets-message').val();
                         var marker = 0;
+                        
                         if (name == '' || name==null) {
                               alert('Please provide a name.');
                               document.getElementById('form-widgets-name').focus();
@@ -499,8 +501,13 @@
                   </div>
             </section>
  
-  <span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>
+  <!--<span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>-->
+  <span tal:attributes="data-root-api-url string:${context/absolute_url}/"></span>
   <span tal:attributes="context-aq-parent python: '/'.join(context.getPhysicalPath()[:-1])"></span>
+  <span tal:attributes="context-path python: '/'.join(context.getPhysicalPath())+'/'"></span>
+  <!--<span tal:attributes="context-aq-parent string:${context/aq_parent/absolute_url}"></span>-->
+  
+  
 
  
     </div><!--end color page container-->
