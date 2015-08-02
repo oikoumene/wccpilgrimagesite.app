@@ -145,7 +145,7 @@ class Index(dexterity.DisplayForm):
     #                     'file_thumb': obj.file_thumb,
     #                     'doc_in_step':obj.doc_in_step,
     #                     'featured_doc_in_step':obj.featured_doc_in_step,
-    #                     'path': brain.getPath(),
+    #                     'path': brain.getURL(),
     #                     'uid': brain.UID,
     #                     'votes_count': obj.votes_count
     #             }
@@ -167,7 +167,7 @@ class Index(dexterity.DisplayForm):
                         'description':obj.description,
                         'file':obj.file,
                         'file_thumb': obj.file_thumb,
-                        'path': brain.getPath(),
+                        'path': brain.getURL(),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
@@ -185,7 +185,7 @@ class Index(dexterity.DisplayForm):
                         'description':obj.description,
                         'file':obj.file,
                         'file_thumb': obj.file_thumb,
-                        'path': brain.getPath(),
+                        'path': brain.getURL(),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,

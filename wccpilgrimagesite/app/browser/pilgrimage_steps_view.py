@@ -94,7 +94,7 @@ class Index(dexterity.DisplayForm):
                             # 'church':obj.church,
                             'file': obj.file,
                             'created': brain.created,
-                            'path': brain.getPath(),
+                            'path': brain.getURL(),
                             }
                     break;
         if data_steps:
@@ -110,7 +110,7 @@ class Index(dexterity.DisplayForm):
         catalog = getToolByName(self.context, 'portal_catalog')
         brains = catalog.unrestrictedSearchResults(path={'query':'/'.join(self.context.getPhysicalPath()), 'depth':1}, portal_type='wccpilgrimagesite.app.resources',review_state= 'published')
         for brain in brains:
-            return brain.getPath()
+            return brain.getURL()
         return '#'
 
     def instagram_hashtags_joined(self, hashtag=None):

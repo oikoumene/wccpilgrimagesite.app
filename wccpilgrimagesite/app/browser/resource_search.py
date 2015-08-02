@@ -41,7 +41,7 @@ class resource_search(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimagesteps', review_state= 'published')
         for brain in brains:
-            path = brain.getPath()
+            path = brain.getURL()
 
             if form:
                 pilgrimage_steps = form['pilgrimage_steps']
@@ -180,7 +180,7 @@ class resource_search(dexterity.DisplayForm):
                         'description':obj.description,
                         'file':obj.file,
                         'file_thumb': obj.file_thumb,
-                        'path': brain.getPath(),
+                        'path': brain.getURL(),
                         'uid': brain.UID,
                         'votes_count': obj.votes_count,
                         'created': brain.created,
