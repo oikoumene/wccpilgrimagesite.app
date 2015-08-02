@@ -24,7 +24,7 @@ class Index(dexterity.DisplayForm):
             parent = obj.aq_parent
             data = {'position':parent.getObjectPosition(brain.id) + 1}
             data['title'] = brain.Title
-            data['url'] = brain.getPath()
+            data['url'] = brain.getURL()
             data['obj'] = obj
             data['image'] = obj.image
             data['uid'] = brain.UID
