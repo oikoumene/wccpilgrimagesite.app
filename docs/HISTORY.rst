@@ -1,8 +1,9 @@
 Changelog
 =========
 
-1.4.12.dev0 - Unreleased
+1.4.12 - (02 Aug 2015)
 ----------------------
+- additional path changes
 
 1.4.11 - (02 Aug 2015)
 ----------------------
