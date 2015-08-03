@@ -11,6 +11,7 @@ from wccpilgrimagesite.app.content.static_document import IStaticDocument
 import urlparse
 import copy
 from operator import itemgetter
+from wccpilgrimagesite.app import MessageFactory as _
 
 
 #from wccpilgrimagesite.app import utils, content
