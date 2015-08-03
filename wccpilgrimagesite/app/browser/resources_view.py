@@ -253,3 +253,6 @@ class Index(dexterity.DisplayForm):
     def see_more_button(self, resource_type=None):
         if resource_type == 'videos':
             return len(self.videos_result())
+        
+    def at_least_one_resource_msg(self):
+        return _(u"At least one resource is required.")
