@@ -256,3 +256,9 @@ class Index(dexterity.DisplayForm):
         
     def at_least_one_resource_msg(self):
         return _(u"At least one resource is required.")
+    
+    def no_name_provided(self):
+        return _(u"No name provided.")
+    
+    def no_message_provided(self):
+        return _(u"No message provided.")
