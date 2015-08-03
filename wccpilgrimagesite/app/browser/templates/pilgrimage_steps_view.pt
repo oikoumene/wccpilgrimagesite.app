@@ -253,7 +253,7 @@
                                                 <ul class="small-block-grid-1 medium-block-grid-2">
                                                       <li>
                                                             <div id="formfield-form-widgets-title" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.title empty" data-fieldname="form.widgets.title">
-                                                                  <label class="horizontal" for="form-widgets-title">Name
+                                                                  <label class="horizontal" for="form-widgets-title"><span i18n:translate="name">Name</span>
                                                                         <span class="required horizontal" title="Required"></span>
                                                                   </label>
                                                                   <div class="fieldErrorBox"></div>
@@ -262,7 +262,7 @@
                                                       </li>
                                                       <li>
                                                             <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
-                                                                  <label class="horizontal" for="form-widgets-email">E-mail
+                                                                  <label class="horizontal" for="form-widgets-email"><span i18n:translate="e_mail">E-mail</span>
                                                                         <span class="required horizontal" title="Required"></span>
                                                                   </label>
                                                                   <div class="fieldErrorBox"></div>
@@ -272,7 +272,7 @@
                                                    
                                                       <li>
                                                             <div id="formfield-form-widgets-image" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.image empty" data-fieldname="form.widgets.image">
-                                                                  <label class="horizontal" for="form-widgets-image">Image</label>
+                                                                  <label class="horizontal" for="form-widgets-image"><span i18n:translate="photo">Image</span></label>
                                                                   <div class="fieldErrorBox"></div>
                                                                   <span id="form-widgets-image" class="named-image-widget namedblobimage-field">
                                                                         <input id="form-widgets-image-input" type="file" name="form.widgets.image"/>
