@@ -193,7 +193,8 @@
                         }
                         
                         if (marker >= 3) {
-                              alert('Unable to save data. Please provide at least one resource.');
+                              //alert('Unable to save data. Please provide at least one resource.');
+                              alert($('span#at_least_one_resource').html());
                               return false;
                         }else{
                               $.ajax({
@@ -425,7 +426,7 @@
                                                 </li>
                                                 <li>
                                                       <div id="formfield-form-widgets-church" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.church empty" data-fieldname="form.widgets.church">
-                                                            <label class="horizontal" for="form-widgets-church">Your church</label>
+                                                            <label class="horizontal" for="form-widgets-church"><span i18n:translate="your_church">Your church</span></label>
                                                             <div class="fieldErrorBox"></div>
                                                             <input id="form-widgets-church" class="text-widget textline-field" type="text" value="" name="form.widgets.church"/>
                                                       </div>
@@ -508,7 +509,7 @@
   <!--<span tal:attributes="context-aq-parent string:${context/aq_parent/absolute_url}"></span>-->
   
   
-
+<span style='display: none' id="at_least_one_resource" tal:content="view/at_least_one_resource_msg"/>
  
     </div><!--end color page container-->
 
