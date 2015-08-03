@@ -29,13 +29,29 @@ msgstr ""
 "Generated-By: zope/app/locales/extract.py\n"
 "Language: de\n"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:127
+msgid "At least one resource is required."
+msgstr ""
+
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:156
 msgid "Cancel"
 msgstr "Stornieren"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:199
+msgid "No message provided."
+msgstr "Kommentar fehlt."
+
+#: wccpilgrimagesite/app/content/resource_upload.py:195
+msgid "No name provided."
+msgstr "Name fehlt."
+
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153
 msgid "Save"
 msgstr "Sparen"
+
+#: wccpilgrimagesite/app/browser/api_add_resourceupload.py:126
+msgid "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+msgstr "Vielen Dank für Ihren Beitrag! Er wird auf der Webseite erscheinen, sobald er von einer unserer Mitarbeiterinnen oder einem unserer Mitarbeiter freigeschaltet wurde."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
 msgid "add_resource"
@@ -46,6 +62,11 @@ msgstr "Beitrag hinzufügen"
 msgid "documents"
 msgstr "Dokumente"
 
+#. Default: "E-mail"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:265
+msgid "e_mail"
+msgstr ""
+
 #: wccpilgrimagesite/app/portlet/templates/burgermenuportlet.pt:3
 msgid "home"
 msgstr "Startseite"
@@ -53,6 +74,16 @@ msgstr "Startseite"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:232
 msgid "message"
 msgstr "Kommentar"
+
+#. Default: "Name"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:256
+msgid "name"
+msgstr ""
+
+#. Default: "Photo"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:275
+msgid "photo"
+msgstr ""
 
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:220
 msgid "resources"
@@ -76,6 +107,11 @@ msgstr "Soziale Medien"
 msgid "sounds"
 msgstr "Audio"
 
+#. Default: "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:408
+msgid "thank_you_contribution"
+msgstr "Vielen Dank für Ihren Beitrag! Er wird auf der Webseite erscheinen, sobald er von einer unserer Mitarbeiterinnen oder einem unserer Mitarbeiter freigeschaltet wurde."
+
 #. Default: "Videos"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:49
 msgid "videos"
@@ -87,6 +123,11 @@ msgstr ""
 
 #: wccpilgrimagesite.theme:/setuphandlers.py:6
 msgid "wccpilgrimagesite.theme import handler"
+msgstr ""
+
+#. Default: "Your Church"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:428
+msgid "your_church"
 msgstr ""
 
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:74
