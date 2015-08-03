@@ -212,7 +212,7 @@
                                     <li tal:repeat="brain brains">
                                           <div class="cl-image-wrapper">
                                                 <span class="cl-image">
-                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getPath()+'/@@images/image/'">
+                                                      <img tal:condition="python: brain.getObject().image" tal:attributes="src python: brain.getURL()+'/@@images/image/'">
                                                       <img tal:condition="python: not brain.getObject().image" src="++theme++wccpilgrimagesite.theme/images/mussel.png">
 
                                                 </span>

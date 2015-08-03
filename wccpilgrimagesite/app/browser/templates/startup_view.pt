@@ -39,7 +39,7 @@
                         <tal:block tal:condition="content">
                             <tal:block tal:define="obj content/_unrestrictedGetObject">
                               <div tal:content="structure obj/body"></div>
-                              <a tal:attributes="href content/getPath" class="button tiny lets-go" tal:content="obj/url_label">Let's Go</a>
+                              <a tal:attributes="href content/getURL" class="button tiny lets-go" tal:content="obj/url_label">Let's Go</a>
                             </tal:block>
                         </tal:block>
                         
