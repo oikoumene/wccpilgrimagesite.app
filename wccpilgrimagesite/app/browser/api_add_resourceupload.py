@@ -10,6 +10,7 @@ from plone import namedfile
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFCore.utils import getToolByName
 from plone.i18n.normalizer import idnormalizer
+from wccpilgrimagesite.app import MessageFactory as _
 
 grok.templatedir('templates')
 
@@ -122,7 +123,8 @@ class api_add_resourceupload(grok.View):
                 
             
         #import pdb; pdb.set_trace()
-        return self._response(response={'mssg': 'Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members.'})
+        #return self._response(response={'mssg': _(u"Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members.")})
+        return self._response(response={'mssg':'success'})
     
     def generate_id(self, path=None, new_id=None):
         if path and new_id:
