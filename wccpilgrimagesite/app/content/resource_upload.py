@@ -192,13 +192,13 @@ def _createObject(context, event):
 
 @form.error_message(field=IResourceUpload['name'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No name provided."
+    return _(u"No name provided.")
 
 @form.error_message(field=IResourceUpload['message'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No message provided."
+    return _(u"No message provided.")
 
 
 @form.error_message(field=IResourceUpload['email'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No email provided."
+    return _(u"No email provided.")
