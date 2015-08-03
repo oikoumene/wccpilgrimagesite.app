@@ -37,9 +37,21 @@ msgstr "Au moins une ressource est nécessaire."
 msgid "Cancel"
 msgstr "Annuler"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:199
+msgid "No message provided."
+msgstr "Aucun message n’a été laissé."
+
+#: wccpilgrimagesite/app/content/resource_upload.py:195
+msgid "No name provided."
+msgstr "Aucun nom n’est indiqué."
+
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153
 msgid "Save"
 msgstr "Enregistrer"
+
+#: wccpilgrimagesite/app/browser/api_add_resourceupload.py:126
+msgid "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+msgstr "Merci pour votre contribution! Celle-ci apparaîtra sur le site web dès qu’elle aura été approuvée par notre personnel."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
 msgid "add_resource"
@@ -94,6 +106,11 @@ msgstr "Médias sociaux"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:78
 msgid "sounds"
 msgstr "Sons"
+
+#. Default: "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:408
+msgid "thank_you_contribution"
+msgstr "Merci pour votre contribution! Celle-ci apparaîtra sur le site web dès qu’elle aura été approuvée par notre personnel."
 
 #. Default: "Videos"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:49
