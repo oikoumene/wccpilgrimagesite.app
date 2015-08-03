@@ -110,3 +110,20 @@ msgstr ""
 #: wccpilgrimagesite/app/content/resource_upload.py:127
 msgid "At least one resource is required."
 msgstr ""
+
+#: wccpilgrimagesite/app/browser/api_add_resourceupload.py:126
+msgid "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+msgstr ""
+
+#: wccpilgrimagesite/app/content/resource_upload.py:195
+msgid "No name provided."
+msgstr ""
+
+#: wccpilgrimagesite/app/content/resource_upload.py:199
+msgid "No message provided."
+msgstr ""
+
+#. Default: "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:408
+msgid "thank_you_contribution"
+msgstr ""
