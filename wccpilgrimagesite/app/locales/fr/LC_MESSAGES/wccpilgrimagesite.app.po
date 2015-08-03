@@ -1,29 +1,104 @@
 # #############################################################################
-#
+# 
 # Copyright (c) 2003-2004 Zope Foundation and Contributors.
 # All Rights Reserved.
-#
+# 
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
 # THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-#
+# 
 # #############################################################################
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: Sat May 23 15:45:40 2015\n"
-"PO-Revision-Date: 2015-05-23 15:46+0800\n"
-"Last-Translator: Cindy <cindy@cindy-lenovo-g480>\n"
+"PO-Revision-Date: 2015-07-31 14:45+0800\n"
+"Last-Translator: glenn <glenn@glenn-lenovo-g480>\n"
 "Language-Team: French\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
 "Generated-By: zope/app/locales/extract.py\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: wccpilgrimagesite/app/content/resource_upload.py:127
+msgid "At least one resource is required."
+msgstr "Au moins une ressource est nécessaire."
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:156
+msgid "Cancel"
+msgstr "Annuler"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.py:153
+msgid "Save"
+msgstr "Enregistrer"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
+msgid "add_resource"
+msgstr "Ajouter une ressource"
+
+#. Default: "Documents"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:107
+msgid "documents"
+msgstr "Documents"
+
+#. Default: "E-mail"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:265
+msgid "e_mail"
+msgstr "Courriel"
+
+#: wccpilgrimagesite/app/portlet/templates/burgermenuportlet.pt:3
+msgid "home"
+msgstr "Accueil"
+
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:232
+msgid "message"
+msgstr "Message"
+
+#. Default: "Name"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:256
+msgid "name"
+msgstr "Nom"
+
+#. Default: "Photo"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:275
+msgid "photo"
+msgstr "Photo"
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:220
+msgid "resources"
+msgstr "Ressources"
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:104
+msgid "see_more"
+msgstr "Plus"
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:106
+msgid "show_less"
+msgstr ""
+
+#. Default: "Social Media"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:261
+msgid "social_media"
+msgstr "Médias sociaux"
+
+#. Default: "Sounds"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:78
+msgid "sounds"
+msgstr "Sons"
+
+#. Default: "Videos"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:49
+msgid "videos"
+msgstr "Vidéos"
 
 #: wccpilgrimage.policy:/setuphandlers.py:6
 msgid "wccpilgrimage.policy import handler"
@@ -33,6 +108,12 @@ msgstr ""
 msgid "wccpilgrimagesite.theme import handler"
 msgstr ""
 
-#: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:104
-msgid "see_more"
-msgstr "Plus"
+#. Default: "Your Church"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:428
+msgid "your_church"
+msgstr "Votre Église"
+
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:74
+msgid "your_comments"
+msgstr ""
+
