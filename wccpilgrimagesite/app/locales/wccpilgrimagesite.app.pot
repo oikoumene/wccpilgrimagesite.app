@@ -86,3 +86,27 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_app_view.pt:106
 msgid "show_less"
 msgstr ""
+
+#. Default: "Name"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:256
+msgid "name"
+msgstr ""
+
+#. Default: "E-mail"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:265
+msgid "e_mail"
+msgstr ""
+
+#. Default: "Photo"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:275
+msgid "photo"
+msgstr ""
+
+#. Default: "Your Church"
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:428
+msgid "your_church"
+msgstr ""
+
+#: wccpilgrimagesite/app/content/resource_upload.py:127
+msgid "At least one resource is required."
+msgstr ""
