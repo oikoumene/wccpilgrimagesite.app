@@ -15,6 +15,7 @@ from zope import schema
 from zc.relation.interfaces import ICatalog
 from zope.component.hooks import getSite
 from plone.directives import dexterity, form
+from wccpilgrimagesite.app import MessageFactory as _
 
 class IVotingMixin(form.Schema):
     form.mode(votes_count='hidden')
