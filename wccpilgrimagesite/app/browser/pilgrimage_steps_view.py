@@ -187,7 +187,8 @@ class Index(dexterity.DisplayForm):
     
     def next_content(self, pos=None):
         parent = self.context.aq_parent
-        path = '/'.join(parent.getPhysicalPath())
+        #path = '/'.join(parent.getPhysicalPath())
+        path = parent.absolute_url()
         if pos:
             current_pos = self.current_object_position()
             positions = self.pilgrimage_steps_position()
@@ -199,7 +200,8 @@ class Index(dexterity.DisplayForm):
     
     def previous_content(self, pos=None):
         parent = self.context.aq_parent
-        path = '/'.join(parent.getPhysicalPath())
+        #path = '/'.join(parent.getPhysicalPath())
+        path = parent.absolute_url()
         if pos:
             current_pos = self.current_object_position()
             positions = self.pilgrimage_steps_position()
