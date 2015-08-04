@@ -408,7 +408,7 @@
                               <a href="" class="action-button title-button"><span class="ab-circle">+</span><br><span class="access">Add a resource</span></a>
                               <h2 i18n:translate="add_resource">Add a Resource</h2>
                               <div style="display:none" id='success-message' i18n:translate="thank_you_contribution">Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members.</div>
-                              <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" tal:attributes="action python: '/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.resourceupload'">
+                              <form id="form" class="rowlike enableUnloadProtection enableFormTabbing kssattr-formname-++add++wccpilgrimagesite.app.resourceupload" enctype="multipart/form-data" method="post" tal:attributes="action python: context.absolute_url()+'/++add++wccpilgrimagesite.app.resourceupload'">
                                     <fieldset id="fieldset-default" class="formPanel" style="display: block;">
                                           <legend id="fieldsetlegend-default" style="visibility: hidden; font-size: 0px; padding: 0px; height: 0px; width: 0px; line-height: 0;">Default</legend>
                                           
