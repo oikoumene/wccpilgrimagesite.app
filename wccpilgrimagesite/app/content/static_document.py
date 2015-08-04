@@ -61,6 +61,12 @@ def validateaddress(value):
         raise InvalidEmailAddress(value)
     return True
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except Exception:
+        return False
 
 # Interface class; used to define content-type schema.
 
@@ -403,7 +409,11 @@ class Pdf2Img(object):
             print "Ghostscript process did not exit cleanly! "
             print "Error Code: {0}".format(return_code)
 
-        return int(result)
+        #return int(result)
+        if is_number(result):
+            return int(result)
+        else:
+            return 0
 
     def destination_folder(self):
         if not os.path.exists(self.path):
