@@ -365,7 +365,7 @@ def _modifyobject(context, event):
             context.reindexObject()
 
 
-COMMAND_COUNT_PDF_PAGES = ('gs -q -dNOSISPLAY -c "({path}) '
+COMMAND_COUNT_PDF_PAGES = ('gs -q -dNODISPLAY -c "({path}) '
                            ' (r) file runpdfbegin pdfpagecount = quit"')
 
 
