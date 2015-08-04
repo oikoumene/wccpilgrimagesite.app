@@ -236,7 +236,7 @@
                               </ul>
                                                        
                               
-                              <a class="action-button add-comment" tal:attributes="href python:'/'.join(context.getPhysicalPath())+'/++add++wccpilgrimagesite.app.usercomment'">
+                              <a class="action-button add-comment" tal:attributes="href python:context.absolute_url()+'/++add++wccpilgrimagesite.app.usercomment'">
                                     <span class="ab-circle" id='show_hide_form'>+</span>
                                     <br />
                                     <span class="ab-text add-a-comment">Add a comment</span>
