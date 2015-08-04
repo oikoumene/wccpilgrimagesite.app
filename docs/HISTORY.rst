@@ -1,5 +1,8 @@
 Changelog
 =========
+1.4.15 - (04 Aug 2015)
+________________________
+- fixed thumbnail generation, used NODISPLAY instead of NOSISPLAY
 
 1.4.13.dev0 - Unreleased
 ------------------------
