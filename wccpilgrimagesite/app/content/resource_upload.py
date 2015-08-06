@@ -124,7 +124,8 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     @invariant
     def resourcesInvariant(data):
        if not any([data.video, data.sound, data.document]):
-            raise Invalid(_(u"At least one resource is required."))
+            msg = _(u"At least one resource is required.")
+            raise Invalid(msg)
     
 alsoProvides(IResourceUpload, IFormFieldProvider)
 
