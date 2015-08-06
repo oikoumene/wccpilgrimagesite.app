@@ -127,3 +127,16 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:408
 msgid "thank_you_contribution"
 msgstr ""
+
+#. Default: "Video"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:441
+msgid "video"
+msgstr ""
+
+#: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
+msgid "World Council of Churches"
+msgstr ""
+
+#: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
+msgid "Conditions of Use & Privacy Policy"
+msgstr ""
