@@ -424,7 +424,7 @@
                                                 </li>
                                                 <li>
                                                       <div id="formfield-form-widgets-email" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.email empty" data-fieldname="form.widgets.email">
-                                                            <label class="horizontal" for="form-widgets-email">E-mail</label>
+                                                            <label class="horizontal" for="form-widgets-email" i18n:translate="e_mail">E-mail</label>
                                                             <div class="fieldErrorBox"></div>
                                                             <input id="form-widgets-email" class="text-widget textline-field" type="text" value="" name="form.widgets.email"/>
                                                       </div>                                                      
@@ -438,7 +438,7 @@
                                                 </li>
                                                 <li>
                                                       <div id="formfield-form-widgets-video" class="field z3cformInlineValidation kssattr-fieldname-form.widgets.video empty" data-fieldname="form.widgets.video">
-                                                            <label class="horizontal" for="form-widgets-video">Video</label>
+                                                            <label class="horizontal" for="form-widgets-video" i18n:translate='video'>Video</label>
                                                             <div class="fieldErrorBox"></div>
                                                             <textarea id="form-widgets-video" class="textarea-widget text-field" name="form.widgets.video"></textarea>
                                                       </div>
