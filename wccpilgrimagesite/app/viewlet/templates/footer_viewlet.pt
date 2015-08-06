@@ -1,0 +1,17 @@
+<metal:page define-macro="footer">
+    <footer class="page-footer text-center animated fadeIn">
+        <div class="row">
+            <div class="columns small-12 medium-6 medium-text-left">
+                <ul class="no-bullet">
+                    <li class="copyright">&copy; <span tal:content="viewlet/current_year"></span> <span tal:content="viewlet/world_council_churches">World Council of Churches</span></li>
+                    <li class="tandc"><a href="http://www.oikoumene.org/en/conditions-for-use" tal:content="viewlet/conditions_privacy_policy">Conditions of Use &amp; Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="columns small-12 medium-6 medium-text-right">
+                <ul class="no-bullet">
+                    <li class="initiative"><a href="http://www.oikoumene.org"><img tal:define="root context/@@plone_portal_state/navigation_root_url" tal:attributes="src string:${root}/++theme++wccpilgrimagesite.theme/images/wcc-icon-white.png" alt="The World Council of Churches"/></a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</metal:page>
