@@ -102,7 +102,7 @@ class IResourceUpload(form.Schema, IImageScaleTraversable):
     )
 
     video = schema.Text(
-        title=u'Video',
+        title=_(u'Video'),
         required=False,
         constraint=validatevideo,
     )
