@@ -37,6 +37,10 @@ msgstr "Debe completar al menos uno de los campos."
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
+msgid "Conditions of Use & Privacy Policy"
+msgstr "Condiciones de uso y política de privacidad"
+
 #: wccpilgrimagesite/app/content/resource_upload.py:199
 msgid "No message provided."
 msgstr "No ha introducido un mensaje."
@@ -52,6 +56,10 @@ msgstr "Enviar"
 #: wccpilgrimagesite/app/browser/api_add_resourceupload.py:126
 msgid "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
 msgstr "¡Muchas gracias por su colaboración! Su aportación aparecerá en la página web cuando haya sido aprobada por uno de nuestros colaboradores."
+
+#: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
+msgid "World Council of Churches"
+msgstr "Consejo Mundial de Iglesias"
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
 msgid "add_resource"
@@ -111,6 +119,11 @@ msgstr "Sonidos"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:408
 msgid "thank_you_contribution"
 msgstr "¡Muchas gracias por su colaboración! Su aportación aparecerá en la página web cuando haya sido aprobada por uno de nuestros colaboradores."
+
+#. Default: "Video"
+#: wccpilgrimagesite/app/browser/templates/resources_view.pt:441
+msgid "video"
+msgstr ""
 
 #. Default: "Videos"
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:49
