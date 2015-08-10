@@ -39,7 +39,7 @@ msgstr ""
 msgid "home"
 msgstr ""
 
-#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:74
+#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:210
 msgid "your_comments"
 msgstr ""
 
