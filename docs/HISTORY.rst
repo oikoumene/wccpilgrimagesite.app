@@ -1,5 +1,9 @@
 Changelog
 =========
+1.4.16 - (07 Aug 2015)
+_________________________
+- added translated words
+
 1.4.15 - (04 Aug 2015)
 ________________________
 - fixed thumbnail generation, used NODISPLAY instead of NOSISPLAY
