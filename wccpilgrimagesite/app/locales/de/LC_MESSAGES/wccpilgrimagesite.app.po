@@ -61,6 +61,10 @@ msgstr "Vielen Dank für Ihren Beitrag! Er wird auf der Webseite erscheinen, sob
 msgid "World Council of Churches"
 msgstr " Ökumenischer Rat der Kirchen"
 
+#: wccpilgrimagesite/app/browser/pilgrimage_steps_view.py:215
+msgid "Your comments"
+msgstr "Ihre Kommentare"
+
 #: wccpilgrimagesite/app/browser/templates/resources_view.pt:176
 msgid "add_resource"
 msgstr "Beitrag hinzufügen"
@@ -142,8 +146,4 @@ msgstr ""
 #: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:428
 msgid "your_church"
 msgstr "Ihre Kirche"
-
-#: wccpilgrimagesite/app/browser/templates/pilgrimage_steps_view.pt:210
-msgid "your_comments"
-msgstr "Ihre Kommentare"
 

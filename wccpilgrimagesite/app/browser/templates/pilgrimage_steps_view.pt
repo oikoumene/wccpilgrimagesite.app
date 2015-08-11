@@ -207,7 +207,7 @@
             <section class="content-strip white-bg">
                   <div class="row">
                         <div class="columns small-12 text-center">
-                              <h2><span i18n:translate="your_comments">Your comments</span></h2>
+                              <h2><span tal:content="view/your_comments">Your comments</span></h2>
                               <ul class="comments-list no-bullet" tal:define="brains view/comments_result" tal:condition="brains">
                                     <li tal:repeat="brain brains">
                                           <div class="cl-image-wrapper">

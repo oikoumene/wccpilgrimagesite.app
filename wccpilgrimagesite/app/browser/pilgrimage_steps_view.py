@@ -211,6 +211,10 @@ class Index(dexterity.DisplayForm):
                 return path+'/'+positions[current_pos-1]
         return '#'
     
+    def your_comments(self):
+        return _(u"Your comments")
+    
+    
     
     
     
