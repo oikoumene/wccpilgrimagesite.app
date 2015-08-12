@@ -1,5 +1,9 @@
 Changelog
 =========
+1.4.17 - (12 Aug 2015)
+________________________
+- fixed bugs on internationalisation of words
+
 1.4.16 - (07 Aug 2015)
 _________________________
 - added translated words
