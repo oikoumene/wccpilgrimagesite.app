@@ -14,12 +14,20 @@
             display: block;
             content: " ";
         }
+
+        #instafeed img {
+        width:30%;
+        }
          
       </style>
 </metal:styleslot>
 
   <metal:block fill-slot="javascript_head_slot">
-      <script tal:attributes="src string:$portal_url/++theme++wccpilgrimagesite.theme/js/instagram.min.js" type="text/javascript"></script>
+    <!--   <script tal:attributes="src string:$portal_url/++theme++wccpilgrimagesite.theme/js/instagram.min.js" type="text/javascript"></script>
+ -->
+ <script type="text/javascript" src="https://raw.githubusercontent.com/stevenschobert/instafeed.js/master/instafeed.min.js"></script>
+
+
 
       <script type="text/javascript">
             function isValidEmailAddress(emailAddress) {
@@ -404,7 +412,7 @@
                                     </li>
                                     <li>
                                         <h3 class="media-title"><i class="fa fa-instagram"></i><span class="latest-insta-post">Latest Instagram post</span></h3>
-                                        <script tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widget/js/instansive.js"></script>
+<!--                                         <script tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widget/js/instansive.js"></script>
 
                                         <iframe tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widgets/e36bf6febb7673f51f02c91080cd5746112602dc.html" id="instansive_e36bf6febb" name="instansive_e36bf6febb"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 200px; border: 0; overflow: hidden;"></iframe>
 
@@ -464,22 +472,51 @@
                                                     return array;
                                                 }
                                             });
-                                        </script>
+                                        </script> -->
 
+                                          <!-- Instagram User -->
+                                          <div tal:condition="insta_user" tal:define="insta_user python: view.instagram_user_feed(context.instagram_hashtags)">
+                                            <span style="display: none;" id="instagram_id" tal:content="python: view.instagram(insta_user)"></span>
+                                            <p tal:content="python: view.instagram_user_feed(context.instagram_hashtags)"></p>
+                                            
+                                            <script type="text/javascript">
+                                              var instagram_id = parseInt($("span#instagram_id").html());
+                                              var userFeed = new Instafeed({
+                                                  get: 'user',
+                                                  userId: instagram_id,
+                                                  accessToken: '1534136183.467ede5.0c7d10cbc2384aae8614c191e61f959a',
+                                                  limit:9,
+                                              });
+                                              userFeed.run();
+                                            </script>
+                                            <div id="instafeed"></div>
+                                        </div>
 
+                                  <!-- Instagram Hashtag -->
+                                          <div tal:condition="insta_hashtag" tal:define="insta_hashtag python: view.instagram_hashtags_joined(context.instagram_hashtags)">
+                                            <span style="display: none;" id='insta_hashtag' tal:content="python: view.instagram_hashtags_joined(context.instagram_hashtags)"></span>
+                                           <script type="text/javascript">
+                                            var insta_hashtag = $("span#insta_hashtag").html();
+                                            var feed = new Instafeed({
+                                                get: 'tagged',
+                                                tagName: insta_hashtag,
+                                                limit: 9,
+                                                clientId: '81b42938f3dd4e48b77846755069ce56',
+                                                template: '<a href="{{link}}"><img src="{{image}}" /></a>'
+                                            });
+                                            feed.run();
+                                          </script>
+                                          <div id="instafeed"></div>
+                                        </div>
+                                        
                                           <br />
                                           <div class="soc-med-link">
                                                 <a href="http://instagram.com/worldcouncilofchurches">
                                                       <span class="sml-circle"><i class="fa fa-instagram"></i></span><br><span class="sml-text follow-us-on-insta">Follow us on Instagram</span>
                                                 </a>
                                           </div>
-
-
+                                  
                                     </li>
-
-
-
-
                               </ul>
                               <a href="" class="action-button link-top"><span class="ab-circle"><i class="fa fa-angle-up"></i></span><br><span class="ab-text back-to-top">Back to top</span></a>
                         </div>
@@ -487,6 +524,8 @@
             </section>
             
       </div><!--end color page container-->
+
+
 
 
 
@@ -515,6 +554,7 @@
     
      <!--<span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>-->
      <span tal:attributes="data-root-api-url string:${context/absolute_url}/"></span>
+
 
   </metal:content-core>
 </metal:main>

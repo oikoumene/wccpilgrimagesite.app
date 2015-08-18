@@ -9,6 +9,8 @@ from wccpilgrimagesite.app.content.static_document import IStaticDocument
 
 from wccpilgrimagesite.app import MessageFactory as _
 from zope.i18n import translate
+import urllib2
+import json
 
 grok.templatedir('templates')
 
@@ -213,8 +215,15 @@ class Index(dexterity.DisplayForm):
     
     def your_comments(self):
         return _(u"Your comments")
-    
-    
+
+    def instagram(self, username= None):
+        url = "https://api.instagram.com/v1/users/search?q='"+username+"'&client_id=81b42938f3dd4e48b77846755069ce56&count=1"
+        response = urllib2.urlopen(url)
+        html = response.read()
+        return json.loads(html)['data'][0]['id']
+
+            
+            
     
     
     
