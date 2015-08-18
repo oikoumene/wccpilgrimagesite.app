@@ -23,9 +23,8 @@
 </metal:styleslot>
 
   <metal:block fill-slot="javascript_head_slot">
-    <!--   <script tal:attributes="src string:$portal_url/++theme++wccpilgrimagesite.theme/js/instagram.min.js" type="text/javascript"></script>
- -->
- <script type="text/javascript" src="https://raw.githubusercontent.com/stevenschobert/instafeed.js/master/instafeed.min.js"></script>
+      <script tal:attributes="src string:$portal_url/++theme++wccpilgrimagesite.theme/js/instagram.min.js" type="text/javascript"></script>
+
 
 
 
