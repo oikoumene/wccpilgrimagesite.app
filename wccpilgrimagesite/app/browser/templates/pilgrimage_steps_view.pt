@@ -476,9 +476,7 @@
 
                                           <!-- Instagram User -->
                                           <div tal:condition="insta_user" tal:define="insta_user python: view.instagram_user_feed(context.instagram_hashtags)">
-                                            <span style="display: none;" id="instagram_id" tal:content="python: view.instagram(insta_user)"></span>
-                                            <p tal:content="python: view.instagram_user_feed(context.instagram_hashtags)"></p>
-                                            
+                                            <span style="display: none;" id="instagram_id" tal:content="python: view.instagram(insta_user)"></span> 
                                             <script type="text/javascript">
                                               var instagram_id = parseInt($("span#instagram_id").html());
                                               var userFeed = new Instafeed({
@@ -508,7 +506,7 @@
                                           </script>
                                           <div id="instafeed"></div>
                                         </div>
-                                        
+
                                           <br />
                                           <div class="soc-med-link">
                                                 <a href="http://instagram.com/worldcouncilofchurches">
