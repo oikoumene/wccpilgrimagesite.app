@@ -220,7 +220,12 @@ class Index(dexterity.DisplayForm):
         url = "https://api.instagram.com/v1/users/search?q='"+username+"'&client_id=81b42938f3dd4e48b77846755069ce56&count=1"
         response = urllib2.urlopen(url)
         html = response.read()
-        return json.loads(html)['data'][0]['id']
+        data = ''
+        json_data = json.loads(html)
+        if json_data.has_key('data'):
+            if json_data['data']:
+                data = json_data['data'][0]['id']
+        return data
 
             
             
