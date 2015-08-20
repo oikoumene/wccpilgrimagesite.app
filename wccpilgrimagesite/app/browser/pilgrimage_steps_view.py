@@ -123,6 +123,13 @@ class Index(dexterity.DisplayForm):
             hashtag.replace('#', '').split(',')
         ))
 
+        if not hashtag or '@' in hashtag:
+            return u''
+        if ',' in hashtag:
+            return u','.join(map(lambda x: x.strip(),hashtag.replace('#', '').split(',')))
+        if ',' not in hashtag:
+            return u','.join(map(lambda x: x.strip(),hashtag.replace('#', '').split(' ')))
+
     def instagram_user_feed(self, hashtag=None):
         if not hashtag or '#' in hashtag:
             return u''
@@ -217,7 +224,7 @@ class Index(dexterity.DisplayForm):
         return _(u"Your comments")
 
     def instagram(self, username= None):
-        url = "https://api.instagram.com/v1/users/search?q='"+username+"'&client_id=81b42938f3dd4e48b77846755069ce56&count=1"
+        url = "https://api.instagram.com/v1/users/search?q='"+str(username)+"'&client_id=81b42938f3dd4e48b77846755069ce56&count=1"
         response = urllib2.urlopen(url)
         html = response.read()
         data = ''
