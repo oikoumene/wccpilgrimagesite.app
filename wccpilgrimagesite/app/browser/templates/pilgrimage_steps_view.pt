@@ -16,7 +16,13 @@
         }
 
         #instafeed img {
-        width:30%;
+          width:30%;
+        }
+        #insta{
+          width: 100%;
+          height: 241px;
+          overflow-y: scroll;
+          overflow-x: hidden;
         }
          
       </style>
@@ -474,7 +480,8 @@
                                         </script> -->
 
                                           <!-- Instagram User -->
-                                          <div tal:condition="insta_user" tal:define="insta_user python: view.instagram_user_feed(context.instagram_hashtags)">
+
+                                          <div id="insta" tal:condition="insta_user" tal:define="insta_user python: view.instagram_user_feed(context.instagram_hashtags)">
                                             <span style="display: none;" id="instagram_id" tal:content="python: view.instagram(insta_user)"></span> 
                                             <script type="text/javascript">
                                               var instagram_id = parseInt($("span#instagram_id").html());
@@ -482,45 +489,32 @@
                                                   get: 'user',
                                                   userId: instagram_id,
                                                   accessToken: '1534136183.467ede5.0c7d10cbc2384aae8614c191e61f959a',
-                                                  limit:9,
+                                                  limit:18,
                                               });
                                               userFeed.run();
                                             </script>
                                             <div id="instafeed"></div>
                                         </div>
-
                                   <!-- Instagram Hashtag -->
-                                          <div tal:condition="insta_hashtag" tal:define="insta_hashtag python: view.instagram_hashtags_joined(context.instagram_hashtags)">
-                                            <span style="display: none;" id='insta_hashtag' tal:content="python: view.instagram_hashtags_joined(context.instagram_hashtags)"></span>
+                                          <div id="insta" tal:condition="insta_hashtag" tal:define="insta_hashtag python: view.instagram_hashtags_joined(context.instagram_hashtags)">
+                                            <span id='insta_hashtag' tal:content="python: view.instagram_hashtags_joined(context.instagram_hashtags)"></span>
                                            <script type="text/javascript">
                                             var insta_hashtag = $("span#insta_hashtag").html();
                                             var array = insta_hashtag.split(',');
-                                            var data_limit = Math.round(9/array.length);
                                             var i;
                                             for (i in array){
-                                              if (i == (array.length-1))
-                                                {var feed = new Instafeed({
-                                                      get: 'tagged',
-                                                      tagName: array[i],
-                                                      limit: data_limit-1,
-                                                      clientId: '81b42938f3dd4e48b77846755069ce56',
-                                                      template: '<a href="{{link}}"><img src="{{image}}" /></a>'
-                                                  });
-                                                  feed.run();
-                                                }
-                                              else {
+                                             
                                               var feed = new Instafeed({
                                                   get: 'tagged',
                                                   tagName: array[i],
-                                                  limit: data_limit,
+                                                  limit: 12,
                                                   clientId: '81b42938f3dd4e48b77846755069ce56',
                                                   template: '<a href="{{link}}"><img src="{{image}}" /></a>'
                                               });
                                               feed.run();
-                                              }
+                                             
                                             }
                                           </script>
-                                      
                                           <div id="instafeed"></div>
                                         </div>
 
@@ -539,12 +533,6 @@
             </section>
             
       </div><!--end color page container-->
-
-
-
-
-
-
     <!--  <img tal:attributes="src string:${context/absolute_url}/@@download/picture/${picture/filename};
                          height picture/_height | nothing;
                          width picture/_width | nothing;"
