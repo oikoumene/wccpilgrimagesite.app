@@ -20,8 +20,8 @@
         }
         #insta{
           width: 100%;
-          height: 241px;
-          overflow-y: scroll;
+          height: 236px;
+          overflow-y: auto;
           overflow-x: hidden;
         }
          
@@ -497,7 +497,7 @@
                                         </div>
                                   <!-- Instagram Hashtag -->
                                           <div id="insta" tal:condition="insta_hashtag" tal:define="insta_hashtag python: view.instagram_hashtags_joined(context.instagram_hashtags)">
-                                            <span id='insta_hashtag' tal:content="python: view.instagram_hashtags_joined(context.instagram_hashtags)"></span>
+                                            <span style="display:none"id='insta_hashtag' tal:content="python: view.instagram_hashtags_joined(context.instagram_hashtags)"></span>
                                            <script type="text/javascript">
                                             var insta_hashtag = $("span#insta_hashtag").html();
                                             var array = insta_hashtag.split(',');
