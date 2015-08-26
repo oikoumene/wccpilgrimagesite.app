@@ -1,5 +1,9 @@
 Changelog
 =========
+1.5 - (26 Aug 2015)
+_________________________
+- fixed instagram taggings when using HTTPS
+
 1.4.17 - (12 Aug 2015)
 ________________________
 - fixed bugs on internationalisation of words
