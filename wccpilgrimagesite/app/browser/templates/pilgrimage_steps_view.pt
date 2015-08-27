@@ -74,21 +74,24 @@
                         var image = $('#form-widgets-image').val();
                         marker = 0;
                         if (title == null || title == '') {
-                              alert('Please provide a name.');
+                              //alert('Please provide a name.');
+                              alert($('span#pls_provide_name_msg').html());
                               document.getElementById('form-widgets-title').focus();
                               marker += 1;
                               return false;
                         }
                         
                         if (email == null || email == '') {
-                              alert('Please provide an email.');
+                              //alert('Please provide an email.');
+                              alert($('span#no_email_provided').html());
                               document.getElementById('form-widgets-email').focus();
                               marker += 1;
                               return false;
                         }
                         
                         if (message == null || message == '') {
-                              alert('Please provide a message.');
+                              //alert('Please provide a message.');
+                              alert($('span#no_message_provided').html());
                               document.getElementById('form-widgets-message').focus();
                               marker += 1;
                               return false;
@@ -558,7 +561,9 @@
      <!--<span tal:attributes="data-root-api-url python: '/'.join(context.getPhysicalPath())+'/'"></span>-->
      <span tal:attributes="data-root-api-url string:${context/absolute_url}/"></span>
 
-
+      <span tal:content="view/pls_provide_name_msg" id="pls_provide_name_msg" style="display: none"/>
+      <span tal:content="view/no_email_provided" id="no_email_provided" style="display: none"/>
+      <span tal:content="view/no_message_provided" id="no_message_provided" style="display: none"/>
   </metal:content-core>
 </metal:main>
 
