@@ -41,12 +41,20 @@ msgstr "Annuler"
 msgid "Conditions of Use & Privacy Policy"
 msgstr "Conditions d’utilisation et politique de confidentialité"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:205
+msgid "No email provided."
+msgstr "Aucun courriel n’est indiqué."
+
 #: wccpilgrimagesite/app/content/resource_upload.py:199
 msgid "No message provided."
 msgstr "Aucun message n’a été laissé."
 
 #: wccpilgrimagesite/app/content/resource_upload.py:195
 msgid "No name provided."
+msgstr "Aucun nom n’est indiqué."
+
+#: wccpilgrimagesite/app/browser/pilgrimage_steps_view.py:238
+msgid "Please provide a name."
 msgstr "Aucun nom n’est indiqué."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153

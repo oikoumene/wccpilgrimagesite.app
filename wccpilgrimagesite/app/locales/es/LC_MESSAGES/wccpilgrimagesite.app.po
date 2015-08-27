@@ -41,12 +41,20 @@ msgstr "Cancelar"
 msgid "Conditions of Use & Privacy Policy"
 msgstr "Condiciones de uso y política de privacidad"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:205
+msgid "No email provided."
+msgstr "No ha introducido un correo electrónico."
+
 #: wccpilgrimagesite/app/content/resource_upload.py:199
 msgid "No message provided."
 msgstr "No ha introducido un mensaje."
 
 #: wccpilgrimagesite/app/content/resource_upload.py:195
 msgid "No name provided."
+msgstr "No ha introducido un nombre."
+
+#: wccpilgrimagesite/app/browser/pilgrimage_steps_view.py:238
+msgid "Please provide a name."
 msgstr "No ha introducido un nombre."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153

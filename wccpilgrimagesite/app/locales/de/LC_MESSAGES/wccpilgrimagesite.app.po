@@ -41,12 +41,20 @@ msgstr "Stornieren"
 msgid "Conditions of Use & Privacy Policy"
 msgstr "Nutzungsbedingungen & Datenschutzgrundsätze"
 
+#: wccpilgrimagesite/app/content/resource_upload.py:205
+msgid "No email provided."
+msgstr "E-Mail-Adresse fehlt."
+
 #: wccpilgrimagesite/app/content/resource_upload.py:199
 msgid "No message provided."
 msgstr "Kommentar fehlt."
 
 #: wccpilgrimagesite/app/content/resource_upload.py:195
 msgid "No name provided."
+msgstr "Name fehlt."
+
+#: wccpilgrimagesite/app/browser/pilgrimage_steps_view.py:238
+msgid "Please provide a name."
 msgstr "Name fehlt."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153

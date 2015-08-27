@@ -140,3 +140,11 @@ msgstr ""
 #: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
 msgid "Conditions of Use & Privacy Policy"
 msgstr ""
+
+#: wccpilgrimagesite/app/content/resource_upload.py:205
+msgid "No email provided."
+msgstr ""
+
+#: wccpilgrimagesite/app/browser/pilgrimage_steps_view.py:238
+msgid "Please provide a name."
+msgstr ""
