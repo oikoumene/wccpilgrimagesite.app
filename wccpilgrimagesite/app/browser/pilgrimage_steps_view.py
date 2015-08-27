@@ -233,6 +233,16 @@ class Index(dexterity.DisplayForm):
             if json_data['data']:
                 data = json_data['data'][0]['id']
         return data
+    
+    def pls_provide_name_msg(self):
+        return _(u"Please provide a name.")
+    
+    def no_email_provided(self):
+        return _(u"No email provided.")
+    
+    def no_message_provided(self):
+        return _(u"No message provided.")
+    
 
             
             
