@@ -150,15 +150,15 @@ alsoProvides(IUserComment, IFormFieldProvider)
 
 @form.error_message(field=IUserComment['title'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No name provided."
+    return _(u"No name provided.")
 
 @form.error_message(field=IUserComment['message'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No message provided."
+    return _(u"No message provided.")
 
 @form.error_message(field=IUserComment['email'], error=RequiredMissing)
 def nameOmittedErrorMessage(value):
-    return u"No email provided."
+    return _(u"No email provided.")
 
 @grok.subscribe(IUserComment, IObjectAddedEvent)
 def _createObject(context, event):
