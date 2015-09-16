@@ -35,7 +35,7 @@ msgstr "Es muss mindestens ein Beitrag angefügt werden."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:156
 msgid "Cancel"
-msgstr "Stornieren"
+msgstr "Abbrechen"
 
 #: wccpilgrimagesite/app/viewlet/footer_viewlet.py:20
 msgid "Conditions of Use & Privacy Policy"
@@ -59,7 +59,7 @@ msgstr "Name fehlt."
 
 #: wccpilgrimagesite/app/browser/templates/resources_view.py:153
 msgid "Save"
-msgstr "Sparen"
+msgstr "Speichern"
 
 #: wccpilgrimagesite/app/browser/api_add_resourceupload.py:126
 msgid "Thank you for your contribution! It will appear on the website after it has been approved by one of our staff members."
