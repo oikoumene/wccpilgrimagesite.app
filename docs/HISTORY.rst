@@ -1,5 +1,9 @@
 Changelog
 =========
+1.5.2 - (28 Sept 2015)
+_________________________
+- fixed save and cancel translations
+
 1.5.1 - (27 Aug 2015)
 _________________________
 - added new translation
