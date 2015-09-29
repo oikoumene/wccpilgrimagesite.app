@@ -47,20 +47,18 @@ class resource_search(dexterity.DisplayForm):
                 pilgrimage_steps = form['pilgrimage_steps']
                 resource_type = form['resource_type']
                 keyword = form['keyword'].lower()
-            if pilgrimage_steps == 'all':
-                if resource_type == 'all':
-                    brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type=['wccpilgrimagesite.app.video','wccpilgrimagesite.app.sound', 'wccpilgrimagesite.app.staticdocument'], review_state= 'published')
-                    for brain1 in brains1:
-                        obj = brain1._unrestrictedGetObject()
-                        title = brain1.Title.lower()
-                        desc = obj.description.lower()
-                        if keyword:
-                            if keyword in title or keyword in desc:
-                                results.append({'uid': brain1.UID,
-                                                'portal_type': brain1.portal_type })
-                        else:
-                            results.append({'uid': brain1.UID,
-                                            'portal_type': brain1.portal_type })
+            brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type=['wccpilgrimagesite.app.video','wccpilgrimagesite.app.sound', 'wccpilgrimagesite.app.staticdocument'], review_state= 'published')
+            for brain1 in brains1:
+                obj = brain1._unrestrictedGetObject()
+                title = brain1.Title.lower()
+                desc = obj.description.lower()
+                if keyword:
+                    if keyword in title or keyword in desc:
+                        results.append({'uid': brain1.UID,
+                                        'portal_type': brain1.portal_type })
+                    else:
+                        results.append({'uid': brain1.UID,
+                                        'portal_type': brain1.portal_type })
                 else:
                     brains1 = catalog.unrestrictedSearchResults(path={'query':path, 'depth':2}, portal_type="wccpilgrimagesite.app."+resource_type, review_state= 'published')
                     for brain1 in brains1:
