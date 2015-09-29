@@ -1,5 +1,9 @@
 Changelog
 =========
+1.5.3 - (29 Sept 2015)
+_________________________
+- optimized resource search
+
 1.5.2 - (28 Sept 2015)
 _________________________
 - fixed save and cancel translations
