@@ -1,5 +1,9 @@
 Changelog
 =========
+1.5.4 - (13 Oct 2015)
+_________________________
+- fixed issue on links' path
+
 1.5.3 - (29 Sept 2015)
 _________________________
 - optimized resource search
