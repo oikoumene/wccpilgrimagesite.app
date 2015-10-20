@@ -49,7 +49,7 @@ class Renderer(base.Renderer):
             
             if brain.portal_type == 'wccpilgrimagesite.app.pilgrimagesteps':
                 data['title'] = str(data['position'])+'. '+brain.Title
-                data['url'] = brain.getPath()
+                data['url'] = brain.getURL()
             else:
                 data['title'] = brain.Title
                 data['url'] = obj.burger_link_url
@@ -67,7 +67,7 @@ class Renderer(base.Renderer):
         brains = self.catalog.unrestrictedSearchResults(path={'query':path, 'depth':1}, portal_type='wccpilgrimagesite.app.pilgrimageapp')
         
         for brain in brains:
-            return brain.getPath()
+            return brain.getURL()
         return '#'
     
     
