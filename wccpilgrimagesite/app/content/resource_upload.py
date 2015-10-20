@@ -182,10 +182,11 @@ def _createObject(context, event):
         item2.reindexObject()
         
     if context.document:
-        item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title=context.name)
-        item3.file = context.document
-        item3.description = context.message
-        item3.church = context.church
+        item3 = createContentInContainer(parent,'wccpilgrimagesite.app.staticdocument', checkConstraints=False,title=context.name,
+                                         file=context.document, description=context.message, church = context.church)
+        #item3.file = context.document
+        #item3.description = context.message
+        #item3.church = context.church
         item3.reindexObject()
     context.reindexObject()
     return
