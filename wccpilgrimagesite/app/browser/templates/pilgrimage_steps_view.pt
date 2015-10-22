@@ -410,7 +410,7 @@
                                     </li>
                                     <li>
                                           <h3 class="media-title"><i class="fa fa-twitter"></i><span class="latest-tweets">Latest tweets</span></h3>
-                                        <a tal:attributes="data-widget-id context/twitter_widget_id"class="twitter-timeline">Tweets</a>
+                                        <a tal:attributes="data-widget-id context/twitter_widget_id" class="twitter-timeline">Tweets</a>
                                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                                         <div class="soc-med-link">
                                             <a href="https://twitter.com/wccpilgrimage">
