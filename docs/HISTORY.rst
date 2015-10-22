@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.5.5dev1 - (22 oct 2015)
+_________________________
+- added space before class
+
 1.5.5dev0 - (21 Oct 2015)
 _________________________
 - changed path to URL
