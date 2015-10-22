@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.5dev2 - (22 Oct 2015)
+_________________________
+- added space before id, typo error
 
 1.5.5dev1 - (22 oct 2015)
 _________________________
