@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.5.5dev1'
+version = '1.5.5dev2'
 
 setup(name='wccpilgrimagesite.app',
       version=version,
