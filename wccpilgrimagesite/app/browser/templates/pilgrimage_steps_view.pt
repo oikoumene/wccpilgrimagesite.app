@@ -512,10 +512,9 @@
                                                   tagName: array[i],
                                                   limit: 12,
                                                   clientId: '81b42938f3dd4e48b77846755069ce56',
-                                                  template: '<a href="{{link}}"><img src="{{image}}" /></a>'
+                                                  template: "<a href='{{link}}'><img src='{{image}}'/><" + "/" + "a>"
                                               });
                                               feed.run();
-                                             
                                             }
                                           </script>
                                           <div id="instafeed"></div>
