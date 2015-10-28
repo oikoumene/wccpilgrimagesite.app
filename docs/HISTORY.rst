@@ -1,5 +1,10 @@
 Changelog
 =========
+
+1.5.5dev3 (28 oct 2015)
+_________________________
+- changed js string
+
 1.5.5dev2 - (22 Oct 2015)
 _________________________
 - added space before id, typo error
