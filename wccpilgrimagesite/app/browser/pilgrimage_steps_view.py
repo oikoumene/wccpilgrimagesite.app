@@ -224,7 +224,10 @@ class Index(dexterity.DisplayForm):
         return _(u"Your comments")
 
     def instagram(self, username= None):
-        url = "https://api.instagram.com/v1/users/search?q='"+str(username)+"'&client_id=81b42938f3dd4e48b77846755069ce56&count=1"
+        #get the token
+        #https://api.instagram.com/oauth/authorize/?client_id=a3555152a0e74cfea08834bfda5922fc&redirect_uri=http://localhost:8080/Plone/pilgrimageapp/pilgrimagesteps&response_type=token&scope=basic+public_content+follower_list+comments+relationships+likes
+        url = 'https://api.instagram.com/v1/users/search?q='+str(username)+'&access_token=1709168600.a355515.4e9b6bbd8e3c4b98a05eef05b553407c'
+        #url = "https://api.instagram.com/v1/users/search?q='"+str(username)+"'&client_id=a3555152a0e74cfea08834bfda5922fc&count=1"
         response = urllib2.urlopen(url)
         html = response.read()
         data = ''
@@ -242,10 +245,3 @@ class Index(dexterity.DisplayForm):
     
     def no_message_provided(self):
         return _(u"No message provided.")
-    
-
-            
-            
-    
-    
-    
