@@ -420,67 +420,7 @@
                                     </li>
                                     <li>
                                         <h3 class="media-title"><i class="fa fa-instagram"></i><span class="latest-insta-post">Latest Instagram post</span></h3>
-<!--                                         <script tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widget/js/instansive.js"></script>
-
-                                        <iframe tal:condition="python: view.instagram_user_feed(context.instagram_hashtags)" src="//instansive.com/widgets/e36bf6febb7673f51f02c91080cd5746112602dc.html" id="instansive_e36bf6febb" name="instansive_e36bf6febb"  scrolling="no" allowtransparency="true" class="instansive-widget" style="width: 200px; border: 0; overflow: hidden;"></iframe>
-
-                                        <div tal:condition="not: python: view.instagram_user_feed(context.instagram_hashtags)" class="instagram" tal:attributes="data-hashtags python: view.instagram_hashtags_joined(context.instagram_hashtags); data-userfeed python: view.instagram_user_feed(context.instagram_hashtags)"></div>
-
-                                     
-                                        <script tal:condition="not: python: view.instagram_user_feed(context.instagram_hashtags)">
-
-                                     
-                                            jQuery(function($) {
-                                                var images_per_tag = 3;
-                                                var merged_results = [];
-                                                var count_responses = 0;
-                                                var tags = $('.instagram').attr('data-hashtags').split(',');
-                                                var tags_count = tags.length;
-                                                var client_id = '81b42938f3dd4e48b77846755069ce56';
-
-                                                $('.instagram').on('didLoadInstagram', function(event, response) {
-                                                    merged_results = $.merge(response.data, merged_results) ;
-                                                    count_responses += 1;
-
-                                                    if(count_responses == tags_count) {
-                                                        displayMergedResults(merged_results);
-                                                    }
-                                                });
-
-                                                $.each(tags, function(index, value) {
-                                                    $('.instagram').instagram({
-                                                        hash: value,
-                                                        clientId: client_id,
-                                                        count: images_per_tag
-                                                    });
-                                                });
-
-                                                function displayMergedResults(images){
-                                                    images = shuffle(images);
-
-                                                    $.each(images, function(index, value) {
-                                                        var img = $('<img>');
-                                                        img.attr('src', value.images.standard_resolution.url);
-                                                        img.appendTo('.instagram');
-                                                        img.wrap('<a href="' + value.link + '" class="instagram-thumb" target="_blank"></a>');
-                                                    });
-                                                }
-
-                                                function shuffle(array) {
-                                                    var currentIndex = array.length, temporaryValue, randomIndex ;
-
-                                                    while (0 !== currentIndex) {
-                                                        randomIndex = Math.floor(Math.random() * currentIndex);
-                                                        currentIndex -= 1;
-
-                                                        temporaryValue = array[currentIndex];
-                                                        array[currentIndex] = array[randomIndex];
-                                                        array[randomIndex] = temporaryValue;
-                                                    }
-                                                    return array;
-                                                }
-                                            });
-                                        </script> -->
+<!--                                      
 
                                           <!-- Instagram User -->
 
@@ -491,7 +431,7 @@
                                               var userFeed = new Instafeed({
                                                   get: 'user',
                                                   userId: instagram_id,
-                                                  accessToken: '1534136183.467ede5.0c7d10cbc2384aae8614c191e61f959a',
+                                                  accessToken: '1534136183.a355515.22a7dcd43c3a44e9a26a3e22e597b25a',
                                                   limit:18,
                                               });
                                               userFeed.run();
@@ -506,12 +446,11 @@
                                             var array = insta_hashtag.split(',');
                                             var i;
                                             for (i in array){
-                                             
                                               var feed = new Instafeed({
                                                   get: 'tagged',
                                                   tagName: array[i],
                                                   limit: 12,
-                                                  clientId: '81b42938f3dd4e48b77846755069ce56',
+                                                  accessToken: '1534136183.a355515.22a7dcd43c3a44e9a26a3e22e597b25a',
                                                   template: "<a href='{{link}}'><img src='{{image}}'/><" + "/" + "a>"
                                               });
                                               feed.run();
