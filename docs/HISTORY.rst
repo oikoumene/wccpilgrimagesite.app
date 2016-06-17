@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.5.5dev4 (june 16 2016)
+---------------------
+changed instagram feature and view
+
 1.5.5dev3 (28 oct 2015)
 _________________________
 - changed js string
