@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.5dev5 (june 28 2016)
+------------
+fixed https error
 
 1.5.5dev4 (june 16 2016)
 ---------------------
