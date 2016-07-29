@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.5dev7 (june 29 2016)
+------------
+use protocol releative url
 
 1.5.5dev6 (june 29 2016)
 -------
