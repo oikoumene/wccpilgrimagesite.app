@@ -1,5 +1,10 @@
 Changelog
 =========
+
+1.5.5dev6 (june 29 2016)
+-------
+update for https video
+
 1.5.5dev5 (june 28 2016)
 ------------
 fixed https error
