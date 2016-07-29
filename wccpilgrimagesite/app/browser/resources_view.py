@@ -206,7 +206,7 @@ class Index(dexterity.DisplayForm):
         return docs_final
 
     def url_youtube_bg_img(self, url=None):
-        return 'http://img.youtube.com/vi/{hash}/hqdefault.jpg'.format(hash=self._hash_from_url_youtube(url))
+        return '//img.youtube.com/vi/{hash}/hqdefault.jpg'.format(hash=self._hash_from_url_youtube(url))
 
     def _hash_from_url_youtube(self, url=None):
         # Reference: http://stackoverflow.com/a/7936523/545435
