@@ -224,9 +224,8 @@ class Index(dexterity.DisplayForm):
                 return query.path.split('/')[2]
         return ''
 
-
     def url_youtube_embedded(self, url=None):
-        return 'http://www.youtube.com/embed/{hash}'.format(hash=self._hash_from_url_youtube(url))
+        return '//www.youtube.com/embed/{hash}'.format(hash=self._hash_from_url_youtube(url))
     
     def save_translation(self):
         return self.context.translate(_(u"Save"))
